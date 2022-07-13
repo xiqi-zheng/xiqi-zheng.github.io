@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+
+
+
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Chloe&#39;s universe</title>
+        <link>https://xiqi-zheng.github.io/</link>
+        <description>这是 Chloe 的生活与技术博客</description>
+        <generator>Hugo 0.101.0 https://gohugo.io/</generator>
+        
+            <language>zh-CN</language>
+        
+        
+            <managingEditor>1647656181@qq.com (Chloe)</managingEditor>
+        
+        
+            <webMaster>1647656181@qq.com (Chloe)</webMaster>
+        
+        
+            <copyright>转载请保留本文作者以及本文链接</copyright>
+        
+        <lastBuildDate>Wed, 13 Jul 2022 13:39:24 &#43;0800</lastBuildDate>
+        
+            <atom:link rel="self" type="application/rss&#43;xml" href="https://xiqi-zheng.github.io/rss.xml" />
+        
+        
+            <item>
+                <title>机器学习-吴恩达 梯度下降（笔记）</title>
+                <link>https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%AC%94%E8%AE%B0/</link>
+                <guid isPermaLink="true">https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%AC%94%E8%AE%B0/</guid>
+                <pubDate>Thu, 07 Jul 2022 00:00:00 &#43;0000</pubDate>
+                
+                    <author>1647656181@qq.com (Chloe)</author>
+                
+                <copyright>转载请保留本文作者以及本文链接</copyright>
+                
+                    <description>&lt;h2 id=&#34;什么是梯度下降&#34;&gt;什么是梯度下降？&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;梯度下降是寻找目标函数最小化的方法。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;比如在上一个&lt;a href=&#34;https://editor.csdn.net/md/?articleId=125470263&#34;&gt;单变量线性回归模型&lt;/a&gt;文章中我们的目标是得到最拟合的&lt;strong&gt;单变量线性回归Function&lt;/strong&gt;，也就是得到&lt;strong&gt;代价函数的最小值&lt;/strong&gt;：min J(w,b) 。
+那么如何得到呢？&lt;strong&gt;梯度下降法就可以通过不断迭代调整参数来寻找最合适的值。&lt;/strong&gt;
+&lt;br/&gt;&lt;/p&gt;
+&lt;h2 id=&#34;梯度下降表达式&#34;&gt;梯度下降表达式&lt;/h2&gt;
+&lt;p&gt;我们还是用单变量线性回归模型中的J(w,b)来举例：
+&lt;img src=&#34;https://img-blog.csdnimg.cn/b2b88a8367674b49a620b37c96a0e6fc.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+我们&lt;strong&gt;持续不断地更新w和b&lt;/strong&gt;，直到他们&lt;strong&gt;收敛&lt;/strong&gt;，也就是计算后他们的值已经不会出现什么变动，那么我们就得到了局部（以下文章会解释为什么是局部）/ 全局最小值（&lt;strong&gt;只是收敛到极小值，而不是真正意义上的最小值。以下说的最小值，其实都是极小值&lt;/strong&gt;）或是鞍点。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;注意我们需要同步更新w和b，也就是w更新后，b更新时用的还是没有更新的w。&lt;/strong&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/ad3b16a4b25a416fbf4873c8131b7cd6.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;表达式解释&#34;&gt;表达式解释&lt;/h4&gt;
+&lt;p&gt;这里的&lt;strong&gt;等号&lt;/strong&gt;是一个&lt;strong&gt;赋值符号&lt;/strong&gt;，而不是数学意义上的相等符号。
+这里的&lt;strong&gt;Alpha&lt;/strong&gt;是&lt;strong&gt;学习率（learning rate）&lt;/strong&gt;，用来&lt;strong&gt;控制步长&lt;/strong&gt;，也就是我们每一步的跨度，一定大于0，通常在0到1之间，在之后的文章中会详细讲解。
+这里的最后一项是&lt;strong&gt;对于代价函数J(w,b)的偏导&lt;/strong&gt;，用来&lt;strong&gt;控制方向&lt;/strong&gt;。
+&lt;br/&gt;&lt;/p&gt;
+&lt;h2 id=&#34;梯度下降的直观理解&#34;&gt;梯度下降的直观理解&lt;/h2&gt;
+&lt;p&gt;为了更直观的观察梯度下降是如何让目标函数的最小化，我们假设&lt;strong&gt;只有一个参数的代价函数 J(w)&lt;/strong&gt;，在上一章中我们知道J(w)是一个二次函数（quadratic function），也就是一个抛物线。
+&lt;img src=&#34;https://img-blog.csdnimg.cn/5a33605e5c5e46e58800812614a1c478.png&#34; alt=&#34;J(w)图像&#34;&gt;
+我们假设一个在抛物线上的初始点
+&lt;img src=&#34;https://img-blog.csdnimg.cn/658c46a5e504483d8379f6ebbaaebcfe.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+现在开始进行梯度下降：&lt;img src=&#34;https://img-blog.csdnimg.cn/ffae7697ac3c479884345058b053093b.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+这里的最后一项（对J(w)的求导）在图中就是这个点的斜率：
+&lt;img src=&#34;https://img-blog.csdnimg.cn/13417285bd894a8394c527ecb4323573.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+那么也就是&lt;strong&gt;w = w - $\alpha$ * 一个正数，由于alpha一定是正数，所以w减小了所以在图中的表现就是点向左移动&lt;/strong&gt;，也就是向最小值靠近：
+&lt;img src=&#34;https://img-blog.csdnimg.cn/f9ac1a9155ed4fae9ba7af17168f27da.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+再来看另一个例子，当我们取的点在抛物线左边：&lt;img src=&#34;https://img-blog.csdnimg.cn/8ecdc5da82104085937d4bff924a5442.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+那么这个时候J(w)的求导就是负数，也就是一个负的斜率：
+&lt;img src=&#34;https://img-blog.csdnimg.cn/9250ec8014384c04b2739d92e251a8c1.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+那么现在&lt;strong&gt;w = w - $\alpha$ * 一个负数，w增大了，所以在图中的表现就是点向右移动&lt;/strong&gt;，也在向最小值靠近：
+&lt;img src=&#34;https://img-blog.csdnimg.cn/ecd1f382b61b4e33835531bfc2b6b200.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+&lt;br/&gt;&lt;/p&gt;
+&lt;h2 id=&#34;学习率learning-rate&#34;&gt;学习率（learning rate）&lt;/h2&gt;
+&lt;p&gt;学习率的过大或过小都会造成一些影响：
+&lt;strong&gt;学习率过小：&lt;/strong&gt; 梯度下降的&lt;strong&gt;速度会非常慢&lt;/strong&gt;，因为每次下降的步长都太小，虽然最终也能得到正确结果，但&lt;strong&gt;会花费非常长的时间&lt;/strong&gt;。
+&lt;strong&gt;学习率过大：&lt;/strong&gt; 梯度下降的过多，会错过最小值，并且&lt;strong&gt;无法收敛&lt;/strong&gt;。
+&lt;img src=&#34;https://img-blog.csdnimg.cn/66c120a53ec3401a99023e4ca521e1ca.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+&lt;br/&gt;&lt;/p&gt;
+&lt;h3 id=&#34;固定的学习率只能找到局部最小值&#34;&gt;固定的学习率只能找到局部最小值&lt;/h3&gt;
+&lt;p&gt;由于当 J(w) 的取值在局部最小值的时候，这个点的&lt;strong&gt;斜率为0&lt;/strong&gt;，那么在下一次更新的时候，由于最后一项求导值为0，0乘上alpha还是0，所以&lt;strong&gt;w的取值已经不会再改变&lt;/strong&gt;。
+&lt;img src=&#34;https://img-blog.csdnimg.cn/ebb88c9eb2144586ababfafb047437fb.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+&lt;strong&gt;到达哪个局部最小值取决于选择的起始点&lt;/strong&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/33ba405f6f92457f85ba59b8b439dd37.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;但在回归中使用平方代价函数时，代价函数没有也永远不会有多个局部最优解，也就是只有全局最优解。这种函数我们称为凸函数。&lt;/strong&gt;
+&lt;br/&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/43a127c1a71c475693036045d790a776.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;br/&gt;
+&lt;h3 id=&#34;jw-靠近最小值的速度会逐渐变慢&#34;&gt;J(w) 靠近最小值的速度会逐渐变慢&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;即使在 alpha（学习率）不变的情况下&lt;/strong&gt;，随着 J(w) 的值向最小值靠近的时候，&lt;strong&gt;点的斜率会越来越小，所以w变化的速度也会逐渐变慢。&lt;/strong&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/8341f01d09e54e67914966e703d47691.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;br/&gt;
+&lt;h2 id=&#34;线性回归中的梯度下降&#34;&gt;线性回归中的梯度下降&lt;/h2&gt;
+&lt;p&gt;回顾上一章的内容：&lt;img src=&#34;https://img-blog.csdnimg.cn/3911dd3c02f245f7b63619f487d86d73.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+&lt;strong&gt;在对J(w,b)进行求导后得到：&lt;/strong&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/788314205f7e480bbf7f378eb8ed211f.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;求导过程&#34;&gt;求导过程：&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;对w求导：&lt;/strong&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/b6adbb0a733641959fe957d6940a67d0.jpeg&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+&lt;strong&gt;对b求导：&lt;/strong&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/ccb34b513dcb404fa089f3c0a231e551.jpeg&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;重复对 w 和 b 的求导，直到它们收敛。我们就找到了 f(x) 的最小值。&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://xiqi-zheng.github.io/tags/machine-learning/">Machine learning</category>
+                                
+                            
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>机器学习-吴恩达 单变量线性回归模型（笔记）</title>
+                <link>https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E5%8D%95%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B%E7%AC%94%E8%AE%B0/</link>
+                <guid isPermaLink="true">https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E5%8D%95%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B%E7%AC%94%E8%AE%B0/</guid>
+                <pubDate>Mon, 04 Jul 2022 00:00:00 &#43;0000</pubDate>
+                
+                    <author>1647656181@qq.com (Chloe)</author>
+                
+                <copyright>转载请保留本文作者以及本文链接</copyright>
+                
+                    <description>&lt;h2 id=&#34;terminology-术语&#34;&gt;Terminology 术语&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Training set 训练集：已知结果数据集，用来训练模型&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;notation&#34;&gt;Notation&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;x&lt;/strong&gt; = &amp;quot;input&amp;quot; variable feature 输入的变量&lt;br/&gt;
+&lt;strong&gt;y&lt;/strong&gt; = &amp;quot;output&amp;quot; variable / &amp;quot;target&amp;quot; variable 输出的变量或目标变量&lt;br/&gt;
+&lt;strong&gt;m&lt;/strong&gt; = number of training examples 训练集中的数量&lt;br/&gt;
+&lt;strong&gt;(x,y)&lt;/strong&gt; = single training example 训练集中的一组数据&lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;Example：
+&lt;img src=&#34;https://img-blog.csdnimg.cn/7b58d10d44d74e609e210fac2332e4fb.png#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+&lt;br&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;h2 id=&#34;得到线性回归模型的流程&#34;&gt;得到线性回归模型的流程&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;选择一个监督学习算法&lt;/li&gt;
+&lt;li&gt;把训练集中的features（输入变量）和output（输出）提供给学习算法&lt;/li&gt;
+&lt;li&gt;得到一个model / function （模型 / 函数）&lt;/li&gt;
+&lt;li&gt;把想要预测的数据输入这个模型&lt;/li&gt;
+&lt;li&gt;最终这个模型将输出一个值&amp;quot;y-hat&amp;quot;,这就是模型给出的预测结果&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;单变量线性回归function的表达式&#34;&gt;单变量线性回归Function的表达式&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;f~w,b~(x) = wx + b 或者 f(x) = wx+b&lt;/strong&gt;
+w,b: parameters（参数）&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/b1094ed892464bd481f665344c581acf.png#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+&lt;/br&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;h2 id=&#34;cost-function-代价函数&#34;&gt;Cost Function 代价函数&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;作用&lt;/strong&gt;：找到最优解的目标函数 &lt;br/&gt;
+&lt;strong&gt;Loss Funtion（损失函数）&lt;/strong&gt;: 定义在单个样本上，算的是&lt;strong&gt;一个&lt;/strong&gt;样本的误差。&lt;br/&gt;
+&lt;strong&gt;Cost Funtion&lt;/strong&gt;: 定义在整个训练集上的，是所有样本误差的平均值，也就是loss function的平均值。&lt;/p&gt;
+&lt;p&gt;所谓误差，就是我们的样本输出值和函数的输出值之间的距离。当我们得到的函数的Cost Function最小的时候,这个函数就是我们要找的目标函数。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Cost Funtion公式：&lt;/strong&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/c838617b940f4329965a732825e9c7d8.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+其中y-hat  = f(w,b) = wx+b
+&lt;strong&gt;我们的目标是找到最小的J(w,b)，让每一个样本的输出值最靠近我们的目标函数的输出值。&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;如何寻找最小的cost-function&#34;&gt;如何寻找最小的Cost Function?&lt;/h3&gt;
+&lt;p&gt;从单一参数开始来看，当只有&lt;strong&gt;w&lt;/strong&gt;时：&lt;strong&gt;f(x) = wx&lt;/strong&gt;
+那么：&lt;img src=&#34;https://img-blog.csdnimg.cn/2afb2522f8244ab6a045e0af5ece11af.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;fx-与-jw-之间的变化关系&#34;&gt;f(x) 与 J(w) 之间的变化关系&lt;/h4&gt;
+&lt;p&gt;假设有一组训练集为：(1,1),(2,2),(3,3)
+现在我们取w = 1时：
+&lt;img src=&#34;https://img-blog.csdnimg.cn/8a9a98360969451c96b5a80e5c3d5144.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+那么J(w)：
+&lt;img src=&#34;https://img-blog.csdnimg.cn/604a09b6aea14b8b8d7bebcc8dbce3fd.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/dab2ea94e00f42288714843bb98f86ad.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+当我们取w = 0.5时：&lt;img src=&#34;https://img-blog.csdnimg.cn/e077074216c4417bb250628aef53425d.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+那么J(w)：&lt;img src=&#34;https://img-blog.csdnimg.cn/ae48b327bbc24426a64e86f124372bc2.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+当我们取多个和w的值时，它的图像会变成一个二次函数：
+&lt;img src=&#34;https://img-blog.csdnimg.cn/f0dae9e0c9c843cea18efbdeab2860ae.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+此时将这个二次函数进行&lt;strong&gt;求导&lt;/strong&gt;，就能得到这个函数的最小值，也就是误差最小的w值。&lt;/p&gt;
+&lt;p&gt;当参数增加时，也是同样的道理，但是维度会增加。&lt;img src=&#34;https://img-blog.csdnimg.cn/a7e3959823d2443e9e5b5c3db5f9f79e.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/6c5bec620c294e67b5d6dc55fe68f59d.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+J(w,b) 图像：
+&lt;img src=&#34;https://img-blog.csdnimg.cn/7f011d81c76a4a34a0a8a5008fcc73d9.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;对于回归问题，我们可以归结为得到代价函数的最小值&lt;/strong&gt;&lt;/p&gt;
+</description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://xiqi-zheng.github.io/tags/machine-learning/">Machine learning</category>
+                                
+                            
+                        
+                    
+                
+            </item>
+        
+    </channel>
+</rss>
