@@ -23,10 +23,455 @@
         
             <copyright>转载请保留本文作者以及本文链接</copyright>
         
-        <lastBuildDate>Wed, 13 Jul 2022 13:39:24 &#43;0800</lastBuildDate>
+        <lastBuildDate>Mon, 08 Aug 2022 15:33:28 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://xiqi-zheng.github.io/rss.xml" />
         
+        
+            <item>
+                <title>机器学习-吴恩达 过拟合问题与正则化（笔记）</title>
+                <link>https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E8%BF%87%E6%8B%9F%E5%90%88%E9%97%AE%E9%A2%98%E4%B8%8E%E6%AD%A3%E5%88%99%E5%8C%96%E7%AC%94%E8%AE%B0/</link>
+                <guid isPermaLink="true">https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E8%BF%87%E6%8B%9F%E5%90%88%E9%97%AE%E9%A2%98%E4%B8%8E%E6%AD%A3%E5%88%99%E5%8C%96%E7%AC%94%E8%AE%B0/</guid>
+                <pubDate>Fri, 05 Aug 2022 00:00:00 &#43;0000</pubDate>
+                
+                    <author>1647656181@qq.com (Chloe)</author>
+                
+                <copyright>转载请保留本文作者以及本文链接</copyright>
+                
+                    <description>&lt;h1 id=&#34;过拟合问题&#34;&gt;过拟合问题&lt;/h1&gt;
+&lt;p&gt;现在我们来认识什么是：&lt;strong&gt;欠拟合，过拟合&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;欠拟合&#34;&gt;欠拟合&lt;/h3&gt;
+&lt;p&gt;我们使用线性回归函数预测下面这张图中的数据，我们发现它并没有很好地拟合到数据上，这就叫做欠拟合（underfit），或者叫做高偏差（high bias）。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/dbe17f70bfd3438689327aa98cbc24e4.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+&lt;strong&gt;分类问题举例：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/5b688add53d941a0915722f088a6efd5.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+&lt;br/&gt;&lt;/p&gt;
+&lt;h3 id=&#34;过拟合&#34;&gt;过拟合&lt;/h3&gt;
+&lt;p&gt;当我们选择了一个函数，它完全拟合了训练数据。比如说下图，我们采用了多项式函数：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/51254d46f8884c5a98eca4cc561adc68.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+虽然上图中的函数完全拟合了所有数据点，但是却没有办法很好的预测新的数据，这种情况我们成为：过拟合（overfit），或者叫做高方差（high variance）。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;分类问题举例：&lt;/strong&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/59781a1076b3444fbfbdd7fc5d919615.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+&lt;br/&gt;&lt;/p&gt;
+&lt;h4 id=&#34;高偏差和高方差&#34;&gt;高偏差和高方差&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;偏差：说人话就是模型预测出的点和测试数据点的&lt;strong&gt;距离&lt;/strong&gt;，可以用来形容这个模型的&lt;strong&gt;预测能力&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;方差：指的是模型的预测值的&lt;strong&gt;变化范围&lt;/strong&gt;，&lt;strong&gt;离散程度&lt;/strong&gt;。可以用来表示模型的&lt;strong&gt;泛化能力&lt;/strong&gt;：方差&lt;strong&gt;越大&lt;/strong&gt;，预测出来的数据的分布越散，&lt;strong&gt;泛化能力越差&lt;/strong&gt;；方差&lt;strong&gt;越小&lt;/strong&gt;，模型的&lt;strong&gt;泛化能力越强。&lt;/strong&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/e71905f59f494fd397a85efb96b4ed17.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+&lt;br/&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;泛化&#34;&gt;泛化&lt;/h3&gt;
+&lt;p&gt;选择合适的函数是很重要的，当它很好的拟合到数据上的时候，我们就认为它有很好的&lt;strong&gt;泛化能力（genelization）&lt;/strong&gt;。指的是：&lt;strong&gt;模型依据训练时采用的数据，对新出现的数据做出正确预测的能力。&lt;/strong&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/91c458a1d81f4d74ac3500f8804707f2.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;分类问题举例：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/9cb70e63a961412fae75944570d08337.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;br/&gt;
+&lt;h2 id=&#34;解决过拟合&#34;&gt;解决过拟合&lt;/h2&gt;
+&lt;br&gt;
+&lt;h3 id=&#34;1-收集更多的训练数据&#34;&gt;1. 收集更多的训练数据&lt;/h3&gt;
+&lt;p&gt;这个方法非常简单直观：
+&lt;img src=&#34;https://img-blog.csdnimg.cn/52fd01c1bc024e65bb45451d208257e5.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+&lt;br/&gt;&lt;/p&gt;
+&lt;h3 id=&#34;2-减少或增加选择的特征&#34;&gt;2. 减少或增加选择的特征&lt;/h3&gt;
+&lt;p&gt;大部分时候我们没有办法获得更多的训练数据，那么我们就可以选择更多或者更少的特征。
+&lt;strong&gt;举个例子：&lt;/strong&gt;
+现在我们要预测一个房子的价格，并有一百个特征可以选择：
+&lt;img src=&#34;https://img-blog.csdnimg.cn/98dc758762764621ae89f2c00e5b8b5a.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+如果我们选择全部的特征，那么就会有很多无效的数据，会使得我们的函数非常复杂，导致过拟合问题：
+&lt;img src=&#34;https://img-blog.csdnimg.cn/27d703ea179642059d166a3863c7d14d.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+但如果我们只&lt;strong&gt;选择一些重要的特征&lt;/strong&gt;，那么可能就会更好的拟合我们的数据：（在后面的课程中会学习到一些自动选择最合适的特征用于预测任务的算法）
+&lt;img src=&#34;https://img-blog.csdnimg.cn/b9bc2c7e32534a939f90424f6f263744.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;缺点：&lt;/strong&gt; 但这有可能造成一些有用的特征被丢掉&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;br/&gt;
+&lt;h3 id=&#34;3-正则化&#34;&gt;3. 正则化&lt;/h3&gt;
+&lt;p&gt;当我们发现我们的模型过拟合的时候，我们尝试减少特征的选择，但是我们发现这可能导致有用的特征被丢弃：
+&lt;img src=&#34;https://img-blog.csdnimg.cn/c9b3400375424326a804126b4eb54524.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+这个时候我们可以使用正则化：也就是把我们想要丢弃的特征（在这里我们假设是x3和x4）的w值设为非常小的值，这样我们即保留了特征，又不会让这个特征对整个模型造成过大的影响，导致过拟合：
+&lt;img src=&#34;https://img-blog.csdnimg.cn/ae947cc820274c58b9a53dd7d81226a2.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+&lt;br/&gt;&lt;/p&gt;
+&lt;h1 id=&#34;正则化&#34;&gt;正则化&lt;/h1&gt;
+&lt;h2 id=&#34;正则化代价函数&#34;&gt;正则化代价函数&lt;/h2&gt;
+&lt;p&gt;现在我们已经知道，&lt;strong&gt;正则化的主要思想&lt;/strong&gt;就是：&lt;strong&gt;通过减小w的值在不丢失特征的同时避免过拟合的产生。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;举个例子：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/5bba05fe7a3644e8bd2febd1e6e29583.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+我们在上图中看见，如果我们想要右边的图变得比较像左边的图并且不丢弃x3和x4的话，我们就要让w3和w4的值变得很小&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;那么如何减小w的值呢？&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;让我们先看看原来的代价函数：
+&lt;img src=&#34;https://img-blog.csdnimg.cn/cbbdbf9e9b8c42769ee88e6d010061f6.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+这个原来的代价函数能够使用梯度下降法来让它达到最小，但不能解决它可能过拟合的问题（也就是不能让w3和w4变小），所以我们要给它增加两个惩罚项（也叫正则化项 regularization term）：
+&lt;img src=&#34;https://img-blog.csdnimg.cn/61b3c056ba6f46ddb0d0c84fc19984e8.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+我刚刚看到上面的函数的时候非常疑惑，为什么给w3和w4乘上1000，它们俩反而会变小呢？&lt;/p&gt;
+&lt;h3 id=&#34;如何理解增加惩罚项后参数w会变小&#34;&gt;如何理解增加惩罚项后，参数w会变小&lt;/h3&gt;
+&lt;h4 id=&#34;直观理解&#34;&gt;直观理解&lt;/h4&gt;
+&lt;p&gt;从概念出发：我们的目的是要找到：&lt;img src=&#34;https://img-blog.csdnimg.cn/61b3c056ba6f46ddb0d0c84fc19984e8.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+这个函数的最小值，那么我们在w3和w4前面乘上了1000，为了保证整个函数达到最小值，我们就要尽可能的取很小的w3和w4的值，所以w3和w4的值变小。
+&lt;br/&gt;&lt;/p&gt;
+&lt;h4 id=&#34;从数学角度理解&#34;&gt;从数学角度理解&lt;/h4&gt;
+&lt;p&gt;我们来展开这个函数：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/07edea098a3f4f3eb2e1b3a63724bfa2.jpeg&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;然后我们进行梯度下降，更新每个w和b，在这里我们先不管b，着重来看w：&lt;strong&gt;（以下的过程均在漏了一个 α ，写的时候忘记了）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/a85a7d20a06e4aed9151947369986032.jpeg&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/e3c46e4b5bfc40d3b9fa7fe5c2bd332a.jpeg&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+&lt;br/&gt;&lt;/p&gt;
+&lt;h2 id=&#34;正则化参数λ&#34;&gt;正则化参数λ&lt;/h2&gt;
+&lt;p&gt;我们使用上一篇文章的预估房价例子：
+&lt;img src=&#34;https://img-blog.csdnimg.cn/344b214418594baca600821c6ace9a15.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;现在我们有一百个特征，但是我们不知道应该选择哪些或者是丢弃哪些特征，那么我们就可以添加正则化项（来缩小w参数的值）。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;那么如何减小所有w参数的值呢？这时候我们就需要一个正则化参数&lt;/strong&gt; &lt;strong&gt;λ&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;原代价函数：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/4a348bb9ea2f44e8a4aa6ea1665f4660.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;加入正则化项后：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/b28d978d46a74b0b810790326aa4476d.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这里除以的2m是为了计算方便&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;正则化参数-λ-的作用&#34;&gt;正则化参数 λ 的作用&lt;/h4&gt;
+&lt;p&gt;正则化参数的作用就是控制函数的两项之间的平衡：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;函数的第一项：我们称为mean squared error，是为了更好的拟合数据&lt;/li&gt;
+&lt;li&gt;函数第二项：也就是正则化项，是为了保持w参数尽可能的小，从而避免出现过拟合现象。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/5b6e4a1d8adb491f975c954a33853a45.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+&lt;strong&gt;参数 λ 的变化对函数造成的影响：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;当 &lt;strong&gt;λ = 0&lt;/strong&gt; 的时候，相当于没有加惩罚项（正则化项）的函数，也就是原来的函数&lt;/li&gt;
+&lt;li&gt;当 &lt;strong&gt;λ = 0 非常大&lt;/strong&gt;的时候，所有w的值都会变得非常小，那么函数的结果就会&lt;strong&gt;等于一条直线&lt;/strong&gt;，也就是b的值：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/e93b9f840c2e456898f95dd41ec02556.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;所以对于正则化，我们需要取一个合适的 λ 值，才能更好的应用正则化。&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;br/&gt;
+&lt;h2 id=&#34;正则化线性回归&#34;&gt;正则化线性回归&lt;/h2&gt;
+&lt;p&gt;对添加了 λ 参数后的代价函数进行梯度下降：
+&lt;strong&gt;原函数：&lt;/strong&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/366e17f49cc94ee485bca79b4b42d1dc.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+&lt;strong&gt;添加后：&lt;/strong&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/1d945b8ca99b44bd8b785cc58f0c94ef.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+&lt;br/&gt;&lt;/p&gt;
+&lt;h2 id=&#34;正则化逻辑回归&#34;&gt;正则化逻辑回归&lt;/h2&gt;
+&lt;p&gt;逻辑回归的正则化与线性回归相似，我们还是举个例子：
+&lt;img src=&#34;https://img-blog.csdnimg.cn/a97fea6a64504ad7a366ac432c8f2a4c.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+上图是一个过拟合的例子，那么我们希望通过正则化来解决这个问题。
+我们先来看原来的逻辑回归的代价函数：
+&lt;img src=&#34;https://img-blog.csdnimg.cn/bd82962f5ffd407ebf86e3035c19531f.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+那么要对它进行正则化只需要在后面加上一项：
+&lt;img src=&#34;https://img-blog.csdnimg.cn/f3ef58df974c41e8a07c4da059942615.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+它的原理和线性回归相同，在次就不过多赘述。&lt;/p&gt;
+&lt;h3 id=&#34;进行梯度下降&#34;&gt;进行梯度下降&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/7bbe88338ee54ef4a191f9fa55fac38e.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+我们发现公式与线性回归的公式完全相同，除了这里的函数 &lt;em&gt;f&lt;/em&gt; 是逻辑回归的函数而不是线性回归的。&lt;/p&gt;
+</description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://xiqi-zheng.github.io/tags/machine-learning/">Machine learning</category>
+                                
+                            
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>机器学习-吴恩达 逻辑回归（笔记）</title>
+                <link>https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E7%AC%94%E8%AE%B0/</link>
+                <guid isPermaLink="true">https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E7%AC%94%E8%AE%B0/</guid>
+                <pubDate>Wed, 03 Aug 2022 00:00:00 &#43;0000</pubDate>
+                
+                    <author>1647656181@qq.com (Chloe)</author>
+                
+                <copyright>转载请保留本文作者以及本文链接</copyright>
+                
+                    <description>&lt;h1 id=&#34;什么是逻辑logistic回归&#34;&gt;什么是逻辑（Logistic）回归&lt;/h1&gt;
+&lt;p&gt;逻辑回归是一种用于解决&lt;strong&gt;二分类&lt;/strong&gt;（要么是0要么是1）问题的机器学习方法。比如：一个患者的肿瘤是否为良性的，结果只有 &lt;strong&gt;是&lt;/strong&gt; 或 &lt;strong&gt;不是&lt;/strong&gt; 两种可能性。&lt;/p&gt;
+&lt;h2 id=&#34;sigmoid函数&#34;&gt;Sigmoid函数&lt;/h2&gt;
+&lt;p&gt;为了建立逻辑回归算法，需要一个重要的数学函数，它被称为&lt;strong&gt;逻辑函数（Logistic function）或者Sigmoid函数。&lt;/strong&gt;
+&lt;strong&gt;公式：&lt;/strong&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/892b7f54066045e5badadc8999512367.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+&lt;strong&gt;图像：&lt;/strong&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/00ee7e1631614f2abdf745dbffdc9ade.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+这里的 &lt;strong&gt;z&lt;/strong&gt; 与线性回归中的公式一样：
+&lt;img src=&#34;https://img-blog.csdnimg.cn/f41aaeebd3eb4af8ab84a580a607beff.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+合并起来就是逻辑回归模型：它&lt;strong&gt;接收一个特征或一组特征x，输出0到1之间的数字&lt;/strong&gt;：
+&lt;img src=&#34;https://img-blog.csdnimg.cn/3379935ec05649cfb7194d67cf6f07a3.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+&lt;strong&gt;那么输出的0到1之间的数字代表着什么呢？&lt;/strong&gt;
+举个例子：
+我们想要预测一个患者的肿瘤是否是恶性的，我们把良性的定义为&lt;strong&gt;y = 0&lt;/strong&gt;，恶性的为 &lt;strong&gt;y = 1&lt;/strong&gt;，x为肿瘤大小。&lt;strong&gt;我们想知道y = 1 的概率是多大。&lt;/strong&gt;
+这个时候的输出结果为&lt;strong&gt;0.7&lt;/strong&gt;，那么这意味着有&lt;strong&gt;70%&lt;strong&gt;的可能性，&lt;strong&gt;肿瘤是恶性的&lt;/strong&gt;。那么&lt;/strong&gt;肿瘤是良性&lt;/strong&gt;的可能性就是&lt;strong&gt;30%&lt;/strong&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;公式的另一种写法&#34;&gt;公式的另一种写法：&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/fe33db8a6a6d4921823791dd7f1a3212.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;决策边界decision-boundary&#34;&gt;决策边界（Decision Boundary)&lt;/h1&gt;
+&lt;p&gt;我们的逻辑回归模型返回的是一个0到1之间的数字，但我们想要的是确定的0或者1这两个数字。也就是这个肿瘤是良性的，或者不是良性的。
+所以我们就要选择一个阈值（threshold），当输出的值超过这个值的时候，我们可以认为这个肿瘤不是良性的，反之亦然。
+&lt;img src=&#34;https://img-blog.csdnimg.cn/75545c3551b44c7eb929af5f7cb4c2f0.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+那么什么时候sigmoid函数会大于阈值呢：
+&lt;img src=&#34;https://img-blog.csdnimg.cn/782016e0d78e466aa8303022f6f230a6.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+简单来说，就是w&lt;em&gt;x+b大于等于0的时候，因为：
+f(x) = g(z)，只有当 z 大于等于 0 的时候，g(z) 才会大于等于0.5（见下图），而 z = w&lt;/em&gt;x + b 所以就得到当w*x+b大于等于0的时候我们就说这个肿瘤不是良性的。
+&lt;img src=&#34;https://img-blog.csdnimg.cn/62ad02ca068b419abe3f7ff4ef2507cd.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;而这个0.5我们就成为决策边界Decision Boundary。&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;多个特征的决策边界&#34;&gt;多个特征的决策边界&lt;/h2&gt;
+&lt;h3 id=&#34;线性决策边界&#34;&gt;线性决策边界&lt;/h3&gt;
+&lt;p&gt;现在我们假设我们有两个特征x1, x2，下图的蓝色小圈我们假设为正例子（y = 0），红色叉我们假设为负例子（y = 1）
+&lt;img src=&#34;https://img-blog.csdnimg.cn/98340980622649448cac2aba40d98f4a.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+那么我们的逻辑回归模型的函数就是：
+&lt;img src=&#34;https://img-blog.csdnimg.cn/17670547c1644b6780ede5bfff0f4769.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+我们假设w1 = 1, w2 = 1, b = -3，我们的决策边界是： z = w*x + b = 0 也就是 x1 + x2 = 3 这条直线：
+&lt;img src=&#34;https://img-blog.csdnimg.cn/86df8f8f56fc4d20a0d150422215a904.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;非线性决策边界&#34;&gt;非线性决策边界&lt;/h3&gt;
+&lt;p&gt;当数据呈现如下分布：
+&lt;img src=&#34;https://img-blog.csdnimg.cn/49053eb0fc634fd5b0dcf7ad8d0839bc.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+我们的逻辑回归函数就会是一个多项式函数：
+&lt;img src=&#34;https://img-blog.csdnimg.cn/a09e22fd52804e7d9c6f6921de54699c.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+假设w1 = 1，w2 = 1，b = -1，那么决策边界就是：
+&lt;img src=&#34;https://img-blog.csdnimg.cn/65c99a70c27741a6b040c921b88cfdee.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/5f2a7a7ad3464d6a9bb8ec0dc1320763.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;逻辑回归的代价函数&#34;&gt;逻辑回归的代价函数&lt;/h1&gt;
+&lt;p&gt;如何选择 w 和 b 的值呢？
+我们尝试像之前一样使用代价函数 (Cost Function)  或者叫 平方误差成本（squared error cost）
+&lt;img src=&#34;https://img-blog.csdnimg.cn/8d3e038829674aedbaa4b5dca7f2a064.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+在之前的线性回归中，使用squared error cost后的图像是一个凸函数（convex）
+&lt;img src=&#34;https://img-blog.csdnimg.cn/4c6cd88f02b140bbb1c18f9d22e294f0.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+所以我们可以一步步地靠近最小值（极小值），但是如果在逻辑回归中，使用squared error cost后的图像是不平滑的，呈现起伏的：
+&lt;img src=&#34;https://img-blog.csdnimg.cn/c8f58b2221334d8e81d2e3475d0b5266.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+这将会导致我们会到达很多很多个局部最小值，而不是真正的全局最小值。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;所以我们将采用一个新的代价函数&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;logistic-loss-函数&#34;&gt;Logistic loss 函数&lt;/h2&gt;
+&lt;p&gt;我们定义一个新的函数叫做Loss function：
+我们将最后一项的平方里的函数提出来：
+&lt;img src=&#34;https://img-blog.csdnimg.cn/93a8d2cd2d7f4d3e9a02877683efdfd2.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/3151033929e34f86a977f069c86eadba.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+&lt;a href=&#34;https://blog.csdn.net/u014261408/article/details/115544478&#34;&gt;&lt;strong&gt;推导过程&lt;/strong&gt;&lt;/a&gt;
+现在让我们来看看这两个表达式的图像：
+&lt;img src=&#34;https://img-blog.csdnimg.cn/62657642c5d4472ea15ed1b70f1e93a0.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+让我们放大第一个log函数中的0到1之间的图像：
+&lt;img src=&#34;https://img-blog.csdnimg.cn/59b29984a3ce43ba99b3e5a238f0b332.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+我们可以从图像中看出，当算法预测出1的可能性非常接近1的时候（也就是横坐标无限接近1的时候），而真实的标签也是1的时候，那么Logister loss function的值（也就是纵坐标的值）无限接近0，这说明误差非常小，因为我们无限接近正确答案。反之：如果我们算法预测出为0的概率很大的话（横坐标得值无限接近0），那么loss function的值就会无限接近无穷大（纵坐标的值无限接近无穷大），这就说明误差非常大，我们偏离了正确答案。&lt;/p&gt;
+&lt;p&gt;现在我们来看看第二个log函数的图像，基本和第一个图像差不多：
+&lt;img src=&#34;https://img-blog.csdnimg.cn/438a7259485348de9fd51cc5dacc8f71.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+与第一张图像相似，只是方向改变了。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这样就能很好地找到全局最小值了&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;逻辑回归的代价函数-1&#34;&gt;逻辑回归的代价函数&lt;/h3&gt;
+&lt;p&gt;我们可以简化上面的分布式函数为一行：
+&lt;img src=&#34;https://img-blog.csdnimg.cn/a973b12f2c804ebdb0f80f17a6f05379.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+当y(i) = 1 的时候，后面一项的1-y(i)就会变成1-1 = 0，所以就会自动消失，同理，当y(i) = 0的时候，前一项也会消失。所以这个函数和上面的函数是完全相等的。
+&lt;br/&gt;&lt;/p&gt;
+&lt;h2 id=&#34;梯度下降实现&#34;&gt;梯度下降实现&lt;/h2&gt;
+&lt;p&gt;与线性回归相似，也是重复更新w和b的值：
+&lt;img src=&#34;https://img-blog.csdnimg.cn/db84b87c266e431587a10f89e2c95dd0.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+j = 1...n，n为特征的数量，对J(w,b) 求导后为：
+&lt;img src=&#34;https://img-blog.csdnimg.cn/0cf46cbe463d432686e49865fcace8fe.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;与线性回归相同点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;需要同时更新每个w和b&lt;/li&gt;
+&lt;li&gt;都采用学习曲线来监控梯度下降&lt;/li&gt;
+&lt;li&gt;都可以使用向量化来提高运行时间&lt;/li&gt;
+&lt;li&gt;都可以使用特征缩放以获得相似的值范围&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+</description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://xiqi-zheng.github.io/tags/machine-learning/">Machine learning</category>
+                                
+                            
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>机器学习-吴恩达 多元线性回归（笔记）</title>
+                <link>https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E5%A4%9A%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E7%AC%94%E8%AE%B0/</link>
+                <guid isPermaLink="true">https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E5%A4%9A%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E7%AC%94%E8%AE%B0/</guid>
+                <pubDate>Wed, 13 Jul 2022 00:00:00 &#43;0000</pubDate>
+                
+                    <author>1647656181@qq.com (Chloe)</author>
+                
+                <copyright>转载请保留本文作者以及本文链接</copyright>
+                
+                    <description>&lt;h1 id=&#34;多类特征&#34;&gt;多类特征&lt;/h1&gt;
+&lt;p&gt;在前几篇文章中介绍了单变量线性回归模型，但在现实生活中很多时候我们都不仅仅要考虑一个特征，而是&lt;strong&gt;考虑多个特征&lt;/strong&gt;。&lt;/p&gt;
+&lt;h2 id=&#34;新的符号notation&#34;&gt;新的符号（Notation）&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;我们用x1, x2, x3, ... , xn 来表示每一个特征（features / variables）&lt;/li&gt;
+&lt;li&gt;n 是特征的数量
+&lt;img src=&#34;https://img-blog.csdnimg.cn/ce6aafd878aa4297a361d88fd7d4f699.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+&lt;strong&gt;这里的 j 可以理解为某一列，(i) 可以理解为某一行&lt;/strong&gt;
+&lt;br/&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;多元线性回归模型&#34;&gt;多元线性回归模型&lt;/h2&gt;
+&lt;p&gt;回顾之前的单变量线性回归模型：&lt;img src=&#34;https://img-blog.csdnimg.cn/562c50cbe99e417b8ba77d9cb25a130e.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+那么当有多个变量时：&lt;img src=&#34;https://img-blog.csdnimg.cn/d04d316d7bae4a9599ea0f7a283a0769.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+上图举了预测房子价格的例子，&lt;strong&gt;x1是房子的面积，x2是房子卧室的数量，x3是房子的层数，x4是房子的年龄&lt;/strong&gt;（也就是被住了多少年），最后一个&lt;strong&gt;常数80则是基本价格&lt;/strong&gt;，也就是假设这个房子没有面积，没有卧室，没有地板也没有年龄的时候的价格。前面的w1 ... w4 可以理解为x1 ... x2的权重，比如一个房子每多一个房间，价格可能就增加四千磅。&lt;/p&gt;
+&lt;p&gt;如果有更多变量：&lt;img src=&#34;https://img-blog.csdnimg.cn/4e0a973bda6c42cf8aa1175e6bc3266b.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;引入符号重写表达式&#34;&gt;引入符号重写表达式&lt;/h3&gt;
+&lt;p&gt;我们把w定义为一个数字列表，列出参数 w1 ... wn ，可以理解称一个行向量，且是个矢量：&lt;img src=&#34;https://img-blog.csdnimg.cn/1a5ae4996afa47258658df5adc3d08b6.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+而 b 依旧是一个常量。
+然后我们把x也写成一个行向量（列表），它列出了所有特性x1 ... xn：&lt;img src=&#34;https://img-blog.csdnimg.cn/f14c0f9b1a2d403ca09fd845fb1cbab9.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+那么我们就能把之前的表达式改写成：
+&lt;img src=&#34;https://img-blog.csdnimg.cn/5b8faf68cb6e429ebe26c99e93a48e8d.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;我们把这个模型称为多元线性回归（multiple linear regression），而不是多元回归（multivariate regression）。&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&#34;向量化&#34;&gt;向量化&lt;/h1&gt;
+&lt;p&gt;在线性代数中，向量的索引是从1开始的，而在python的NumPy库中向量的索引是从0开始的。基本上所有的编程语言数组的下标都是从0开始计数的。&lt;img src=&#34;https://img-blog.csdnimg.cn/9a05b40ca0a340cda0fce81487963ebd.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+上图中的np.array() 其实是调用了NumPy库中的方法，创建了一个数组（array）。&lt;/p&gt;
+&lt;h2 id=&#34;向量化和不向量化的区别&#34;&gt;向量化和不向量化的区别&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;不向量化：&lt;/strong&gt;
+我们需要手动地将每一项写出来，如果特征数量	少还可以接受，如果特征数量是10个甚至10000
+个的时候，这种方法显然不适用：&lt;img src=&#34;https://img-blog.csdnimg.cn/399d3a5609784cc7be20bc31cdb07a39.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+或者我们可以稍微再简化,用for循环来循环计算：&lt;img src=&#34;https://img-blog.csdnimg.cn/89fdf443070f406eaf26093129d4b69a.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+&lt;strong&gt;向量化：&lt;/strong&gt;
+我们只需要写一行很短的表达式，和一行很短的代码就可以了：&lt;img src=&#34;https://img-blog.csdnimg.cn/e26337413049433798ae7c985af20f68.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+其实除了这种显而易见的好处之外，使用向量化还能提高计算的速度。因为python在计算np.dot(w,x) 的时候，会&lt;strong&gt;使用并行计算&lt;/strong&gt;，让计算效率提高。
+&lt;strong&gt;使用for循环时：&lt;/strong&gt;
+计算机会先计算完前一个循环中的结果，再计算下一个循环：&lt;img src=&#34;https://img-blog.csdnimg.cn/9f0f4a37a11d4bb3950d1c3bf7f9c58d.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+&lt;strong&gt;而使用np.dot()时：&lt;/strong&gt;
+计算机会同时计算w[j] * x[j] 这一步，最后再把它们加在一起：&lt;img src=&#34;https://img-blog.csdnimg.cn/a6f163e899e5465fb980752e9965acdc.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;多元线性回归的梯度下降法&#34;&gt;多元线性回归的梯度下降法&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;代价函数（Cost Function）：&lt;/strong&gt; &lt;img src=&#34;https://img-blog.csdnimg.cn/1832d79bdfea4207b80cc617a3788184.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;梯度下降公式&#34;&gt;梯度下降公式：&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/60c68d39a4a5419589cce453661465b3.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+&lt;strong&gt;在单变量时：&lt;/strong&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/8e644c4b00cc4f5783a86f9c7c517798.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+在多变量时，也就是n &amp;gt;= 2时：&lt;img src=&#34;https://img-blog.csdnimg.cn/0405d0fbf6d74242a114868e5838ff93.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注意更新w时，最后一项不是x(i) 了，而是x1(i) ... xn(i)。&lt;/strong&gt;&lt;/p&gt;
+&lt;br/&gt;
+&lt;h1 id=&#34;特征缩放&#34;&gt;特征缩放&lt;/h1&gt;
+&lt;h2 id=&#34;如何选择w的值&#34;&gt;如何选择w的值&lt;/h2&gt;
+&lt;p&gt;我们假设要预测一个房子的价值，但我们现在只考虑它的size（面积）为&lt;strong&gt;x1&lt;/strong&gt;，和bedrooms（卧室的数量）为&lt;strong&gt;x2&lt;/strong&gt; 。&lt;strong&gt;x1的范围是300 - 2000；x2的范围是0-5。&lt;/strong&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/d01e85f9acf5410cb5a9fcf7cdaa0304.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+假设现在：&lt;img src=&#34;https://img-blog.csdnimg.cn/c9a61fb44de14ee98dc269343a23a9c1.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;第一种情况：我们让 w1 = 50，w2 = 0.1，b = 50：&lt;img src=&#34;https://img-blog.csdnimg.cn/1056ae94dfd54ef2ba943871bec33d4f.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+结果与我们的training example完全不拟合。&lt;/li&gt;
+&lt;li&gt;第二种情况：我们让w1 = 0.1, w2 = 50, b = 50：&lt;img src=&#34;https://img-blog.csdnimg.cn/0eb9baa18a4149608717403b9edf5eb5.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+这时候的结果就非常拟合我们的training example。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;总结：当某一个特征的可能值范围很大的时候，比如面积，一个好的模型更有可能选择一个相对较小的w值，比如0.1。反之，当一个特征的可能值很小时，比如卧室的数量，那么它w值可能就会比较大，比如50。&lt;/strong&gt;
+&lt;br/&gt;&lt;/p&gt;
+&lt;h3 id=&#34;参数w的选择与梯度下降的关系&#34;&gt;参数(w)的选择与梯度下降的关系&lt;/h3&gt;
+&lt;p&gt;让我们来看看x1和x2的散点图（scatter plot）和代价函数的等高线图（contour plot）：
+&lt;img src=&#34;https://img-blog.csdnimg.cn/aaacda5edad141f49cb5c030d9369fca.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+在散点图中，我们发现横坐标的取值范围很大，而纵坐标的取值范围很小。
+在代价函数的等高线图中，我们发现是一个椭圆形，这是因为&lt;strong&gt;w1的取值只要稍微变动一点点，就会对价格影响非常大&lt;/strong&gt;，因为x1（房子的面积）的取值比较大；&lt;strong&gt;而w2需要变动的比较大才会对价格造成影响&lt;/strong&gt;，因为x2（卧室数量）的取值比较小。
+&lt;img src=&#34;https://img-blog.csdnimg.cn/c821541089e04674aece6b19ad127cfa.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+在这种情况下，当我们试图进行梯度下降时，因为我们的训练数据的轮廓很&lt;strong&gt;高和瘦&lt;/strong&gt;，这会导致在寻找最小值的时候会&lt;strong&gt;来回跳动很长时间&lt;/strong&gt;：&lt;img src=&#34;https://img-blog.csdnimg.cn/bfbe56ae33a140bcb9b48dfc493af828.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+&lt;strong&gt;所以我们希望找到一种方式让特征们（features）可以缩放到差不多的取值范围，达到这样：&lt;/strong&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/ef93eb3054b34d489e514dce27b009c1.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+&lt;br/&gt;&lt;/p&gt;
+&lt;h3 id=&#34;进行特征缩放&#34;&gt;进行特征缩放&lt;/h3&gt;
+&lt;p&gt;现在特征的取值范围是：&lt;img src=&#34;https://img-blog.csdnimg.cn/5a3f858b4de44399b86a74c0ce3e915b.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;除以各自的最大值&#34;&gt;除以各自的最大值&lt;/h4&gt;
+&lt;p&gt;现在我们把它们&lt;strong&gt;除以各自的最大值&lt;/strong&gt;：&lt;img src=&#34;https://img-blog.csdnimg.cn/9c8defd742af4134a1241764ba97361b.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+把它们放到图上就会变成：&lt;img src=&#34;https://img-blog.csdnimg.cn/4252b2d1283a4bd0a948e6db67e66217.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;均值归一化&#34;&gt;均值归一化&lt;/h4&gt;
+&lt;p&gt;除了除以最大值，我们还可以做均值归一化让它们都以0为中心：
+我们把每个&lt;strong&gt;x1减去所有x1的均值&lt;/strong&gt;，然后&lt;strong&gt;除以它们的取值范围的差值&lt;/strong&gt;，x2,x3 .. xn 同理，比如：&lt;img src=&#34;https://img-blog.csdnimg.cn/76e67889d52c49b68daedf42144afaea.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+在图上它们是这样的：&lt;img src=&#34;https://img-blog.csdnimg.cn/dbfe6ab6f1ed489692c54591816d3f9f.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+&lt;strong&gt;之前它们只有大于0的值，现在它们有负数和正数，但通常在-1 和 +1 之间。&lt;/strong&gt;
+&lt;br/&gt;&lt;/p&gt;
+&lt;h4 id=&#34;离差归一化z-score-归一化&#34;&gt;离差归一化（Z-score 归一化）&lt;/h4&gt;
+&lt;p&gt;我们还可以使用Z-score归一化来进行特征缩放：
+在这之前我们除了需要&lt;strong&gt;计算平均数&lt;/strong&gt;，还需要计算&lt;strong&gt;标准差（standard deviation）&lt;/strong&gt; 。
+我们把&lt;strong&gt;每个x1 减去 所有x1的平均数，然后除以x1的标准差&lt;/strong&gt;，x2 ... xn 同理，比如：&lt;img src=&#34;https://img-blog.csdnimg.cn/524bf3c4609749759c4b02213de55095.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+在图上的表现为：&lt;img src=&#34;https://img-blog.csdnimg.cn/8c2ff71f56684437acaaf3cd1aafe82d.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;什么时候需要进行特征缩放&#34;&gt;什么时候需要进行特征缩放&lt;/h4&gt;
+&lt;p&gt;当x的取值在以下范围中都是可以接受的：
+&lt;img src=&#34;https://img-blog.csdnimg.cn/2675842148d04daf88c25e32413ed76c.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+但如果取值范围过大或者过小，那么就需要进行特征缩放，比如：&lt;img src=&#34;https://img-blog.csdnimg.cn/bcaea748b94c46adb0c147b6a40e70a1.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+&lt;strong&gt;正常情况下，进行特征缩放几乎没有什么坏处&lt;/strong&gt;，所以在疑惑自己是否需要进行特征缩放的时候，就尝试下特征缩放吧。
+&lt;br/&gt;&lt;/p&gt;
+&lt;h1 id=&#34;检查梯度下降是否收敛&#34;&gt;检查梯度下降是否收敛&lt;/h1&gt;
+&lt;p&gt;我们的目的：找到最小的J(w,b) &lt;img src=&#34;https://img-blog.csdnimg.cn/b4847a61e5f746659ce34015ce3bfeee.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;使用学习曲线判断推荐&#34;&gt;使用学习曲线判断（推荐）&lt;/h2&gt;
+&lt;p&gt;一种方式保证梯度下降正常进行是画出一个学习曲线（learning curve），其纵轴是J(w,b)，横轴是迭代的次数：
+&lt;img src=&#34;https://img-blog.csdnimg.cn/e667f4e4fc4d45c4ba18afa7c08adef6.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+判断梯度下降是否正常运行：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;学习曲线是否在每一次迭代后持续下降&lt;/li&gt;
+&lt;li&gt;学习曲线在经过了一定次数的迭代后是否收敛（converge）到某一个值&lt;/li&gt;
+&lt;li&gt;学习曲线是否出现上下浮动，而不是平稳的下降
+&lt;br/&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;使用自动收敛测试&#34;&gt;使用自动收敛测试&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;我们首先设定一个 &amp;quot;epsilon&amp;quot; 的值&lt;/li&gt;
+&lt;li&gt;如果J(w,b)的下降浮动小于等于 &amp;quot;epsilon&amp;quot;&lt;/li&gt;
+&lt;li&gt;就判定它收敛。&lt;img src=&#34;https://img-blog.csdnimg.cn/8f674745aca54333a30a98dd56a57739.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+但是找到合适的 &amp;quot;epsilon&amp;quot; 值是相当困难的，所以&lt;strong&gt;推荐使用学习曲线&lt;/strong&gt;，能够更加直观地看出梯度下降是否在正常进行中。
+&lt;br/&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;学习率的选择&#34;&gt;学习率的选择&lt;/h3&gt;
+&lt;p&gt;我们可以通过学习曲线来看出，学习率的选择是否合适。
+比如出现：
+&lt;img src=&#34;https://img-blog.csdnimg.cn/13605f67d240404ab0c39d7f74421682.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+出现上图的时候，通常是&lt;strong&gt;代码中有bug或者是学习率过大&lt;/strong&gt;导致的。比如下图这种状况，学习率过大导致错过了最小值。
+&lt;img src=&#34;https://img-blog.csdnimg.cn/facdb0bf942a4541b0bbaabe734679d1.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+所以这个时候，我们可以选择一个非常非常小的alpha值，来检查是否在每次迭代后，我们的J(w,b）的值在持续下降。
+如果还是没有下降，那么就说明可能是我们的代码中有bug，比如本来应该是:&lt;img src=&#34;https://img-blog.csdnimg.cn/6318132fbb4d4bcab47a6b458e9a6fe0.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+但是却写成了：
+&lt;img src=&#34;https://img-blog.csdnimg.cn/01574fad324b4301851c5d4e7589393c.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+这个时候的学习曲线可能会变成这样：&lt;img src=&#34;https://img-blog.csdnimg.cn/3b840b89038b4f0d975e6ebb2da0d690.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;尝试选择学习率&#34;&gt;尝试选择学习率&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;我们可以先选择一个非常小的alpha值（学习率）比如0.001&lt;/li&gt;
+&lt;li&gt;然后再选择一个相对较大的学习率，比如1，来查看是否出现学习曲线上下浮动的情况&lt;/li&gt;
+&lt;li&gt;然后再逐步地在最小的alpha的基础上一点点地增加，或者在较大的alpha值的基础上一点点地减少&lt;img src=&#34;https://img-blog.csdnimg.cn/b49f56b4cc2e45d191fe1ae6dde15fc0.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;特征工程&#34;&gt;特征工程&lt;/h1&gt;
+&lt;p&gt;假设现在我们要预估一个房子的价格，这个房子有两个特征，&lt;strong&gt;x1 是房子正面的长度&lt;/strong&gt;（frontage），&lt;strong&gt;x2是房子的宽度（depth）&lt;/strong&gt;。那么现在我们想要添加一个新的特征，那么我们可以选择&lt;strong&gt;x3为：
+面积 = 长度 * 宽度&lt;/strong&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/220b45d8f1a943818a52ab057bec96a7.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+处理一个新特征是特征工程的一个例子，这告诉我们&lt;strong&gt;设计新特征&lt;/strong&gt;的时候，可以&lt;strong&gt;通过转换或结合原始特征&lt;/strong&gt;。这样可能可以设计出更好的学习模型。&lt;img src=&#34;https://img-blog.csdnimg.cn/ebcb56c2b1be46268ae6869eef643ae8.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;多项式回归polynomial-regression&#34;&gt;多项式回归（polynomial regression）&lt;/h1&gt;
+&lt;p&gt;我们利用多元线性回归和特征工程的思想，提出一种新的 &lt;strong&gt;多项式回归算法&lt;/strong&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/7340d7c5bc1d49b4a80bd22b29deddfb.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+上图是用房子的面积来预测房子的价格的数据，显然它不能有一个简单的直线来拟合。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;这时候我们就需要用到多项式函数：&lt;/strong&gt;
+我们可以选择&lt;strong&gt;二次函数&lt;/strong&gt;，但显然这里也不适合用二次函数，因为二次函数最后会下降，但我们并不认为房子的面积变大时，价格会下降。&lt;img src=&#34;https://img-blog.csdnimg.cn/5c9d3b62df194beda4a709c3a4ec9f09.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;所以我们可以进而选择&lt;strong&gt;三次函数&lt;/strong&gt;，它能更好地拟合这些数据：&lt;img src=&#34;https://img-blog.csdnimg.cn/48a2d72df103475d8d2f456235f7afbf.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+但在这个时候，&lt;strong&gt;特征缩放（feature scaling）就显得尤为重要&lt;/strong&gt;，因为size的三次方会变得非常的大，这叫对我们选择w的值造成很大的困难，也会让计算变得更加复杂。&lt;/p&gt;
+&lt;p&gt;另一种更合理的替代方法是&lt;strong&gt;取尺寸的平方和立方&lt;/strong&gt;：&lt;img src=&#34;https://img-blog.csdnimg.cn/d12dcef0668943b5a108658992c5e203.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+&lt;strong&gt;如何选择最为合适的features会在后面的课程中介绍。&lt;/strong&gt;&lt;/p&gt;
+</description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://xiqi-zheng.github.io/tags/machine-learning/">Machine learning</category>
+                                
+                            
+                        
+                    
+                
+            </item>
         
             <item>
                 <title>机器学习-吴恩达 梯度下降（笔记）</title>
