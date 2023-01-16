@@ -23,10 +23,93 @@
         
             <copyright>转载请保留本文作者以及本文链接</copyright>
         
-        <lastBuildDate>Mon, 08 Aug 2022 15:33:28 &#43;0800</lastBuildDate>
+        <lastBuildDate>Mon, 16 Jan 2023 15:31:40 &#43;0000</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://xiqi-zheng.github.io/rss.xml" />
         
+        
+            <item>
+                <title>机器学习-吴恩达 神经网络：表述（笔记）</title>
+                <link>https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E8%A1%A8%E8%BF%B0%E7%AC%94%E8%AE%B0/</link>
+                <guid isPermaLink="true">https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E8%A1%A8%E8%BF%B0%E7%AC%94%E8%AE%B0/</guid>
+                <pubDate>Sat, 03 Sep 2022 00:00:00 &#43;0000</pubDate>
+                
+                    <author>1647656181@qq.com (Chloe)</author>
+                
+                <copyright>转载请保留本文作者以及本文链接</copyright>
+                
+                    <description>&lt;p&gt;@[toc]&lt;/p&gt;
+&lt;h1 id=&#34;神经元和大脑neurons-and-the-brain&#34;&gt;神经元和大脑（Neurons and the brain）&lt;/h1&gt;
+&lt;p&gt;在我们的大脑中有数个神经元：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/706511de407d4ffa8914c9eab9556cdb.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;这些神经元接受着许许多多的信息，比如我们听到的声音和看到的图像，一个神经元接受到信息(input）后进行处理，然后把结果(output)传给下一个或多个神经元，这个结果（output）又变成了下一个或多个神经元的输入(input)，这就是它运作的基本原理。我们将这一个个的神经元叫做：&lt;strong&gt;激活单元（activation unit）&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/32e4ab5f869d4731b6ff64eacedeb6c7.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;是不是感觉这个过程似曾相识？对的！在前几章的线性回归和逻辑回归中，我们也是接受几个特征然后传入我们的模型最后输出答案。
+但是呢，无论是线性回归还是逻辑回归都有一个致命缺点：&lt;strong&gt;当我们的特征数量非常庞大的时候，计算的负荷就会非常大。&lt;/strong&gt;
+比如我们如果想要训练一个模型来识别视觉对象（比如一张图片上的元素是人还是大猩猩），这个时候我们需要利用这些图片上的每个像素的值来作为特征。假设我们采用的是50*50像素的图片，并且我们将所有的像素视为特征，就会有2500个特征，如果我们进一步将两两特征组合成一个多项式模型，就会有接近3百万个特征。三百万个啊！兄弟们！作为普通的逻辑回归模型，是不可以有效地处理这么多特征的，那这个时候，我们就需要神经网络了！&lt;/p&gt;
+&lt;h2 id=&#34;需求预测demand-prediction&#34;&gt;需求预测（Demand Prediction）&lt;/h2&gt;
+&lt;p&gt;为了搞清楚神经网络是如何运作的，我们举个需求预测的例子。在这个例子中，我们尝试预测一个商品是否会成为销量第一。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/517add91a9ff4fa593dadcfa966d2270.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;上图中的a是activation也就是神经元（学习模型），上图的计算过程也就是一个只通过一个神经元来预测的模型。但其实现实生活中，不可能仅仅通过价格来判断一个商品是否会成为销量第一。
+在现实生活中可能会有很多影响因素，比如：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/54655ac914974dcdba6bf676ae2e0bb4.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;假设上图的三个特征是我们觉得最能决定一件商品能否成为销量第一的元素。
+但是呢我们现在手上掌握的数据只有：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/dc91e5f8baeb401a95936680fb0efe87.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;那怎么办呢？我们现在就需要对上图这四个特征进行组合来得到我们想要的三个特征：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/15e35a70d43244099c11f93df4c11ab6.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;这样呢，我们就得到了我们想要的三个特征，将这三个特征再放入下一层中进行计算，我们就能得到结果啦：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/80ca65b6a99d4e34bf718a3a68bff2bf.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;术语解释&#34;&gt;术语解释&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/ee8fdbb5c96f485c854adcef0aea1256.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;我们将四个我们能够直接得到的数据叫做input layer，中间的那一层我们叫做hidden layer，hidden layer中的元素我们叫做activations，最后一层我们叫做output layer。&lt;/p&gt;
+&lt;h3 id=&#34;多个hidden-layers&#34;&gt;多个Hidden layers&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/c983ced39a83407c9e9018d200366266.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;我们可以有多个hidden layer，我们可以进一步地对数据做更细致的处理。&lt;/p&gt;
+&lt;h1 id=&#34;神经网络层&#34;&gt;神经网络层&lt;/h1&gt;
+&lt;p&gt;其实呢，线性回归和逻辑回归就是只有一个神经元的神经网络：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/f5ab11798936495e868fc31b67b3ca4b.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;让我们观察上面一张图，其中的x就是一组特征值。把第二层展开我们会发现里面有三个神经元，那么&lt;strong&gt;每个神经元都是一个逻辑回归模型&lt;/strong&gt;，在经过这三个神经元也就是三个回归模型的处理后就得到的a，也就是output。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/7460a2ae0351496683add53128b1d30b.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;我们把每一组的神经元叫做&lt;strong&gt;layer&lt;/strong&gt;，根据传统写法，我们将原始的特征数据&lt;strong&gt;x称为layer0&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/a1e3c74b25824e598912528c2fbc3992.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;我们会在表达数据的时候加上右上角标来表示它是在哪一层中。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/a67cf8fe4ed5400e8d9f4e3712d84459.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;现在我们将layer2展开，我们会发现里面只有一个神经元并且是一个逻辑回归模型，它输出的是一个标量。单独取出这个layer2我们会发现，这其实就是我们之前学的逻辑回归模型。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/d47835487fa44e6c876b6eb8d32f3a78.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;最后呢，我们只需要对最后的输出结果做一个判断，就完成了。&lt;/p&gt;
+&lt;h2 id=&#34;线性逻辑-回归模型和神经网络&#34;&gt;线性/逻辑 回归模型和神经网络&lt;/h2&gt;
+&lt;p&gt;线性/逻辑 回归模型其实就是只含有一个神经元的单层的神经网络。
+在处理复杂的数据时，神经网络能够更好地进行预测，比如在处理图像时。其实在数据量非常大的现代社会，大部分的数据都是复杂的，这也是为什么神经网络在今天这么火的原因。&lt;/p&gt;
+&lt;h1 id=&#34;更加复杂的神经网络&#34;&gt;更加复杂的神经网络&lt;/h1&gt;
+&lt;p&gt;现在让我们来看看多层的神经网络：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/f5ed9017b3354627adf60ec6b74f4e8d.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;我们展开layer3，会发现layer3的用到了layer2的output作为它的input，那么现在来做个小小测试，往圈起来的地方的右上角标填入数字。
+.
+.
+.&lt;/p&gt;
+&lt;p&gt;正确答案是：3，3，2，3 ；你们填对了吗？
+layer2中的w和b都是使用了自己的学习模型中的参数，但是a使用的是layer2的output。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/ee19cc2c9e2d4cfda6db0457505400fe.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+</description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://xiqi-zheng.github.io/tags/machine-learning/">Machine learning</category>
+                                
+                            
+                        
+                    
+                
+            </item>
         
             <item>
                 <title>机器学习-吴恩达 过拟合问题与正则化（笔记）</title>
