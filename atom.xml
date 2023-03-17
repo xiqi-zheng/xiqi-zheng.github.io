@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">Chloe&#39;s universe</title>
     <subtitle type="html">这是 Chloe 的生活与技术博客</subtitle>
-    <updated>2023-01-18T12:39:06&#43;00:00</updated>
+    <updated>2023-03-17T11:50:18&#43;08:00</updated>
     <id>https://xiqi-zheng.github.io/</id>
     <link rel="alternate" type="text/html" href="https://xiqi-zheng.github.io/" />
     <link rel="self" type="application/atom&#43;xml" href="https://xiqi-zheng.github.io/atom.xml" />
@@ -20,7 +20,7 @@
             <title type="text">机器学习-吴恩达 神经网络：表述（笔记）</title>
             <link rel="alternate" type="text/html" href="https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E8%A1%A8%E8%BF%B0%E7%AC%94%E8%AE%B0/" />
             <id>https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E8%A1%A8%E8%BF%B0%E7%AC%94%E8%AE%B0/</id>
-            <updated>2023-01-16T15:27:52&#43;00:00</updated>
+            <updated>2023-01-16T23:27:52&#43;08:00</updated>
             <published>2022-09-03T00:00:00&#43;00:00</published>
             <author>
                     <name>Chloe</name>
@@ -106,7 +106,7 @@ layer2中的w和b都是使用了自己的学习模型中的参数，但是a使�
             <title type="text">机器学习-吴恩达 过拟合问题与正则化（笔记）</title>
             <link rel="alternate" type="text/html" href="https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E8%BF%87%E6%8B%9F%E5%90%88%E9%97%AE%E9%A2%98%E4%B8%8E%E6%AD%A3%E5%88%99%E5%8C%96%E7%AC%94%E8%AE%B0/" />
             <id>https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E8%BF%87%E6%8B%9F%E5%90%88%E9%97%AE%E9%A2%98%E4%B8%8E%E6%AD%A3%E5%88%99%E5%8C%96%E7%AC%94%E8%AE%B0/</id>
-            <updated>2022-08-08T08:27:59&#43;01:00</updated>
+            <updated>2022-08-08T15:27:59&#43;08:00</updated>
             <published>2022-08-05T00:00:00&#43;00:00</published>
             <author>
                     <name>Chloe</name>
@@ -264,7 +264,7 @@ layer2中的w和b都是使用了自己的学习模型中的参数，但是a使�
             <title type="text">机器学习-吴恩达 逻辑回归（笔记）</title>
             <link rel="alternate" type="text/html" href="https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E7%AC%94%E8%AE%B0/" />
             <id>https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E7%AC%94%E8%AE%B0/</id>
-            <updated>2022-08-08T08:26:16&#43;01:00</updated>
+            <updated>2022-08-08T15:26:16&#43;08:00</updated>
             <published>2022-08-03T00:00:00&#43;00:00</published>
             <author>
                     <name>Chloe</name>
@@ -387,7 +387,7 @@ j = 1...n，n为特征的数量，对J(w,b) 求导后为：
             <title type="text">机器学习-吴恩达 多元线性回归（笔记）</title>
             <link rel="alternate" type="text/html" href="https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E5%A4%9A%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E7%AC%94%E8%AE%B0/" />
             <id>https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E5%A4%9A%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E7%AC%94%E8%AE%B0/</id>
-            <updated>2022-08-08T08:26:19&#43;01:00</updated>
+            <updated>2022-08-08T15:26:19&#43;08:00</updated>
             <published>2022-07-13T00:00:00&#43;00:00</published>
             <author>
                     <name>Chloe</name>
@@ -560,7 +560,7 @@ j = 1...n，n为特征的数量，对J(w,b) 求导后为：
             <title type="text">机器学习-吴恩达 梯度下降（笔记）</title>
             <link rel="alternate" type="text/html" href="https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%AC%94%E8%AE%B0/" />
             <id>https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%AC%94%E8%AE%B0/</id>
-            <updated>2022-08-08T08:23:44&#43;01:00</updated>
+            <updated>2022-08-08T15:23:44&#43;08:00</updated>
             <published>2022-07-07T00:00:00&#43;00:00</published>
             <author>
                     <name>Chloe</name>
@@ -659,7 +659,7 @@ j = 1...n，n为特征的数量，对J(w,b) 求导后为：
             <title type="text">机器学习-吴恩达 单变量线性回归模型（笔记）</title>
             <link rel="alternate" type="text/html" href="https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E5%8D%95%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B%E7%AC%94%E8%AE%B0/" />
             <id>https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E5%8D%95%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B%E7%AC%94%E8%AE%B0/</id>
-            <updated>2022-08-08T08:23:42&#43;01:00</updated>
+            <updated>2022-08-08T15:23:42&#43;08:00</updated>
             <published>2022-07-04T00:00:00&#43;00:00</published>
             <author>
                     <name>Chloe</name>
