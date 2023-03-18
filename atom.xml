@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">Chloe&#39;s universe</title>
     <subtitle type="html">这是 Chloe 的生活与技术博客</subtitle>
-    <updated>2023-03-17T11:50:18&#43;08:00</updated>
+    <updated>2023-03-18T12:34:10&#43;08:00</updated>
     <id>https://xiqi-zheng.github.io/</id>
     <link rel="alternate" type="text/html" href="https://xiqi-zheng.github.io/" />
     <link rel="self" type="application/atom&#43;xml" href="https://xiqi-zheng.github.io/atom.xml" />
@@ -20,7 +20,7 @@
             <title type="text">机器学习-吴恩达 神经网络：表述（笔记）</title>
             <link rel="alternate" type="text/html" href="https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E8%A1%A8%E8%BF%B0%E7%AC%94%E8%AE%B0/" />
             <id>https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E8%A1%A8%E8%BF%B0%E7%AC%94%E8%AE%B0/</id>
-            <updated>2023-01-16T23:27:52&#43;08:00</updated>
+            <updated>2023-03-18T12:29:26&#43;08:00</updated>
             <published>2022-09-03T00:00:00&#43;00:00</published>
             <author>
                     <name>Chloe</name>
@@ -32,56 +32,56 @@
                 <content type="html">&lt;p&gt;@[toc]&lt;/p&gt;
 &lt;h1 id=&#34;神经元和大脑neurons-and-the-brain&#34;&gt;神经元和大脑（Neurons and the brain）&lt;/h1&gt;
 &lt;p&gt;在我们的大脑中有数个神经元：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/706511de407d4ffa8914c9eab9556cdb.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/706511de407d4ffa8914c9eab9556cdb.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
 &lt;p&gt;这些神经元接受着许许多多的信息，比如我们听到的声音和看到的图像，一个神经元接受到信息(input）后进行处理，然后把结果(output)传给下一个或多个神经元，这个结果（output）又变成了下一个或多个神经元的输入(input)，这就是它运作的基本原理。我们将这一个个的神经元叫做：&lt;strong&gt;激活单元（activation unit）&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/32e4ab5f869d4731b6ff64eacedeb6c7.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/32e4ab5f869d4731b6ff64eacedeb6c7.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
 &lt;p&gt;是不是感觉这个过程似曾相识？对的！在前几章的线性回归和逻辑回归中，我们也是接受几个特征然后传入我们的模型最后输出答案。
 但是呢，无论是线性回归还是逻辑回归都有一个致命缺点：&lt;strong&gt;当我们的特征数量非常庞大的时候，计算的负荷就会非常大。&lt;/strong&gt;
 比如我们如果想要训练一个模型来识别视觉对象（比如一张图片上的元素是人还是大猩猩），这个时候我们需要利用这些图片上的每个像素的值来作为特征。假设我们采用的是50*50像素的图片，并且我们将所有的像素视为特征，就会有2500个特征，如果我们进一步将两两特征组合成一个多项式模型，就会有接近3百万个特征。三百万个啊！兄弟们！作为普通的逻辑回归模型，是不可以有效地处理这么多特征的，那这个时候，我们就需要神经网络了！&lt;/p&gt;
 &lt;h2 id=&#34;需求预测demand-prediction&#34;&gt;需求预测（Demand Prediction）&lt;/h2&gt;
 &lt;p&gt;为了搞清楚神经网络是如何运作的，我们举个需求预测的例子。在这个例子中，我们尝试预测一个商品是否会成为销量第一。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/517add91a9ff4fa593dadcfa966d2270.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/517add91a9ff4fa593dadcfa966d2270.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
 &lt;p&gt;上图中的a是activation也就是神经元（学习模型），上图的计算过程也就是一个只通过一个神经元来预测的模型。但其实现实生活中，不可能仅仅通过价格来判断一个商品是否会成为销量第一。
 在现实生活中可能会有很多影响因素，比如：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/54655ac914974dcdba6bf676ae2e0bb4.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/54655ac914974dcdba6bf676ae2e0bb4.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
 &lt;p&gt;假设上图的三个特征是我们觉得最能决定一件商品能否成为销量第一的元素。
 但是呢我们现在手上掌握的数据只有：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/dc91e5f8baeb401a95936680fb0efe87.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/dc91e5f8baeb401a95936680fb0efe87.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
 &lt;p&gt;那怎么办呢？我们现在就需要对上图这四个特征进行组合来得到我们想要的三个特征：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/15e35a70d43244099c11f93df4c11ab6.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/15e35a70d43244099c11f93df4c11ab6.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
 &lt;p&gt;这样呢，我们就得到了我们想要的三个特征，将这三个特征再放入下一层中进行计算，我们就能得到结果啦：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/80ca65b6a99d4e34bf718a3a68bff2bf.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/80ca65b6a99d4e34bf718a3a68bff2bf.png)&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
 &lt;h3 id=&#34;术语解释&#34;&gt;术语解释&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/ee8fdbb5c96f485c854adcef0aea1256.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/ee8fdbb5c96f485c854adcef0aea1256.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
 &lt;p&gt;我们将四个我们能够直接得到的数据叫做input layer，中间的那一层我们叫做hidden layer，hidden layer中的元素我们叫做activations，最后一层我们叫做output layer。&lt;/p&gt;
 &lt;h3 id=&#34;多个hidden-layers&#34;&gt;多个Hidden layers&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/c983ced39a83407c9e9018d200366266.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/c983ced39a83407c9e9018d200366266.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
 &lt;p&gt;我们可以有多个hidden layer，我们可以进一步地对数据做更细致的处理。&lt;/p&gt;
 &lt;h1 id=&#34;神经网络层&#34;&gt;神经网络层&lt;/h1&gt;
 &lt;p&gt;其实呢，线性回归和逻辑回归就是只有一个神经元的神经网络：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/f5ab11798936495e868fc31b67b3ca4b.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/f5ab11798936495e868fc31b67b3ca4b.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
 &lt;p&gt;让我们观察上面一张图，其中的x就是一组特征值。把第二层展开我们会发现里面有三个神经元，那么&lt;strong&gt;每个神经元都是一个逻辑回归模型&lt;/strong&gt;，在经过这三个神经元也就是三个回归模型的处理后就得到的a，也就是output。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/7460a2ae0351496683add53128b1d30b.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/7460a2ae0351496683add53128b1d30b.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
 &lt;p&gt;我们把每一组的神经元叫做&lt;strong&gt;layer&lt;/strong&gt;，根据传统写法，我们将原始的特征数据&lt;strong&gt;x称为layer0&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/a1e3c74b25824e598912528c2fbc3992.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/a1e3c74b25824e598912528c2fbc3992.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
 &lt;p&gt;我们会在表达数据的时候加上右上角标来表示它是在哪一层中。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/a67cf8fe4ed5400e8d9f4e3712d84459.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/a67cf8fe4ed5400e8d9f4e3712d84459.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
 &lt;p&gt;现在我们将layer2展开，我们会发现里面只有一个神经元并且是一个逻辑回归模型，它输出的是一个标量。单独取出这个layer2我们会发现，这其实就是我们之前学的逻辑回归模型。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/d47835487fa44e6c876b6eb8d32f3a78.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/d47835487fa44e6c876b6eb8d32f3a78.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
 &lt;p&gt;最后呢，我们只需要对最后的输出结果做一个判断，就完成了。&lt;/p&gt;
 &lt;h2 id=&#34;线性逻辑-回归模型和神经网络&#34;&gt;线性/逻辑 回归模型和神经网络&lt;/h2&gt;
 &lt;p&gt;线性/逻辑 回归模型其实就是只含有一个神经元的单层的神经网络。
 在处理复杂的数据时，神经网络能够更好地进行预测，比如在处理图像时。其实在数据量非常大的现代社会，大部分的数据都是复杂的，这也是为什么神经网络在今天这么火的原因。&lt;/p&gt;
 &lt;h1 id=&#34;更加复杂的神经网络&#34;&gt;更加复杂的神经网络&lt;/h1&gt;
 &lt;p&gt;现在让我们来看看多层的神经网络：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/f5ed9017b3354627adf60ec6b74f4e8d.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/f5ed9017b3354627adf60ec6b74f4e8d.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
 &lt;p&gt;我们展开layer3，会发现layer3的用到了layer2的output作为它的input，那么现在来做个小小测试，往圈起来的地方的右上角标填入数字。
 .
 .
 .&lt;/p&gt;
 &lt;p&gt;正确答案是：3，3，2，3 ；你们填对了吗？
 layer2中的w和b都是使用了自己的学习模型中的参数，但是a使用的是layer2的output。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/ee19cc2c9e2d4cfda6db0457505400fe.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/ee19cc2c9e2d4cfda6db0457505400fe.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
 </content>
             
             
@@ -106,7 +106,7 @@ layer2中的w和b都是使用了自己的学习模型中的参数，但是a使�
             <title type="text">机器学习-吴恩达 过拟合问题与正则化（笔记）</title>
             <link rel="alternate" type="text/html" href="https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E8%BF%87%E6%8B%9F%E5%90%88%E9%97%AE%E9%A2%98%E4%B8%8E%E6%AD%A3%E5%88%99%E5%8C%96%E7%AC%94%E8%AE%B0/" />
             <id>https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E8%BF%87%E6%8B%9F%E5%90%88%E9%97%AE%E9%A2%98%E4%B8%8E%E6%AD%A3%E5%88%99%E5%8C%96%E7%AC%94%E8%AE%B0/</id>
-            <updated>2022-08-08T15:27:59&#43;08:00</updated>
+            <updated>2023-03-18T12:29:42&#43;08:00</updated>
             <published>2022-08-05T00:00:00&#43;00:00</published>
             <author>
                     <name>Chloe</name>
@@ -387,7 +387,7 @@ j = 1...n，n为特征的数量，对J(w,b) 求导后为：
             <title type="text">机器学习-吴恩达 多元线性回归（笔记）</title>
             <link rel="alternate" type="text/html" href="https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E5%A4%9A%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E7%AC%94%E8%AE%B0/" />
             <id>https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E5%A4%9A%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E7%AC%94%E8%AE%B0/</id>
-            <updated>2022-08-08T15:26:19&#43;08:00</updated>
+            <updated>2023-03-18T12:11:08&#43;08:00</updated>
             <published>2022-07-13T00:00:00&#43;00:00</published>
             <author>
                     <name>Chloe</name>
@@ -401,96 +401,123 @@ j = 1...n，n为特征的数量，对J(w,b) 求导后为：
 &lt;h2 id=&#34;新的符号notation&#34;&gt;新的符号（Notation）&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;我们用x1, x2, x3, ... , xn 来表示每一个特征（features / variables）&lt;/li&gt;
-&lt;li&gt;n 是特征的数量
-&lt;img src=&#34;https://img-blog.csdnimg.cn/ce6aafd878aa4297a361d88fd7d4f699.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-&lt;strong&gt;这里的 j 可以理解为某一列，(i) 可以理解为某一行&lt;/strong&gt;
-&lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;n 是特征的数量&lt;/li&gt;
 &lt;/ul&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/ce6aafd878aa4297a361d88fd7d4f699.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;&lt;strong&gt;这里的 j 可以理解为某一列，(i) 可以理解为某一行&lt;/strong&gt;
+&lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;多元线性回归模型&#34;&gt;多元线性回归模型&lt;/h2&gt;
-&lt;p&gt;回顾之前的单变量线性回归模型：&lt;img src=&#34;https://img-blog.csdnimg.cn/562c50cbe99e417b8ba77d9cb25a130e.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-那么当有多个变量时：&lt;img src=&#34;https://img-blog.csdnimg.cn/d04d316d7bae4a9599ea0f7a283a0769.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-上图举了预测房子价格的例子，&lt;strong&gt;x1是房子的面积，x2是房子卧室的数量，x3是房子的层数，x4是房子的年龄&lt;/strong&gt;（也就是被住了多少年），最后一个&lt;strong&gt;常数80则是基本价格&lt;/strong&gt;，也就是假设这个房子没有面积，没有卧室，没有地板也没有年龄的时候的价格。前面的w1 ... w4 可以理解为x1 ... x2的权重，比如一个房子每多一个房间，价格可能就增加四千磅。&lt;/p&gt;
-&lt;p&gt;如果有更多变量：&lt;img src=&#34;https://img-blog.csdnimg.cn/4e0a973bda6c42cf8aa1175e6bc3266b.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;回顾之前的单变量线性回归模型：&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/562c50cbe99e417b8ba77d9cb25a130e.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;那么当有多个变量时：&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/d04d316d7bae4a9599ea0f7a283a0769.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;上图举了预测房子价格的例子，&lt;strong&gt;x1是房子的面积，x2是房子卧室的数量，x3是房子的层数，x4是房子的年龄&lt;/strong&gt;（也就是被住了多少年），最后一个&lt;strong&gt;常数80则是基本价格&lt;/strong&gt;，也就是假设这个房子没有面积，没有卧室，没有地板也没有年龄的时候的价格。前面的w1 ... w4 可以理解为x1 ... x2的权重，比如一个房子每多一个房间，价格可能就增加四千磅。&lt;/p&gt;
+&lt;p&gt;如果有更多变量：&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/4e0a973bda6c42cf8aa1175e6bc3266b.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
 &lt;h3 id=&#34;引入符号重写表达式&#34;&gt;引入符号重写表达式&lt;/h3&gt;
-&lt;p&gt;我们把w定义为一个数字列表，列出参数 w1 ... wn ，可以理解称一个行向量，且是个矢量：&lt;img src=&#34;https://img-blog.csdnimg.cn/1a5ae4996afa47258658df5adc3d08b6.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-而 b 依旧是一个常量。
-然后我们把x也写成一个行向量（列表），它列出了所有特性x1 ... xn：&lt;img src=&#34;https://img-blog.csdnimg.cn/f14c0f9b1a2d403ca09fd845fb1cbab9.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-那么我们就能把之前的表达式改写成：
-&lt;img src=&#34;https://img-blog.csdnimg.cn/5b8faf68cb6e429ebe26c99e93a48e8d.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;我们把w定义为一个数字列表，列出参数 w1 ... wn ，可以理解称一个行向量，且是个矢量：&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/1a5ae4996afa47258658df5adc3d08b6.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;而 b 依旧是一个常量。
+然后我们把x也写成一个行向量（列表），它列出了所有特性x1 ... xn：&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/f14c0f9b1a2d403ca09fd845fb1cbab9.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;那么我们就能把之前的表达式改写成：&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/5b8faf68cb6e429ebe26c99e93a48e8d.png&#34; refererpolicy=&#39;no-referrer&#39;&gt;
 &lt;p&gt;&lt;strong&gt;我们把这个模型称为多元线性回归（multiple linear regression），而不是多元回归（multivariate regression）。&lt;/strong&gt;&lt;/p&gt;
 &lt;h1 id=&#34;向量化&#34;&gt;向量化&lt;/h1&gt;
-&lt;p&gt;在线性代数中，向量的索引是从1开始的，而在python的NumPy库中向量的索引是从0开始的。基本上所有的编程语言数组的下标都是从0开始计数的。&lt;img src=&#34;https://img-blog.csdnimg.cn/9a05b40ca0a340cda0fce81487963ebd.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+&lt;p&gt;在线性代数中，向量的索引是从1开始的，而在python的NumPy库中向量的索引是从0开始的。基本上所有的编程语言数组的下标都是从0开始计数的。 
+&lt;img src=&#34;https://img-blog.csdnimg.cn/9a05b40ca0a340cda0fce81487963ebd.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
 上图中的np.array() 其实是调用了NumPy库中的方法，创建了一个数组（array）。&lt;/p&gt;
 &lt;h2 id=&#34;向量化和不向量化的区别&#34;&gt;向量化和不向量化的区别&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;不向量化：&lt;/strong&gt;
 我们需要手动地将每一项写出来，如果特征数量	少还可以接受，如果特征数量是10个甚至10000
-个的时候，这种方法显然不适用：&lt;img src=&#34;https://img-blog.csdnimg.cn/399d3a5609784cc7be20bc31cdb07a39.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-或者我们可以稍微再简化,用for循环来循环计算：&lt;img src=&#34;https://img-blog.csdnimg.cn/89fdf443070f406eaf26093129d4b69a.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-&lt;strong&gt;向量化：&lt;/strong&gt;
-我们只需要写一行很短的表达式，和一行很短的代码就可以了：&lt;img src=&#34;https://img-blog.csdnimg.cn/e26337413049433798ae7c985af20f68.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-其实除了这种显而易见的好处之外，使用向量化还能提高计算的速度。因为python在计算np.dot(w,x) 的时候，会&lt;strong&gt;使用并行计算&lt;/strong&gt;，让计算效率提高。
+个的时候，这种方法显然不适用： 
+&lt;img src=&#34;https://img-blog.csdnimg.cn/399d3a5609784cc7be20bc31cdb07a39.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;&lt;/p&gt;
+&lt;p&gt;或者我们可以稍微再简化,用for循环来循环计算：&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/89fdf443070f406eaf26093129d4b69a.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;&lt;strong&gt;向量化：&lt;/strong&gt;
+我们只需要写一行很短的表达式，和一行很短的代码就可以了：&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/e26337413049433798ae7c985af20f68.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;其实除了这种显而易见的好处之外，使用向量化还能提高计算的速度。因为python在计算np.dot(w,x) 的时候，会&lt;strong&gt;使用并行计算&lt;/strong&gt;，让计算效率提高。
 &lt;strong&gt;使用for循环时：&lt;/strong&gt;
-计算机会先计算完前一个循环中的结果，再计算下一个循环：&lt;img src=&#34;https://img-blog.csdnimg.cn/9f0f4a37a11d4bb3950d1c3bf7f9c58d.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-&lt;strong&gt;而使用np.dot()时：&lt;/strong&gt;
-计算机会同时计算w[j] * x[j] 这一步，最后再把它们加在一起：&lt;img src=&#34;https://img-blog.csdnimg.cn/a6f163e899e5465fb980752e9965acdc.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+计算机会先计算完前一个循环中的结果，再计算下一个循环：&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/9f0f4a37a11d4bb3950d1c3bf7f9c58d.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;&lt;strong&gt;而使用np.dot()时：&lt;/strong&gt;
+计算机会同时计算w[j] * x[j] 这一步，最后再把它们加在一起：&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/a6f163e899e5465fb980752e9965acdc.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
 &lt;h1 id=&#34;多元线性回归的梯度下降法&#34;&gt;多元线性回归的梯度下降法&lt;/h1&gt;
-&lt;p&gt;&lt;strong&gt;代价函数（Cost Function）：&lt;/strong&gt; &lt;img src=&#34;https://img-blog.csdnimg.cn/1832d79bdfea4207b80cc617a3788184.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;代价函数（Cost Function）：&lt;/strong&gt;&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/1832d79bdfea4207b80cc617a3788184.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
 &lt;h2 id=&#34;梯度下降公式&#34;&gt;梯度下降公式：&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/60c68d39a4a5419589cce453661465b3.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-&lt;strong&gt;在单变量时：&lt;/strong&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/8e644c4b00cc4f5783a86f9c7c517798.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-在多变量时，也就是n &amp;gt;= 2时：&lt;img src=&#34;https://img-blog.csdnimg.cn/0405d0fbf6d74242a114868e5838ff93.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/60c68d39a4a5419589cce453661465b3.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;&lt;strong&gt;在单变量时：&lt;/strong&gt;&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/8e644c4b00cc4f5783a86f9c7c517798.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;在多变量时，也就是n &amp;gt;= 2时：&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/0405d0fbf6d74242a114868e5838ff93.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
 &lt;p&gt;&lt;strong&gt;注意更新w时，最后一项不是x(i) 了，而是x1(i) ... xn(i)。&lt;/strong&gt;&lt;/p&gt;
 &lt;br/&gt;
 &lt;h1 id=&#34;特征缩放&#34;&gt;特征缩放&lt;/h1&gt;
 &lt;h2 id=&#34;如何选择w的值&#34;&gt;如何选择w的值&lt;/h2&gt;
-&lt;p&gt;我们假设要预测一个房子的价值，但我们现在只考虑它的size（面积）为&lt;strong&gt;x1&lt;/strong&gt;，和bedrooms（卧室的数量）为&lt;strong&gt;x2&lt;/strong&gt; 。&lt;strong&gt;x1的范围是300 - 2000；x2的范围是0-5。&lt;/strong&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/d01e85f9acf5410cb5a9fcf7cdaa0304.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-假设现在：&lt;img src=&#34;https://img-blog.csdnimg.cn/c9a61fb44de14ee98dc269343a23a9c1.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;我们假设要预测一个房子的价值，但我们现在只考虑它的size（面积）为&lt;strong&gt;x1&lt;/strong&gt;，和bedrooms（卧室的数量）为&lt;strong&gt;x2&lt;/strong&gt; 。&lt;strong&gt;x1的范围是300 - 2000；x2的范围是0-5。&lt;/strong&gt;&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/d01e85f9acf5410cb5a9fcf7cdaa0304.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;假设现在：&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/c9a61fb44de14ee98dc269343a23a9c1.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
 &lt;ol&gt;
-&lt;li&gt;第一种情况：我们让 w1 = 50，w2 = 0.1，b = 50：&lt;img src=&#34;https://img-blog.csdnimg.cn/1056ae94dfd54ef2ba943871bec33d4f.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+&lt;li&gt;第一种情况：我们让 w1 = 50，w2 = 0.1，b = 50： 
+&lt;img src=&#34;https://img-blog.csdnimg.cn/1056ae94dfd54ef2ba943871bec33d4f.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
 结果与我们的training example完全不拟合。&lt;/li&gt;
-&lt;li&gt;第二种情况：我们让w1 = 0.1, w2 = 50, b = 50：&lt;img src=&#34;https://img-blog.csdnimg.cn/0eb9baa18a4149608717403b9edf5eb5.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+&lt;li&gt;第二种情况：我们让w1 = 0.1, w2 = 50, b = 50： 
+&lt;img src=&#34;https://img-blog.csdnimg.cn/0eb9baa18a4149608717403b9edf5eb5.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
 这时候的结果就非常拟合我们的training example。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;strong&gt;总结：当某一个特征的可能值范围很大的时候，比如面积，一个好的模型更有可能选择一个相对较小的w值，比如0.1。反之，当一个特征的可能值很小时，比如卧室的数量，那么它w值可能就会比较大，比如50。&lt;/strong&gt;
 &lt;br/&gt;&lt;/p&gt;
 &lt;h3 id=&#34;参数w的选择与梯度下降的关系&#34;&gt;参数(w)的选择与梯度下降的关系&lt;/h3&gt;
-&lt;p&gt;让我们来看看x1和x2的散点图（scatter plot）和代价函数的等高线图（contour plot）：
-&lt;img src=&#34;https://img-blog.csdnimg.cn/aaacda5edad141f49cb5c030d9369fca.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-在散点图中，我们发现横坐标的取值范围很大，而纵坐标的取值范围很小。
-在代价函数的等高线图中，我们发现是一个椭圆形，这是因为&lt;strong&gt;w1的取值只要稍微变动一点点，就会对价格影响非常大&lt;/strong&gt;，因为x1（房子的面积）的取值比较大；&lt;strong&gt;而w2需要变动的比较大才会对价格造成影响&lt;/strong&gt;，因为x2（卧室数量）的取值比较小。
-&lt;img src=&#34;https://img-blog.csdnimg.cn/c821541089e04674aece6b19ad127cfa.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-在这种情况下，当我们试图进行梯度下降时，因为我们的训练数据的轮廓很&lt;strong&gt;高和瘦&lt;/strong&gt;，这会导致在寻找最小值的时候会&lt;strong&gt;来回跳动很长时间&lt;/strong&gt;：&lt;img src=&#34;https://img-blog.csdnimg.cn/bfbe56ae33a140bcb9b48dfc493af828.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-&lt;strong&gt;所以我们希望找到一种方式让特征们（features）可以缩放到差不多的取值范围，达到这样：&lt;/strong&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/ef93eb3054b34d489e514dce27b009c1.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-&lt;br/&gt;&lt;/p&gt;
-&lt;h3 id=&#34;进行特征缩放&#34;&gt;进行特征缩放&lt;/h3&gt;
-&lt;p&gt;现在特征的取值范围是：&lt;img src=&#34;https://img-blog.csdnimg.cn/5a3f858b4de44399b86a74c0ce3e915b.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;让我们来看看x1和x2的散点图（scatter plot）和代价函数的等高线图（contour plot）：&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/aaacda5edad141f49cb5c030d9369fca.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;在散点图中，我们发现横坐标的取值范围很大，而纵坐标的取值范围很小。
+在代价函数的等高线图中，我们发现是一个椭圆形，这是因为&lt;strong&gt;w1的取值只要稍微变动一点点，就会对价格影响非常大&lt;/strong&gt;，因为x1（房子的面积）的取值比较大；&lt;strong&gt;而w2需要变动的比较大才会对价格造成影响&lt;/strong&gt;，因为x2（卧室数量）的取值比较小。&lt;/p&gt;
+&lt;img src=&#34; https://img-blog.csdnimg.cn/c821541089e04674aece6b19ad127cfa.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;在这种情况下，当我们试图进行梯度下降时，因为我们的训练数据的轮廓很&lt;strong&gt;高和瘦&lt;/strong&gt;，这会导致在寻找最小值的时候会&lt;strong&gt;来回跳动很长时间&lt;/strong&gt;： (&lt;a href=&#34;https://img-blog.csdnimg.cn/bfbe56ae33a140bcb9b48dfc493af828.png&#34;&gt;https://img-blog.csdnimg.cn/bfbe56ae33a140bcb9b48dfc493af828.png&lt;/a&gt;)
+&lt;strong&gt;所以我们希望找到一种方式让特征们（features）可以缩放到差不多的取值范围，达到这样：&lt;/strong&gt;&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/ef93eb3054b34d489e514dce27b009c1.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;br/&gt;
+### 进行特征缩放
+现在特征的取值范围是： 
+&lt;img src=&#34;https://img-blog.csdnimg.cn/5a3f858b4de44399b86a74c0ce3e915b.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
 &lt;h4 id=&#34;除以各自的最大值&#34;&gt;除以各自的最大值&lt;/h4&gt;
-&lt;p&gt;现在我们把它们&lt;strong&gt;除以各自的最大值&lt;/strong&gt;：&lt;img src=&#34;https://img-blog.csdnimg.cn/9c8defd742af4134a1241764ba97361b.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-把它们放到图上就会变成：&lt;img src=&#34;https://img-blog.csdnimg.cn/4252b2d1283a4bd0a948e6db67e66217.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;现在我们把它们&lt;strong&gt;除以各自的最大值&lt;/strong&gt;：&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/9c8defd742af4134a1241764ba97361b.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;把它们放到图上就会变成：&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/4252b2d1283a4bd0a948e6db67e66217.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
 &lt;h4 id=&#34;均值归一化&#34;&gt;均值归一化&lt;/h4&gt;
 &lt;p&gt;除了除以最大值，我们还可以做均值归一化让它们都以0为中心：
-我们把每个&lt;strong&gt;x1减去所有x1的均值&lt;/strong&gt;，然后&lt;strong&gt;除以它们的取值范围的差值&lt;/strong&gt;，x2,x3 .. xn 同理，比如：&lt;img src=&#34;https://img-blog.csdnimg.cn/76e67889d52c49b68daedf42144afaea.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-在图上它们是这样的：&lt;img src=&#34;https://img-blog.csdnimg.cn/dbfe6ab6f1ed489692c54591816d3f9f.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-&lt;strong&gt;之前它们只有大于0的值，现在它们有负数和正数，但通常在-1 和 +1 之间。&lt;/strong&gt;
+我们把每个&lt;strong&gt;x1减去所有x1的均值&lt;/strong&gt;，然后&lt;strong&gt;除以它们的取值范围的差值&lt;/strong&gt;，x2,x3 .. xn 同理，比如：&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/76e67889d52c49b68daedf42144afaea.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;在图上它们是这样的：&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/dbfe6ab6f1ed489692c54591816d3f9f.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;&lt;strong&gt;之前它们只有大于0的值，现在它们有负数和正数，但通常在-1 和 +1 之间。&lt;/strong&gt;
 &lt;br/&gt;&lt;/p&gt;
 &lt;h4 id=&#34;离差归一化z-score-归一化&#34;&gt;离差归一化（Z-score 归一化）&lt;/h4&gt;
 &lt;p&gt;我们还可以使用Z-score归一化来进行特征缩放：
 在这之前我们除了需要&lt;strong&gt;计算平均数&lt;/strong&gt;，还需要计算&lt;strong&gt;标准差（standard deviation）&lt;/strong&gt; 。
-我们把&lt;strong&gt;每个x1 减去 所有x1的平均数，然后除以x1的标准差&lt;/strong&gt;，x2 ... xn 同理，比如：&lt;img src=&#34;https://img-blog.csdnimg.cn/524bf3c4609749759c4b02213de55095.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-在图上的表现为：&lt;img src=&#34;https://img-blog.csdnimg.cn/8c2ff71f56684437acaaf3cd1aafe82d.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+我们把&lt;strong&gt;每个x1 减去 所有x1的平均数，然后除以x1的标准差&lt;/strong&gt;，x2 ... xn 同理，比如：&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/524bf3c4609749759c4b02213de55095.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;在图上的表现为：&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/8c2ff71f56684437acaaf3cd1aafe82d.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
 &lt;h4 id=&#34;什么时候需要进行特征缩放&#34;&gt;什么时候需要进行特征缩放&lt;/h4&gt;
-&lt;p&gt;当x的取值在以下范围中都是可以接受的：
-&lt;img src=&#34;https://img-blog.csdnimg.cn/2675842148d04daf88c25e32413ed76c.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-但如果取值范围过大或者过小，那么就需要进行特征缩放，比如：&lt;img src=&#34;https://img-blog.csdnimg.cn/bcaea748b94c46adb0c147b6a40e70a1.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-&lt;strong&gt;正常情况下，进行特征缩放几乎没有什么坏处&lt;/strong&gt;，所以在疑惑自己是否需要进行特征缩放的时候，就尝试下特征缩放吧。
+&lt;p&gt;当x的取值在以下范围中都是可以接受的：&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/2675842148d04daf88c25e32413ed76c.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;但如果取值范围过大或者过小，那么就需要进行特征缩放，比如：&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/bcaea748b94c46adb0c147b6a40e70a1.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;&lt;strong&gt;正常情况下，进行特征缩放几乎没有什么坏处&lt;/strong&gt;，所以在疑惑自己是否需要进行特征缩放的时候，就尝试下特征缩放吧。
 &lt;br/&gt;&lt;/p&gt;
 &lt;h1 id=&#34;检查梯度下降是否收敛&#34;&gt;检查梯度下降是否收敛&lt;/h1&gt;
-&lt;p&gt;我们的目的：找到最小的J(w,b) &lt;img src=&#34;https://img-blog.csdnimg.cn/b4847a61e5f746659ce34015ce3bfeee.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;我们的目的：找到最小的J(w,b)&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/b4847a61e5f746659ce34015ce3bfeee.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
 &lt;h2 id=&#34;使用学习曲线判断推荐&#34;&gt;使用学习曲线判断（推荐）&lt;/h2&gt;
-&lt;p&gt;一种方式保证梯度下降正常进行是画出一个学习曲线（learning curve），其纵轴是J(w,b)，横轴是迭代的次数：
-&lt;img src=&#34;https://img-blog.csdnimg.cn/e667f4e4fc4d45c4ba18afa7c08adef6.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-判断梯度下降是否正常运行：&lt;/p&gt;
+&lt;p&gt;一种方式保证梯度下降正常进行是画出一个学习曲线（learning curve），其纵轴是J(w,b)，横轴是迭代的次数：&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/e667f4e4fc4d45c4ba18afa7c08adef6.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;判断梯度下降是否正常运行：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;学习曲线是否在每一次迭代后持续下降&lt;/li&gt;
 &lt;li&gt;学习曲线在经过了一定次数的迭代后是否收敛（converge）到某一个值&lt;/li&gt;
@@ -501,41 +528,50 @@ j = 1...n，n为特征的数量，对J(w,b) 求导后为：
 &lt;ul&gt;
 &lt;li&gt;我们首先设定一个 &amp;quot;epsilon&amp;quot; 的值&lt;/li&gt;
 &lt;li&gt;如果J(w,b)的下降浮动小于等于 &amp;quot;epsilon&amp;quot;&lt;/li&gt;
-&lt;li&gt;就判定它收敛。&lt;img src=&#34;https://img-blog.csdnimg.cn/8f674745aca54333a30a98dd56a57739.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-但是找到合适的 &amp;quot;epsilon&amp;quot; 值是相当困难的，所以&lt;strong&gt;推荐使用学习曲线&lt;/strong&gt;，能够更加直观地看出梯度下降是否在正常进行中。
-&lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;就判定它收敛。&lt;/li&gt;
 &lt;/ul&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/8f674745aca54333a30a98dd56a57739.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;但是找到合适的 &amp;quot;epsilon&amp;quot; 值是相当困难的，所以&lt;strong&gt;推荐使用学习曲线&lt;/strong&gt;，能够更加直观地看出梯度下降是否在正常进行中。
+&lt;br/&gt;&lt;/p&gt;
 &lt;h3 id=&#34;学习率的选择&#34;&gt;学习率的选择&lt;/h3&gt;
 &lt;p&gt;我们可以通过学习曲线来看出，学习率的选择是否合适。
-比如出现：
-&lt;img src=&#34;https://img-blog.csdnimg.cn/13605f67d240404ab0c39d7f74421682.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-出现上图的时候，通常是&lt;strong&gt;代码中有bug或者是学习率过大&lt;/strong&gt;导致的。比如下图这种状况，学习率过大导致错过了最小值。
-&lt;img src=&#34;https://img-blog.csdnimg.cn/facdb0bf942a4541b0bbaabe734679d1.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-所以这个时候，我们可以选择一个非常非常小的alpha值，来检查是否在每次迭代后，我们的J(w,b）的值在持续下降。
-如果还是没有下降，那么就说明可能是我们的代码中有bug，比如本来应该是:&lt;img src=&#34;https://img-blog.csdnimg.cn/6318132fbb4d4bcab47a6b458e9a6fe0.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-但是却写成了：
-&lt;img src=&#34;https://img-blog.csdnimg.cn/01574fad324b4301851c5d4e7589393c.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-这个时候的学习曲线可能会变成这样：&lt;img src=&#34;https://img-blog.csdnimg.cn/3b840b89038b4f0d975e6ebb2da0d690.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+比如出现：&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/13605f67d240404ab0c39d7f74421682.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;出现上图的时候，通常是&lt;strong&gt;代码中有bug或者是学习率过大&lt;/strong&gt;导致的。比如下图这种状况，学习率过大导致错过了最小值。&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/facdb0bf942a4541b0bbaabe734679d1.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;所以这个时候，我们可以选择一个非常非常小的alpha值，来检查是否在每次迭代后，我们的J(w,b）的值在持续下降。
+如果还是没有下降，那么就说明可能是我们的代码中有bug，比如本来应该是:&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/6318132fbb4d4bcab47a6b458e9a6fe0.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;但是却写成了：&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/01574fad324b4301851c5d4e7589393c.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;这个时候的学习曲线可能会变成这样：&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/3b840b89038b4f0d975e6ebb2da0d690.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
 &lt;h4 id=&#34;尝试选择学习率&#34;&gt;尝试选择学习率&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;我们可以先选择一个非常小的alpha值（学习率）比如0.001&lt;/li&gt;
 &lt;li&gt;然后再选择一个相对较大的学习率，比如1，来查看是否出现学习曲线上下浮动的情况&lt;/li&gt;
-&lt;li&gt;然后再逐步地在最小的alpha的基础上一点点地增加，或者在较大的alpha值的基础上一点点地减少&lt;img src=&#34;https://img-blog.csdnimg.cn/b49f56b4cc2e45d191fe1ae6dde15fc0.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/li&gt;
+&lt;li&gt;然后再逐步地在最小的alpha的基础上一点点地增加，或者在较大的alpha值的基础上一点点地减少&lt;/li&gt;
 &lt;/ul&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/b49f56b4cc2e45d191fe1ae6dde15fc0.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
 &lt;h1 id=&#34;特征工程&#34;&gt;特征工程&lt;/h1&gt;
 &lt;p&gt;假设现在我们要预估一个房子的价格，这个房子有两个特征，&lt;strong&gt;x1 是房子正面的长度&lt;/strong&gt;（frontage），&lt;strong&gt;x2是房子的宽度（depth）&lt;/strong&gt;。那么现在我们想要添加一个新的特征，那么我们可以选择&lt;strong&gt;x3为：
-面积 = 长度 * 宽度&lt;/strong&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/220b45d8f1a943818a52ab057bec96a7.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-处理一个新特征是特征工程的一个例子，这告诉我们&lt;strong&gt;设计新特征&lt;/strong&gt;的时候，可以&lt;strong&gt;通过转换或结合原始特征&lt;/strong&gt;。这样可能可以设计出更好的学习模型。&lt;img src=&#34;https://img-blog.csdnimg.cn/ebcb56c2b1be46268ae6869eef643ae8.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+面积 = 长度 * 宽度&lt;/strong&gt;&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/220b45d8f1a943818a52ab057bec96a7.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;处理一个新特征是特征工程的一个例子，这告诉我们&lt;strong&gt;设计新特征&lt;/strong&gt;的时候，可以&lt;strong&gt;通过转换或结合原始特征&lt;/strong&gt;。这样可能可以设计出更好的学习模型。&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/ebcb56c2b1be46268ae6869eef643ae8.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
 &lt;h1 id=&#34;多项式回归polynomial-regression&#34;&gt;多项式回归（polynomial regression）&lt;/h1&gt;
-&lt;p&gt;我们利用多元线性回归和特征工程的思想，提出一种新的 &lt;strong&gt;多项式回归算法&lt;/strong&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/7340d7c5bc1d49b4a80bd22b29deddfb.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-上图是用房子的面积来预测房子的价格的数据，显然它不能有一个简单的直线来拟合。&lt;/p&gt;
+&lt;p&gt;我们利用多元线性回归和特征工程的思想，提出一种新的 &lt;strong&gt;多项式回归算法&lt;/strong&gt;&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/7340d7c5bc1d49b4a80bd22b29deddfb.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;上图是用房子的面积来预测房子的价格的数据，显然它不能有一个简单的直线来拟合。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;这时候我们就需要用到多项式函数：&lt;/strong&gt;
-我们可以选择&lt;strong&gt;二次函数&lt;/strong&gt;，但显然这里也不适合用二次函数，因为二次函数最后会下降，但我们并不认为房子的面积变大时，价格会下降。&lt;img src=&#34;https://img-blog.csdnimg.cn/5c9d3b62df194beda4a709c3a4ec9f09.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
-&lt;p&gt;所以我们可以进而选择&lt;strong&gt;三次函数&lt;/strong&gt;，它能更好地拟合这些数据：&lt;img src=&#34;https://img-blog.csdnimg.cn/48a2d72df103475d8d2f456235f7afbf.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-但在这个时候，&lt;strong&gt;特征缩放（feature scaling）就显得尤为重要&lt;/strong&gt;，因为size的三次方会变得非常的大，这叫对我们选择w的值造成很大的困难，也会让计算变得更加复杂。&lt;/p&gt;
-&lt;p&gt;另一种更合理的替代方法是&lt;strong&gt;取尺寸的平方和立方&lt;/strong&gt;：&lt;img src=&#34;https://img-blog.csdnimg.cn/d12dcef0668943b5a108658992c5e203.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-&lt;strong&gt;如何选择最为合适的features会在后面的课程中介绍。&lt;/strong&gt;&lt;/p&gt;
+我们可以选择&lt;strong&gt;二次函数&lt;/strong&gt;，但显然这里也不适合用二次函数，因为二次函数最后会下降，但我们并不认为房子的面积变大时，价格会下降。&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/5c9d3b62df194beda4a709c3a4ec9f09.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;所以我们可以进而选择&lt;strong&gt;三次函数&lt;/strong&gt;，它能更好地拟合这些数据：&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/48a2d72df103475d8d2f456235f7afbf.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;但在这个时候，&lt;strong&gt;特征缩放（feature scaling）就显得尤为重要&lt;/strong&gt;，因为size的三次方会变得非常的大，这叫对我们选择w的值造成很大的困难，也会让计算变得更加复杂。&lt;/p&gt;
+&lt;p&gt;另一种更合理的替代方法是&lt;strong&gt;取尺寸的平方和立方&lt;/strong&gt;：&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/d12dcef0668943b5a108658992c5e203.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;&lt;strong&gt;如何选择最为合适的features会在后面的课程中介绍。&lt;/strong&gt;&lt;/p&gt;
 </content>
             
             
@@ -560,27 +596,29 @@ j = 1...n，n为特征的数量，对J(w,b) 求导后为：
             <title type="text">机器学习-吴恩达 梯度下降（笔记）</title>
             <link rel="alternate" type="text/html" href="https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%AC%94%E8%AE%B0/" />
             <id>https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%AC%94%E8%AE%B0/</id>
-            <updated>2022-08-08T15:23:44&#43;08:00</updated>
+            <updated>2023-03-18T12:23:05&#43;08:00</updated>
             <published>2022-07-07T00:00:00&#43;00:00</published>
             <author>
                     <name>Chloe</name>
                     <uri>https://io-oi.me/</uri>
                     <email>1647656181@qq.com</email>
                     </author>
-            <rights>转载请保留本文作者以及本文链接</rights><summary type="html">什么是梯度下降？ 梯度下降是寻找目标函数最小化的方法。 比如在上一个单变量线性回归模型文……</summary>
+            <rights>转载请保留本文作者以及本文链接</rights><summary type="html">什么是梯度下降？ 梯度下降是寻找目标函数最小化的方法。 比如在上一篇 单变量线性回归模型 文……</summary>
             
                 <content type="html">&lt;h2 id=&#34;什么是梯度下降&#34;&gt;什么是梯度下降？&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;梯度下降是寻找目标函数最小化的方法。&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;比如在上一个&lt;a href=&#34;https://editor.csdn.net/md/?articleId=125470263&#34;&gt;单变量线性回归模型&lt;/a&gt;文章中我们的目标是得到最拟合的&lt;strong&gt;单变量线性回归Function&lt;/strong&gt;，也就是得到&lt;strong&gt;代价函数的最小值&lt;/strong&gt;：min J(w,b) 。
+&lt;p&gt;比如在上一篇&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/zxq1_/article/details/125470263&#34;&gt;单变量线性回归模型&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;文章中我们的目标是得到最拟合的&lt;strong&gt;单变量线性回归Function&lt;/strong&gt;，也就是得到&lt;strong&gt;代价函数的最小值&lt;/strong&gt;：min J(w,b) 。
 那么如何得到呢？&lt;strong&gt;梯度下降法就可以通过不断迭代调整参数来寻找最合适的值。&lt;/strong&gt;
 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;梯度下降表达式&#34;&gt;梯度下降表达式&lt;/h2&gt;
-&lt;p&gt;我们还是用单变量线性回归模型中的J(w,b)来举例：
-&lt;img src=&#34;https://img-blog.csdnimg.cn/b2b88a8367674b49a620b37c96a0e6fc.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-我们&lt;strong&gt;持续不断地更新w和b&lt;/strong&gt;，直到他们&lt;strong&gt;收敛&lt;/strong&gt;，也就是计算后他们的值已经不会出现什么变动，那么我们就得到了局部（以下文章会解释为什么是局部）/ 全局最小值（&lt;strong&gt;只是收敛到极小值，而不是真正意义上的最小值。以下说的最小值，其实都是极小值&lt;/strong&gt;）或是鞍点。&lt;/p&gt;
+&lt;p&gt;我们还是用单变量线性回归模型中的J(w,b)来举例：&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/b2b88a8367674b49a620b37c96a0e6fc.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;我们&lt;strong&gt;持续不断地更新w和b&lt;/strong&gt;，直到他们&lt;strong&gt;收敛&lt;/strong&gt;，也就是计算后他们的值已经不会出现什么变动，那么我们就得到了局部（以下文章会解释为什么是局部）/ 全局最小值（&lt;strong&gt;只是收敛到极小值，而不是真正意义上的最小值。以下说的最小值，其实都是极小值&lt;/strong&gt;）或是鞍点。&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;注意我们需要同步更新w和b，也就是w更新后，b更新时用的还是没有更新的w。&lt;/strong&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/ad3b16a4b25a416fbf4873c8131b7cd6.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/ad3b16a4b25a416fbf4873c8131b7cd6.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h4 id=&#34;表达式解释&#34;&gt;表达式解释&lt;/h4&gt;
 &lt;p&gt;这里的&lt;strong&gt;等号&lt;/strong&gt;是一个&lt;strong&gt;赋值符号&lt;/strong&gt;，而不是数学意义上的相等符号。
@@ -588,50 +626,54 @@ j = 1...n，n为特征的数量，对J(w,b) 求导后为：
 这里的最后一项是&lt;strong&gt;对于代价函数J(w,b)的偏导&lt;/strong&gt;，用来&lt;strong&gt;控制方向&lt;/strong&gt;。
 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;梯度下降的直观理解&#34;&gt;梯度下降的直观理解&lt;/h2&gt;
-&lt;p&gt;为了更直观的观察梯度下降是如何让目标函数的最小化，我们假设&lt;strong&gt;只有一个参数的代价函数 J(w)&lt;/strong&gt;，在上一章中我们知道J(w)是一个二次函数（quadratic function），也就是一个抛物线。
-&lt;img src=&#34;https://img-blog.csdnimg.cn/5a33605e5c5e46e58800812614a1c478.png&#34; alt=&#34;J(w)图像&#34;&gt;
-我们假设一个在抛物线上的初始点
-&lt;img src=&#34;https://img-blog.csdnimg.cn/658c46a5e504483d8379f6ebbaaebcfe.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-现在开始进行梯度下降：&lt;img src=&#34;https://img-blog.csdnimg.cn/ffae7697ac3c479884345058b053093b.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-这里的最后一项（对J(w)的求导）在图中就是这个点的斜率：
-&lt;img src=&#34;https://img-blog.csdnimg.cn/13417285bd894a8394c527ecb4323573.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-那么也就是&lt;strong&gt;w = w - $\alpha$ * 一个正数，由于alpha一定是正数，所以w减小了所以在图中的表现就是点向左移动&lt;/strong&gt;，也就是向最小值靠近：
-&lt;img src=&#34;https://img-blog.csdnimg.cn/f9ac1a9155ed4fae9ba7af17168f27da.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-再来看另一个例子，当我们取的点在抛物线左边：&lt;img src=&#34;https://img-blog.csdnimg.cn/8ecdc5da82104085937d4bff924a5442.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-那么这个时候J(w)的求导就是负数，也就是一个负的斜率：
-&lt;img src=&#34;https://img-blog.csdnimg.cn/9250ec8014384c04b2739d92e251a8c1.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-那么现在&lt;strong&gt;w = w - $\alpha$ * 一个负数，w增大了，所以在图中的表现就是点向右移动&lt;/strong&gt;，也在向最小值靠近：
-&lt;img src=&#34;https://img-blog.csdnimg.cn/ecd1f382b61b4e33835531bfc2b6b200.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-&lt;br/&gt;&lt;/p&gt;
-&lt;h2 id=&#34;学习率learning-rate&#34;&gt;学习率（learning rate）&lt;/h2&gt;
-&lt;p&gt;学习率的过大或过小都会造成一些影响：
-&lt;strong&gt;学习率过小：&lt;/strong&gt; 梯度下降的&lt;strong&gt;速度会非常慢&lt;/strong&gt;，因为每次下降的步长都太小，虽然最终也能得到正确结果，但&lt;strong&gt;会花费非常长的时间&lt;/strong&gt;。
-&lt;strong&gt;学习率过大：&lt;/strong&gt; 梯度下降的过多，会错过最小值，并且&lt;strong&gt;无法收敛&lt;/strong&gt;。
-&lt;img src=&#34;https://img-blog.csdnimg.cn/66c120a53ec3401a99023e4ca521e1ca.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-&lt;br/&gt;&lt;/p&gt;
-&lt;h3 id=&#34;固定的学习率只能找到局部最小值&#34;&gt;固定的学习率只能找到局部最小值&lt;/h3&gt;
-&lt;p&gt;由于当 J(w) 的取值在局部最小值的时候，这个点的&lt;strong&gt;斜率为0&lt;/strong&gt;，那么在下一次更新的时候，由于最后一项求导值为0，0乘上alpha还是0，所以&lt;strong&gt;w的取值已经不会再改变&lt;/strong&gt;。
-&lt;img src=&#34;https://img-blog.csdnimg.cn/ebb88c9eb2144586ababfafb047437fb.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-&lt;strong&gt;到达哪个局部最小值取决于选择的起始点&lt;/strong&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/33ba405f6f92457f85ba59b8b439dd37.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;为了更直观的观察梯度下降是如何让目标函数的最小化，我们假设&lt;strong&gt;只有一个参数的代价函数 J(w)&lt;/strong&gt;，在上一章中我们知道J(w)是一个二次函数（quadratic function），也就是一个抛物线。&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/5a33605e5c5e46e58800812614a1c478.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;我们假设一个在抛物线上的初始点&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/658c46a5e504483d8379f6ebbaaebcfe.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;现在开始进行梯度下降：&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/ffae7697ac3c479884345058b053093b.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;这里的最后一项（对J(w)的求导）在图中就是这个点的斜率：&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/13417285bd894a8394c527ecb4323573.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;那么也就是&lt;strong&gt;w = w - $\alpha$ * 一个正数，由于alpha一定是正数，所以w减小了所以在图中的表现就是点向左移动&lt;/strong&gt;，也就是向最小值靠近：&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/f9ac1a9155ed4fae9ba7af17168f27da.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;再来看另一个例子，当我们取的点在抛物线左边：&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/8ecdc5da82104085937d4bff924a5442.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;那么这个时候J(w)的求导就是负数，也就是一个负的斜率：&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/9250ec8014384c04b2739d92e251a8c1.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;那么现在&lt;strong&gt;w = w - $\alpha$ * 一个负数，w增大了，所以在图中的表现就是点向右移动&lt;/strong&gt;，也在向最小值靠近：&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/ecd1f382b61b4e33835531bfc2b6b200.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;br/&gt;
+## 学习率（learning rate）
+学习率的过大或过小都会造成一些影响：
+**学习率过小：** 梯度下降的**速度会非常慢**，因为每次下降的步长都太小，虽然最终也能得到正确结果，但**会花费非常长的时间**。
+**学习率过大：** 梯度下降的过多，会错过最小值，并且**无法收敛**。
+&lt;img src=&#34;https://img-blog.csdnimg.cn/66c120a53ec3401a99023e4ca521e1ca.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;br/&gt;
+### 固定的学习率只能找到局部最小值
+由于当 J(w) 的取值在局部最小值的时候，这个点的**斜率为0**，那么在下一次更新的时候，由于最后一项求导值为0，0乘上alpha还是0，所以**w的取值已经不会再改变**。
+&lt;img src=&#34;https://img-blog.csdnimg.cn/ebb88c9eb2144586ababfafb047437fb.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;&lt;strong&gt;到达哪个局部最小值取决于选择的起始点&lt;/strong&gt;&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/33ba405f6f92457f85ba59b8b439dd37.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;但在回归中使用平方代价函数时，代价函数没有也永远不会有多个局部最优解，也就是只有全局最优解。这种函数我们称为凸函数。&lt;/strong&gt;
 &lt;br/&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/43a127c1a71c475693036045d790a776.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/43a127c1a71c475693036045d790a776.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;br/&gt;
 &lt;h3 id=&#34;jw-靠近最小值的速度会逐渐变慢&#34;&gt;J(w) 靠近最小值的速度会逐渐变慢&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;即使在 alpha（学习率）不变的情况下&lt;/strong&gt;，随着 J(w) 的值向最小值靠近的时候，&lt;strong&gt;点的斜率会越来越小，所以w变化的速度也会逐渐变慢。&lt;/strong&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/8341f01d09e54e67914966e703d47691.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;即使在 alpha（学习率）不变的情况下&lt;/strong&gt;，随着 J(w) 的值向最小值靠近的时候，&lt;strong&gt;点的斜率会越来越小，所以w变化的速度也会逐渐变慢。&lt;/strong&gt;&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/8341f01d09e54e67914966e703d47691.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
 &lt;br/&gt;
 &lt;h2 id=&#34;线性回归中的梯度下降&#34;&gt;线性回归中的梯度下降&lt;/h2&gt;
-&lt;p&gt;回顾上一章的内容：&lt;img src=&#34;https://img-blog.csdnimg.cn/3911dd3c02f245f7b63619f487d86d73.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-&lt;strong&gt;在对J(w,b)进行求导后得到：&lt;/strong&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/788314205f7e480bbf7f378eb8ed211f.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;回顾上一章的内容：&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/3911dd3c02f245f7b63619f487d86d73.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;&lt;strong&gt;在对J(w,b)进行求导后得到：&lt;/strong&gt;&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/788314205f7e480bbf7f378eb8ed211f.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
 &lt;h4 id=&#34;求导过程&#34;&gt;求导过程：&lt;/h4&gt;
-&lt;p&gt;&lt;strong&gt;对w求导：&lt;/strong&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/b6adbb0a733641959fe957d6940a67d0.jpeg&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-&lt;strong&gt;对b求导：&lt;/strong&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/ccb34b513dcb404fa089f3c0a231e551.jpeg&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;对w求导：&lt;/strong&gt;&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/b6adbb0a733641959fe957d6940a67d0.jpeg&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;&lt;strong&gt;对b求导：&lt;/strong&gt;&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/ccb34b513dcb404fa089f3c0a231e551.jpeg&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
 &lt;blockquote&gt;
 &lt;p&gt;重复对 w 和 b 的求导，直到它们收敛。我们就找到了 f(x) 的最小值。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -659,7 +701,7 @@ j = 1...n，n为特征的数量，对J(w,b) 求导后为：
             <title type="text">机器学习-吴恩达 单变量线性回归模型（笔记）</title>
             <link rel="alternate" type="text/html" href="https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E5%8D%95%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B%E7%AC%94%E8%AE%B0/" />
             <id>https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E5%8D%95%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B%E7%AC%94%E8%AE%B0/</id>
-            <updated>2022-08-08T15:23:42&#43;08:00</updated>
+            <updated>2023-03-18T11:55:17&#43;08:00</updated>
             <published>2022-07-04T00:00:00&#43;00:00</published>
             <author>
                     <name>Chloe</name>
@@ -677,51 +719,53 @@ j = 1...n，n为特征的数量，对J(w,b) 求导后为：
 &lt;strong&gt;y&lt;/strong&gt; = &amp;quot;output&amp;quot; variable / &amp;quot;target&amp;quot; variable 输出的变量或目标变量&lt;br/&gt;
 &lt;strong&gt;m&lt;/strong&gt; = number of training examples 训练集中的数量&lt;br/&gt;
 &lt;strong&gt;(x,y)&lt;/strong&gt; = single training example 训练集中的一组数据&lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;Example：
-&lt;img src=&#34;https://img-blog.csdnimg.cn/7b58d10d44d74e609e210fac2332e4fb.png#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;
+&lt;p&gt;Example：&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/7b58d10d44d74e609e210fac2332e4fb.png#pic_center&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
 &lt;br&gt;
-&lt;br&gt;&lt;/p&gt;
-&lt;h2 id=&#34;得到线性回归模型的流程&#34;&gt;得到线性回归模型的流程&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;选择一个监督学习算法&lt;/li&gt;
-&lt;li&gt;把训练集中的features（输入变量）和output（输出）提供给学习算法&lt;/li&gt;
-&lt;li&gt;得到一个model / function （模型 / 函数）&lt;/li&gt;
-&lt;li&gt;把想要预测的数据输入这个模型&lt;/li&gt;
-&lt;li&gt;最终这个模型将输出一个值&amp;quot;y-hat&amp;quot;,这就是模型给出的预测结果&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&#34;单变量线性回归function的表达式&#34;&gt;单变量线性回归Function的表达式&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;f~w,b~(x) = wx + b 或者 f(x) = wx+b&lt;/strong&gt;
-w,b: parameters（参数）&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/b1094ed892464bd481f665344c581acf.png#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-&lt;/br&gt;
-&lt;br&gt;&lt;/p&gt;
+&lt;br&gt;
+## 得到线性回归模型的流程
+1. 选择一个监督学习算法
+2. 把训练集中的features（输入变量）和output（输出）提供给学习算法
+3. 得到一个model / function （模型 / 函数）
+4. 把想要预测的数据输入这个模型
+5. 最终这个模型将输出一个值&#34;y-hat&#34;,这就是模型给出的预测结果
+### 单变量线性回归Function的表达式
+**f~w,b~(x) = wx + b 或者 f(x) = wx+b**
+w,b: parameters（参数）
+&lt;img src=&#34;https://img-blog.csdnimg.cn/b1094ed892464bd481f665344c581acf.png#pic_center&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;br&gt;
 &lt;h2 id=&#34;cost-function-代价函数&#34;&gt;Cost Function 代价函数&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;作用&lt;/strong&gt;：找到最优解的目标函数 &lt;br/&gt;
 &lt;strong&gt;Loss Funtion（损失函数）&lt;/strong&gt;: 定义在单个样本上，算的是&lt;strong&gt;一个&lt;/strong&gt;样本的误差。&lt;br/&gt;
 &lt;strong&gt;Cost Funtion&lt;/strong&gt;: 定义在整个训练集上的，是所有样本误差的平均值，也就是loss function的平均值。&lt;/p&gt;
 &lt;p&gt;所谓误差，就是我们的样本输出值和函数的输出值之间的距离。当我们得到的函数的Cost Function最小的时候,这个函数就是我们要找的目标函数。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Cost Funtion公式：&lt;/strong&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/c838617b940f4329965a732825e9c7d8.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-其中y-hat  = f(w,b) = wx+b
+&lt;p&gt;&lt;strong&gt;Cost Funtion公式：&lt;/strong&gt;&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/c838617b940f4329965a732825e9c7d8.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;其中y-hat  = f(w,b) = wx+b
 &lt;strong&gt;我们的目标是找到最小的J(w,b)，让每一个样本的输出值最靠近我们的目标函数的输出值。&lt;/strong&gt;&lt;/p&gt;
 &lt;h3 id=&#34;如何寻找最小的cost-function&#34;&gt;如何寻找最小的Cost Function?&lt;/h3&gt;
 &lt;p&gt;从单一参数开始来看，当只有&lt;strong&gt;w&lt;/strong&gt;时：&lt;strong&gt;f(x) = wx&lt;/strong&gt;
-那么：&lt;img src=&#34;https://img-blog.csdnimg.cn/2afb2522f8244ab6a045e0af5ece11af.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+那么：&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/2afb2522f8244ab6a045e0af5ece11af.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
 &lt;h4 id=&#34;fx-与-jw-之间的变化关系&#34;&gt;f(x) 与 J(w) 之间的变化关系&lt;/h4&gt;
 &lt;p&gt;假设有一组训练集为：(1,1),(2,2),(3,3)
-现在我们取w = 1时：
-&lt;img src=&#34;https://img-blog.csdnimg.cn/8a9a98360969451c96b5a80e5c3d5144.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-那么J(w)：
-&lt;img src=&#34;https://img-blog.csdnimg.cn/604a09b6aea14b8b8d7bebcc8dbce3fd.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/dab2ea94e00f42288714843bb98f86ad.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-当我们取w = 0.5时：&lt;img src=&#34;https://img-blog.csdnimg.cn/e077074216c4417bb250628aef53425d.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-那么J(w)：&lt;img src=&#34;https://img-blog.csdnimg.cn/ae48b327bbc24426a64e86f124372bc2.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-当我们取多个和w的值时，它的图像会变成一个二次函数：
-&lt;img src=&#34;https://img-blog.csdnimg.cn/f0dae9e0c9c843cea18efbdeab2860ae.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-此时将这个二次函数进行&lt;strong&gt;求导&lt;/strong&gt;，就能得到这个函数的最小值，也就是误差最小的w值。&lt;/p&gt;
-&lt;p&gt;当参数增加时，也是同样的道理，但是维度会增加。&lt;img src=&#34;https://img-blog.csdnimg.cn/a7e3959823d2443e9e5b5c3db5f9f79e.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/6c5bec620c294e67b5d6dc55fe68f59d.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-J(w,b) 图像：
-&lt;img src=&#34;https://img-blog.csdnimg.cn/7f011d81c76a4a34a0a8a5008fcc73d9.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+现在我们取w = 1时：&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/8a9a98360969451c96b5a80e5c3d5144.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;那么J(w)：&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/604a09b6aea14b8b8d7bebcc8dbce3fd.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/dab2ea94e00f42288714843bb98f86ad.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;当我们取w = 0.5时：
+&lt;img src=&#34;https://img-blog.csdnimg.cn/e077074216c4417bb250628aef53425d.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;&lt;/p&gt;
+&lt;p&gt;那么J(w)：
+&lt;img src=&#34;https://img-blog.csdnimg.cn/ae48b327bbc24426a64e86f124372bc2.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;&lt;/p&gt;
+&lt;p&gt;当我们取多个和w的值时，它的图像会变成一个二次函数：&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/f0dae9e0c9c843cea18efbdeab2860ae.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;此时将这个二次函数进行&lt;strong&gt;求导&lt;/strong&gt;，就能得到这个函数的最小值，也就是误差最小的w值。&lt;/p&gt;
+&lt;p&gt;当参数增加时，也是同样的道理，但是维度会增加。
+&lt;img src=&#34;https://img-blog.csdnimg.cn/a7e3959823d2443e9e5b5c3db5f9f79e.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/6c5bec620c294e67b5d6dc55fe68f59d.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;J(w,b) 图像：&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/7f011d81c76a4a34a0a8a5008fcc73d9.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
 &lt;p&gt;&lt;strong&gt;对于回归问题，我们可以归结为得到代价函数的最小值&lt;/strong&gt;&lt;/p&gt;
 </content>
             
