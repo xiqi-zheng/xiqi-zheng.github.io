@@ -55,24 +55,13 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
+        "@type": "WebPage",
         "datePublished": "2022-07-13T00:00:00+00:00",
         "dateModified": "2023-03-18T12:11:08+08:00",
         "url": "https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E5%A4%9A%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E7%AC%94%E8%AE%B0/",
-        "headline": "机器学习-吴恩达 多元线性回归（笔记）",
+        "name": "机器学习-吴恩达 多元线性回归（笔记）",
         "description": "多类特征 在前几篇文章中介绍了单变量线性回归模型，但在现实生活中很多时候我们都不仅仅要……",
-        "inLanguage" : "zh-CN",
-        "articleSection": "posts",
-        "wordCount":  3157 ,
-        "image": ["https://img-blog.csdnimg.cn/ce6aafd878aa4297a361d88fd7d4f699.png","https://img-blog.csdnimg.cn/562c50cbe99e417b8ba77d9cb25a130e.png","https://img-blog.csdnimg.cn/d04d316d7bae4a9599ea0f7a283a0769.png","https://img-blog.csdnimg.cn/4e0a973bda6c42cf8aa1175e6bc3266b.png","https://img-blog.csdnimg.cn/1a5ae4996afa47258658df5adc3d08b6.png","https://img-blog.csdnimg.cn/f14c0f9b1a2d403ca09fd845fb1cbab9.png","https://img-blog.csdnimg.cn/5b8faf68cb6e429ebe26c99e93a48e8d.png","https://img-blog.csdnimg.cn/9a05b40ca0a340cda0fce81487963ebd.png","https://img-blog.csdnimg.cn/399d3a5609784cc7be20bc31cdb07a39.png","https://img-blog.csdnimg.cn/89fdf443070f406eaf26093129d4b69a.png","https://img-blog.csdnimg.cn/e26337413049433798ae7c985af20f68.png","https://img-blog.csdnimg.cn/9f0f4a37a11d4bb3950d1c3bf7f9c58d.png","https://img-blog.csdnimg.cn/a6f163e899e5465fb980752e9965acdc.png","https://img-blog.csdnimg.cn/1832d79bdfea4207b80cc617a3788184.png","https://img-blog.csdnimg.cn/60c68d39a4a5419589cce453661465b3.png","https://img-blog.csdnimg.cn/8e644c4b00cc4f5783a86f9c7c517798.png","https://img-blog.csdnimg.cn/0405d0fbf6d74242a114868e5838ff93.png","https://img-blog.csdnimg.cn/d01e85f9acf5410cb5a9fcf7cdaa0304.png","https://img-blog.csdnimg.cn/c9a61fb44de14ee98dc269343a23a9c1.png","https://img-blog.csdnimg.cn/1056ae94dfd54ef2ba943871bec33d4f.png","https://img-blog.csdnimg.cn/0eb9baa18a4149608717403b9edf5eb5.png","https://img-blog.csdnimg.cn/aaacda5edad141f49cb5c030d9369fca.png"," https://img-blog.csdnimg.cn/c821541089e04674aece6b19ad127cfa.png","https://img-blog.csdnimg.cn/ef93eb3054b34d489e514dce27b009c1.png","https://img-blog.csdnimg.cn/5a3f858b4de44399b86a74c0ce3e915b.png","https://img-blog.csdnimg.cn/9c8defd742af4134a1241764ba97361b.png","https://img-blog.csdnimg.cn/4252b2d1283a4bd0a948e6db67e66217.png","https://img-blog.csdnimg.cn/76e67889d52c49b68daedf42144afaea.png","https://img-blog.csdnimg.cn/dbfe6ab6f1ed489692c54591816d3f9f.png","https://img-blog.csdnimg.cn/524bf3c4609749759c4b02213de55095.png","https://img-blog.csdnimg.cn/8c2ff71f56684437acaaf3cd1aafe82d.png","https://img-blog.csdnimg.cn/2675842148d04daf88c25e32413ed76c.png","https://img-blog.csdnimg.cn/bcaea748b94c46adb0c147b6a40e70a1.png","https://img-blog.csdnimg.cn/b4847a61e5f746659ce34015ce3bfeee.png","https://img-blog.csdnimg.cn/e667f4e4fc4d45c4ba18afa7c08adef6.png","https://img-blog.csdnimg.cn/8f674745aca54333a30a98dd56a57739.png","https://img-blog.csdnimg.cn/13605f67d240404ab0c39d7f74421682.png","https://img-blog.csdnimg.cn/facdb0bf942a4541b0bbaabe734679d1.png","https://img-blog.csdnimg.cn/6318132fbb4d4bcab47a6b458e9a6fe0.png","https://img-blog.csdnimg.cn/01574fad324b4301851c5d4e7589393c.png","https://img-blog.csdnimg.cn/3b840b89038b4f0d975e6ebb2da0d690.png","https://img-blog.csdnimg.cn/b49f56b4cc2e45d191fe1ae6dde15fc0.png","https://img-blog.csdnimg.cn/220b45d8f1a943818a52ab057bec96a7.png","https://img-blog.csdnimg.cn/ebcb56c2b1be46268ae6869eef643ae8.png","https://img-blog.csdnimg.cn/7340d7c5bc1d49b4a80bd22b29deddfb.png","https://img-blog.csdnimg.cn/5c9d3b62df194beda4a709c3a4ec9f09.png","https://img-blog.csdnimg.cn/48a2d72df103475d8d2f456235f7afbf.png","https://img-blog.csdnimg.cn/d12dcef0668943b5a108658992c5e203.png"],
-        "author": {
-            "@type": "Person",
-            "description": "Let there be light",
-            "email": "1647656181@qq.com",
-            "image": "https://xiqi-zheng.github.io/icons/apple-touch-icon.png",
-            "url": "https://io-oi.me/",
-            "name": "Chloe"
-        },
+        "image": "https://xiqi-zheng.github.io/icons/apple-touch-icon.png",
         "license": "转载请保留本文作者以及本文链接",
         "publisher": {
             "@type": "Organization",
@@ -92,8 +81,7 @@
 
     
 
-<meta name="twitter:card" content="summary_large_image" />
-
+<meta name="twitter:card" content="summary" />
 
 
     
@@ -104,13 +92,8 @@
 <meta property="og:description" content="多类特征 在前几篇文章中介绍了单变量线性回归模型，但在现实生活中很多时候我们都不仅仅要……" />
 <meta property="og:url" content="https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E5%A4%9A%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E7%AC%94%E8%AE%B0/" />
 <meta property="og:site_name" content="Chloe&#39;s universe" />
-<meta property="og:locale" content="zh" /><meta property="og:image" content="https://img-blog.csdnimg.cn/ce6aafd878aa4297a361d88fd7d4f699.png" />
-<meta property="og:type" content="article" />
-    <meta property="article:published_time" content="2022-07-13T00:00:00&#43;00:00" />
-    <meta property="article:modified_time" content="2023-03-18T12:11:08&#43;08:00" />
-    
-    <meta property="article:section" content="posts" />
-
+<meta property="og:locale" content="zh" /><meta property="og:image" content="https://xiqi-zheng.github.io/icons/apple-touch-icon.png" />
+    <meta property="og:type" content="website" />
 
 
     
@@ -474,16 +457,6 @@
 
 
         
-    <footer class="minimal-footer">
-        
-            <div class="post-tag"><a href="/tags/machine-learning/" rel="tag" class="post-tag-link">#machine-learning</a></div>
-        
-        
-        
-            
-        
-    </footer>
-
 
 
         

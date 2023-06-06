@@ -23,536 +23,80 @@
         
             <copyright>转载请保留本文作者以及本文链接</copyright>
         
-        <lastBuildDate>Wed, 03 May 2023 15:23:20 &#43;0800</lastBuildDate>
+        <lastBuildDate>Tue, 06 Jun 2023 13:59:51 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://xiqi-zheng.github.io/rss.xml" />
         
         
             <item>
-                <title>设计模式-访问者模式（Visitor Pattern）</title>
-                <link>https://xiqi-zheng.github.io/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%AE%BF%E9%97%AE%E8%80%85%E6%A8%A1%E5%BC%8F/</link>
-                <guid isPermaLink="true">https://xiqi-zheng.github.io/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%AE%BF%E9%97%AE%E8%80%85%E6%A8%A1%E5%BC%8F/</guid>
-                <pubDate>Wed, 03 May 2023 00:00:00 &#43;0000</pubDate>
+                <title>《认知觉醒:开启自我改变的原动力》</title>
+                <link>https://xiqi-zheng.github.io/random/%E8%AE%A4%E7%9F%A5%E8%A7%89%E9%86%92/</link>
+                <guid isPermaLink="true">https://xiqi-zheng.github.io/random/%E8%AE%A4%E7%9F%A5%E8%A7%89%E9%86%92/</guid>
+                <pubDate>Tue, 06 Jun 2023 00:00:00 &#43;0000</pubDate>
                 
                     <author>1647656181@qq.com (Chloe)</author>
                 
                 <copyright>转载请保留本文作者以及本文链接</copyright>
                 
-                    <description>&lt;h1 id=&#34;模式概述&#34;&gt;模式概述&lt;/h1&gt;
-&lt;p&gt;设想一下，在开发中，甲方总是会变更他的需求，在不采用访问者模式的情况下，我们就需要反复地修改对象的结构。举个例子：今天一个投资人找到我，说“小奇啊，我看我家楼下开了个特别好吃的煎饼果子店，每天早上生意都爆火，我也想开一家”。 我想，这有啥难的，开呗！但是店都装修好了，准备开张的时候，投资人又找到我说：“小奇啊，我家楼下的煎饼果子店倒闭了，开了家新店，卖新疆炒米粉的，我不想开煎饼果子店了，我要开新疆炒米粉店！”。我心想，行吧，您有钱您说的算。我把店铺重新装修了下，准备重新开张，但是在前一天晚上投资人又找到我说：“小奇啊，我觉着新疆炒米粉太辣了，我还是喜欢吃煎饼果子，咱们还是开煎饼果子店吧。”；我心想：大哥！你到底要怎样啊，要是你明天又想吃新疆炒米粉咋办！这样来来回回也不行，有没有办法解决呢？ 我说：“这样吧哥，我开个小吃摊，左边是煎饼果子右边是新疆炒米粉，您要是以后又喜欢吃别的了，咱们再加一个摊位，这样您想吃啥去点啥就行了，可以不？”，大哥一听：“好主意啊！”。&lt;/p&gt;
-&lt;p&gt;这就是访问者模式：在不改变现有对象结构情况下，添加新的功能。&lt;/p&gt;
-&lt;h1 id=&#34;访问者模式结构&#34;&gt;访问者模式结构&lt;/h1&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/9629e7263ead4263b4585ba841fff8aa.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;h2 id=&#34;在访问者模式结构图中包含如下几个角色&#34;&gt;在访问者模式结构图中包含如下几个角色：&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Visitor（抽象访问者）&lt;/strong&gt;：抽象访问者为对象结构中每一个具体元素类ConcreteElement声明一个访问操作，从这个操作的名称或参数类型可以清楚知道需要访问的具体元素的类型，具体访问者需要实现这些操作方法，定义对这些元素的访问操作。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;ConcreteVisitor（具体访问者）&lt;/strong&gt;：具体访问者（&lt;em&gt;比如boss和customer&lt;/em&gt;）实现了每个由抽象访问者声明的操作，每一个操作用于访问对象结构中一种类型的元素。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Element（抽象元素）&lt;/strong&gt;：抽象元素一般是抽象类或者接口（&lt;em&gt;比如这里的stand小摊&lt;/em&gt;），它定义了一个 &lt;em&gt;accept()方法&lt;/em&gt; ，该方法通常以一个抽象访问者作为参数。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;ConcreteElement（具体元素）&lt;/strong&gt;：具体元素（&lt;em&gt;比如这里的product产品&lt;/em&gt;） &lt;em&gt;实现了accept()方法&lt;/em&gt; ，在accept()方法中调用访问者的访问方法以便完成对一个元素的操作。&lt;/p&gt;
-&lt;p&gt;在访问者模式中，增加新的访问者&lt;strong&gt;无须修改原有系统&lt;/strong&gt;，系统具有较好的&lt;strong&gt;可扩展性&lt;/strong&gt;。&lt;/p&gt;
-&lt;h1 id=&#34;模式代码&#34;&gt;模式代码&lt;/h1&gt;
-&lt;h2 id=&#34;visitor抽象访问者&#34;&gt;Visitor（抽象访问者）&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;interface&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Visitor&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;c1&#34;&gt;//访问产品信息
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;  &lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;visit&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Product&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;product&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;concretevisitor具体访问者&#34;&gt;ConcreteVisitor（具体访问者）&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Boss&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;implements&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Visitor&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nd&#34;&gt;@Override&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;visit&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Product&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;product&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;System&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;out&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;println&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;产品销量：&amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;product&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;amount&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;；产品利润：&amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;product&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;profit&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;());&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Customer&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;implements&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Visitor&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nd&#34;&gt;@Override&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;visit&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Product&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;product&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;System&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;out&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;println&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;产品名字：&amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;product&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;; 单价：&amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;product&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;price&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;element抽象元素&#34;&gt;Element（抽象元素）&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;abstract&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Stand&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;String&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//店铺名字
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;  &lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;price&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;   &lt;span class=&#34;c1&#34;&gt;//单价
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;Stand&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;String&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;price&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;name&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;price&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;price&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;c1&#34;&gt;// 核心访问方法
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;  &lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;abstract&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;accept&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Visitor&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;visitor&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;concreteelement具体元素&#34;&gt;ConcreteElement（具体元素）&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Product&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;extends&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Stand&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;Product&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;String&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;price&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kd&#34;&gt;super&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;price&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nd&#34;&gt;@Override&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;accept&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Visitor&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;visitor&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;visitor&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;visit&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;amount&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(){&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Math&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;random&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;profit&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(){&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;amount&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;price&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;目的&#34;&gt;目的&lt;/h2&gt;
-&lt;p&gt;我们希望：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;customer（顾客）访问的时候，看到的是产品的名字和单价&lt;/li&gt;
-&lt;li&gt;boss（老板）访问的时候，看到的是产品的销售量和利润&lt;/li&gt;
-&lt;li&gt;可以根据需求增加或减少摊位，且不改变摊位这个对象的结构（也就是摊位还是由产品的名字和单价组成）&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-                
-                
-                
-                
-                
-                    
-                        
-                            
-                                
-                                
-                                
-                                    <category domain="https://xiqi-zheng.github.io/tags/java/">Java</category>
-                                
-                            
-                        
-                    
-                
-            </item>
-        
-            <item>
-                <title>机器学习-吴恩达 神经网络：表述（笔记）</title>
-                <link>https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E8%A1%A8%E8%BF%B0%E7%AC%94%E8%AE%B0/</link>
-                <guid isPermaLink="true">https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E8%A1%A8%E8%BF%B0%E7%AC%94%E8%AE%B0/</guid>
-                <pubDate>Sat, 03 Sep 2022 00:00:00 &#43;0000</pubDate>
-                
-                    <author>1647656181@qq.com (Chloe)</author>
-                
-                <copyright>转载请保留本文作者以及本文链接</copyright>
-                
-                    <description>&lt;p&gt;@[toc]&lt;/p&gt;
-&lt;h1 id=&#34;神经元和大脑neurons-and-the-brain&#34;&gt;神经元和大脑（Neurons and the brain）&lt;/h1&gt;
-&lt;p&gt;在我们的大脑中有数个神经元：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/706511de407d4ffa8914c9eab9556cdb.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;这些神经元接受着许许多多的信息，比如我们听到的声音和看到的图像，一个神经元接受到信息(input）后进行处理，然后把结果(output)传给下一个或多个神经元，这个结果（output）又变成了下一个或多个神经元的输入(input)，这就是它运作的基本原理。我们将这一个个的神经元叫做：&lt;strong&gt;激活单元（activation unit）&lt;/strong&gt;。&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/32e4ab5f869d4731b6ff64eacedeb6c7.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;是不是感觉这个过程似曾相识？对的！在前几章的线性回归和逻辑回归中，我们也是接受几个特征然后传入我们的模型最后输出答案。
-但是呢，无论是线性回归还是逻辑回归都有一个致命缺点：&lt;strong&gt;当我们的特征数量非常庞大的时候，计算的负荷就会非常大。&lt;/strong&gt;
-比如我们如果想要训练一个模型来识别视觉对象（比如一张图片上的元素是人还是大猩猩），这个时候我们需要利用这些图片上的每个像素的值来作为特征。假设我们采用的是50*50像素的图片，并且我们将所有的像素视为特征，就会有2500个特征，如果我们进一步将两两特征组合成一个多项式模型，就会有接近3百万个特征。三百万个啊！兄弟们！作为普通的逻辑回归模型，是不可以有效地处理这么多特征的，那这个时候，我们就需要神经网络了！&lt;/p&gt;
-&lt;h2 id=&#34;需求预测demand-prediction&#34;&gt;需求预测（Demand Prediction）&lt;/h2&gt;
-&lt;p&gt;为了搞清楚神经网络是如何运作的，我们举个需求预测的例子。在这个例子中，我们尝试预测一个商品是否会成为销量第一。&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/517add91a9ff4fa593dadcfa966d2270.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;上图中的a是activation也就是神经元（学习模型），上图的计算过程也就是一个只通过一个神经元来预测的模型。但其实现实生活中，不可能仅仅通过价格来判断一个商品是否会成为销量第一。
-在现实生活中可能会有很多影响因素，比如：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/54655ac914974dcdba6bf676ae2e0bb4.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;假设上图的三个特征是我们觉得最能决定一件商品能否成为销量第一的元素。
-但是呢我们现在手上掌握的数据只有：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/dc91e5f8baeb401a95936680fb0efe87.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;那怎么办呢？我们现在就需要对上图这四个特征进行组合来得到我们想要的三个特征：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/15e35a70d43244099c11f93df4c11ab6.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;这样呢，我们就得到了我们想要的三个特征，将这三个特征再放入下一层中进行计算，我们就能得到结果啦：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/80ca65b6a99d4e34bf718a3a68bff2bf.png)&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;h3 id=&#34;术语解释&#34;&gt;术语解释&lt;/h3&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/ee8fdbb5c96f485c854adcef0aea1256.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;我们将四个我们能够直接得到的数据叫做input layer，中间的那一层我们叫做hidden layer，hidden layer中的元素我们叫做activations，最后一层我们叫做output layer。&lt;/p&gt;
-&lt;h3 id=&#34;多个hidden-layers&#34;&gt;多个Hidden layers&lt;/h3&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/c983ced39a83407c9e9018d200366266.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;我们可以有多个hidden layer，我们可以进一步地对数据做更细致的处理。&lt;/p&gt;
-&lt;h1 id=&#34;神经网络层&#34;&gt;神经网络层&lt;/h1&gt;
-&lt;p&gt;其实呢，线性回归和逻辑回归就是只有一个神经元的神经网络：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/f5ab11798936495e868fc31b67b3ca4b.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;让我们观察上面一张图，其中的x就是一组特征值。把第二层展开我们会发现里面有三个神经元，那么&lt;strong&gt;每个神经元都是一个逻辑回归模型&lt;/strong&gt;，在经过这三个神经元也就是三个回归模型的处理后就得到的a，也就是output。&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/7460a2ae0351496683add53128b1d30b.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;我们把每一组的神经元叫做&lt;strong&gt;layer&lt;/strong&gt;，根据传统写法，我们将原始的特征数据&lt;strong&gt;x称为layer0&lt;/strong&gt;。&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/a1e3c74b25824e598912528c2fbc3992.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;我们会在表达数据的时候加上右上角标来表示它是在哪一层中。&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/a67cf8fe4ed5400e8d9f4e3712d84459.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;现在我们将layer2展开，我们会发现里面只有一个神经元并且是一个逻辑回归模型，它输出的是一个标量。单独取出这个layer2我们会发现，这其实就是我们之前学的逻辑回归模型。&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/d47835487fa44e6c876b6eb8d32f3a78.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;最后呢，我们只需要对最后的输出结果做一个判断，就完成了。&lt;/p&gt;
-&lt;h2 id=&#34;线性逻辑-回归模型和神经网络&#34;&gt;线性/逻辑 回归模型和神经网络&lt;/h2&gt;
-&lt;p&gt;线性/逻辑 回归模型其实就是只含有一个神经元的单层的神经网络。
-在处理复杂的数据时，神经网络能够更好地进行预测，比如在处理图像时。其实在数据量非常大的现代社会，大部分的数据都是复杂的，这也是为什么神经网络在今天这么火的原因。&lt;/p&gt;
-&lt;h1 id=&#34;更加复杂的神经网络&#34;&gt;更加复杂的神经网络&lt;/h1&gt;
-&lt;p&gt;现在让我们来看看多层的神经网络：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/f5ed9017b3354627adf60ec6b74f4e8d.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;我们展开layer3，会发现layer3的用到了layer2的output作为它的input，那么现在来做个小小测试，往圈起来的地方的右上角标填入数字。
-.
-.
-.&lt;/p&gt;
-&lt;p&gt;正确答案是：3，3，2，3 ；你们填对了吗？
-layer2中的w和b都是使用了自己的学习模型中的参数，但是a使用的是layer2的output。&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/ee19cc2c9e2d4cfda6db0457505400fe.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-</description>
-                
-                
-                
-                
-                
-                    
-                        
-                            
-                                
-                                
-                                
-                                    <category domain="https://xiqi-zheng.github.io/tags/machine-learning/">Machine learning</category>
-                                
-                            
-                        
-                    
-                
-            </item>
-        
-            <item>
-                <title>机器学习-吴恩达 过拟合问题与正则化（笔记）</title>
-                <link>https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E8%BF%87%E6%8B%9F%E5%90%88%E9%97%AE%E9%A2%98%E4%B8%8E%E6%AD%A3%E5%88%99%E5%8C%96%E7%AC%94%E8%AE%B0/</link>
-                <guid isPermaLink="true">https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E8%BF%87%E6%8B%9F%E5%90%88%E9%97%AE%E9%A2%98%E4%B8%8E%E6%AD%A3%E5%88%99%E5%8C%96%E7%AC%94%E8%AE%B0/</guid>
-                <pubDate>Fri, 05 Aug 2022 00:00:00 &#43;0000</pubDate>
-                
-                    <author>1647656181@qq.com (Chloe)</author>
-                
-                <copyright>转载请保留本文作者以及本文链接</copyright>
-                
-                    <description>&lt;h1 id=&#34;过拟合问题&#34;&gt;过拟合问题&lt;/h1&gt;
-&lt;p&gt;现在我们来认识什么是：&lt;strong&gt;欠拟合，过拟合&lt;/strong&gt;&lt;/p&gt;
-&lt;h3 id=&#34;欠拟合&#34;&gt;欠拟合&lt;/h3&gt;
-&lt;p&gt;我们使用线性回归函数预测下面这张图中的数据，我们发现它并没有很好地拟合到数据上，这就叫做欠拟合（underfit），或者叫做高偏差（high bias）。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/dbe17f70bfd3438689327aa98cbc24e4.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-&lt;strong&gt;分类问题举例：&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/5b688add53d941a0915722f088a6efd5.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-&lt;br/&gt;&lt;/p&gt;
-&lt;h3 id=&#34;过拟合&#34;&gt;过拟合&lt;/h3&gt;
-&lt;p&gt;当我们选择了一个函数，它完全拟合了训练数据。比如说下图，我们采用了多项式函数：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/51254d46f8884c5a98eca4cc561adc68.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-虽然上图中的函数完全拟合了所有数据点，但是却没有办法很好的预测新的数据，这种情况我们成为：过拟合（overfit），或者叫做高方差（high variance）。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;分类问题举例：&lt;/strong&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/59781a1076b3444fbfbdd7fc5d919615.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-&lt;br/&gt;&lt;/p&gt;
-&lt;h4 id=&#34;高偏差和高方差&#34;&gt;高偏差和高方差&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;偏差：说人话就是模型预测出的点和测试数据点的&lt;strong&gt;距离&lt;/strong&gt;，可以用来形容这个模型的&lt;strong&gt;预测能力&lt;/strong&gt;。&lt;/li&gt;
-&lt;li&gt;方差：指的是模型的预测值的&lt;strong&gt;变化范围&lt;/strong&gt;，&lt;strong&gt;离散程度&lt;/strong&gt;。可以用来表示模型的&lt;strong&gt;泛化能力&lt;/strong&gt;：方差&lt;strong&gt;越大&lt;/strong&gt;，预测出来的数据的分布越散，&lt;strong&gt;泛化能力越差&lt;/strong&gt;；方差&lt;strong&gt;越小&lt;/strong&gt;，模型的&lt;strong&gt;泛化能力越强。&lt;/strong&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/e71905f59f494fd397a85efb96b4ed17.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-&lt;br/&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;泛化&#34;&gt;泛化&lt;/h3&gt;
-&lt;p&gt;选择合适的函数是很重要的，当它很好的拟合到数据上的时候，我们就认为它有很好的&lt;strong&gt;泛化能力（genelization）&lt;/strong&gt;。指的是：&lt;strong&gt;模型依据训练时采用的数据，对新出现的数据做出正确预测的能力。&lt;/strong&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/91c458a1d81f4d74ac3500f8804707f2.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;分类问题举例：&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/9cb70e63a961412fae75944570d08337.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
-&lt;br/&gt;
-&lt;h2 id=&#34;解决过拟合&#34;&gt;解决过拟合&lt;/h2&gt;
-&lt;br&gt;
-&lt;h3 id=&#34;1-收集更多的训练数据&#34;&gt;1. 收集更多的训练数据&lt;/h3&gt;
-&lt;p&gt;这个方法非常简单直观：
-&lt;img src=&#34;https://img-blog.csdnimg.cn/52fd01c1bc024e65bb45451d208257e5.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-&lt;br/&gt;&lt;/p&gt;
-&lt;h3 id=&#34;2-减少或增加选择的特征&#34;&gt;2. 减少或增加选择的特征&lt;/h3&gt;
-&lt;p&gt;大部分时候我们没有办法获得更多的训练数据，那么我们就可以选择更多或者更少的特征。
-&lt;strong&gt;举个例子：&lt;/strong&gt;
-现在我们要预测一个房子的价格，并有一百个特征可以选择：
-&lt;img src=&#34;https://img-blog.csdnimg.cn/98dc758762764621ae89f2c00e5b8b5a.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-如果我们选择全部的特征，那么就会有很多无效的数据，会使得我们的函数非常复杂，导致过拟合问题：
-&lt;img src=&#34;https://img-blog.csdnimg.cn/27d703ea179642059d166a3863c7d14d.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-但如果我们只&lt;strong&gt;选择一些重要的特征&lt;/strong&gt;，那么可能就会更好的拟合我们的数据：（在后面的课程中会学习到一些自动选择最合适的特征用于预测任务的算法）
-&lt;img src=&#34;https://img-blog.csdnimg.cn/b9bc2c7e32534a939f90424f6f263744.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;缺点：&lt;/strong&gt; 但这有可能造成一些有用的特征被丢掉&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;br/&gt;
-&lt;h3 id=&#34;3-正则化&#34;&gt;3. 正则化&lt;/h3&gt;
-&lt;p&gt;当我们发现我们的模型过拟合的时候，我们尝试减少特征的选择，但是我们发现这可能导致有用的特征被丢弃：
-&lt;img src=&#34;https://img-blog.csdnimg.cn/c9b3400375424326a804126b4eb54524.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-这个时候我们可以使用正则化：也就是把我们想要丢弃的特征（在这里我们假设是x3和x4）的w值设为非常小的值，这样我们即保留了特征，又不会让这个特征对整个模型造成过大的影响，导致过拟合：
-&lt;img src=&#34;https://img-blog.csdnimg.cn/ae947cc820274c58b9a53dd7d81226a2.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-&lt;br/&gt;&lt;/p&gt;
-&lt;h1 id=&#34;正则化&#34;&gt;正则化&lt;/h1&gt;
-&lt;h2 id=&#34;正则化代价函数&#34;&gt;正则化代价函数&lt;/h2&gt;
-&lt;p&gt;现在我们已经知道，&lt;strong&gt;正则化的主要思想&lt;/strong&gt;就是：&lt;strong&gt;通过减小w的值在不丢失特征的同时避免过拟合的产生。&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;举个例子：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/5bba05fe7a3644e8bd2febd1e6e29583.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-我们在上图中看见，如果我们想要右边的图变得比较像左边的图并且不丢弃x3和x4的话，我们就要让w3和w4的值变得很小&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;那么如何减小w的值呢？&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;让我们先看看原来的代价函数：
-&lt;img src=&#34;https://img-blog.csdnimg.cn/cbbdbf9e9b8c42769ee88e6d010061f6.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-这个原来的代价函数能够使用梯度下降法来让它达到最小，但不能解决它可能过拟合的问题（也就是不能让w3和w4变小），所以我们要给它增加两个惩罚项（也叫正则化项 regularization term）：
-&lt;img src=&#34;https://img-blog.csdnimg.cn/61b3c056ba6f46ddb0d0c84fc19984e8.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-我刚刚看到上面的函数的时候非常疑惑，为什么给w3和w4乘上1000，它们俩反而会变小呢？&lt;/p&gt;
-&lt;h3 id=&#34;如何理解增加惩罚项后参数w会变小&#34;&gt;如何理解增加惩罚项后，参数w会变小&lt;/h3&gt;
-&lt;h4 id=&#34;直观理解&#34;&gt;直观理解&lt;/h4&gt;
-&lt;p&gt;从概念出发：我们的目的是要找到：&lt;img src=&#34;https://img-blog.csdnimg.cn/61b3c056ba6f46ddb0d0c84fc19984e8.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-这个函数的最小值，那么我们在w3和w4前面乘上了1000，为了保证整个函数达到最小值，我们就要尽可能的取很小的w3和w4的值，所以w3和w4的值变小。
-&lt;br/&gt;&lt;/p&gt;
-&lt;h4 id=&#34;从数学角度理解&#34;&gt;从数学角度理解&lt;/h4&gt;
-&lt;p&gt;我们来展开这个函数：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/07edea098a3f4f3eb2e1b3a63724bfa2.jpeg&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
-&lt;p&gt;然后我们进行梯度下降，更新每个w和b，在这里我们先不管b，着重来看w：&lt;strong&gt;（以下的过程均在漏了一个 α ，写的时候忘记了）&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/a85a7d20a06e4aed9151947369986032.jpeg&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/e3c46e4b5bfc40d3b9fa7fe5c2bd332a.jpeg&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-&lt;br/&gt;&lt;/p&gt;
-&lt;h2 id=&#34;正则化参数λ&#34;&gt;正则化参数λ&lt;/h2&gt;
-&lt;p&gt;我们使用上一篇文章的预估房价例子：
-&lt;img src=&#34;https://img-blog.csdnimg.cn/344b214418594baca600821c6ace9a15.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
-&lt;p&gt;现在我们有一百个特征，但是我们不知道应该选择哪些或者是丢弃哪些特征，那么我们就可以添加正则化项（来缩小w参数的值）。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;那么如何减小所有w参数的值呢？这时候我们就需要一个正则化参数&lt;/strong&gt; &lt;strong&gt;λ&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;原代价函数：&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/4a348bb9ea2f44e8a4aa6ea1665f4660.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;加入正则化项后：&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/b28d978d46a74b0b810790326aa4476d.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;这里除以的2m是为了计算方便&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h4 id=&#34;正则化参数-λ-的作用&#34;&gt;正则化参数 λ 的作用&lt;/h4&gt;
-&lt;p&gt;正则化参数的作用就是控制函数的两项之间的平衡：&lt;/p&gt;
+                    <description>&lt;h1 id=&#34;为什么读这本书&#34;&gt;为什么读这本书&lt;/h1&gt;
 &lt;ol&gt;
-&lt;li&gt;函数的第一项：我们称为mean squared error，是为了更好的拟合数据&lt;/li&gt;
-&lt;li&gt;函数第二项：也就是正则化项，是为了保持w参数尽可能的小，从而避免出现过拟合现象。&lt;/li&gt;
+&lt;li&gt;不满足于当下的状态，急于改变，却总是在拖延&lt;/li&gt;
+&lt;li&gt;在看到他人获得了许多成就,拿了很多的奖项，焦虑、急躁，涌上心头&lt;/li&gt;
+&lt;li&gt;在做了很多努力后却事倍功半&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/5b6e4a1d8adb491f975c954a33853a45.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-&lt;strong&gt;参数 λ 的变化对函数造成的影响：&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&#34;如何解释上述问题&#34;&gt;如何解释上述问题&lt;/h1&gt;
+&lt;p&gt;人脑是有本能脑、情绪脑和理智脑组成。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;当 &lt;strong&gt;λ = 0&lt;/strong&gt; 的时候，相当于没有加惩罚项（正则化项）的函数，也就是原来的函数&lt;/li&gt;
-&lt;li&gt;当 &lt;strong&gt;λ = 0 非常大&lt;/strong&gt;的时候，所有w的值都会变得非常小，那么函数的结果就会&lt;strong&gt;等于一条直线&lt;/strong&gt;，也就是b的值：&lt;/li&gt;
+&lt;li&gt;本能脑：本能脑也叫爬行动物脑，原始脑，出现于3.6亿年前，反应迅速，没有情绪、没有理性，所有的判断完全凭借本能，主要负责自卫本能和基本生存和繁衍。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.notion.so/980f60d35508455c9f7b5efb1cfcb6cb?pvs=21&#34;&gt;情绪脑&lt;/a&gt;：情绪脑也叫哺乳脑，猴子脑，出现于2忆年前，负责情绪处理、记忆存储、保护家庭等。情绪脑对我们的生命活动赋予感觉，包含大量的情绪——恐惧、悲伤、兴奋、愉悦、激情等等。&lt;/li&gt;
+&lt;li&gt;理智脑：理智脑也叫人类脑，第三层皮质脑，出现于250万年前，其特点就是空间复杂、具有创造力、未来、愿景导向。是人类特有的一部分。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/e93b9f840c2e456898f95dd41ec02556.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;所以对于正则化，我们需要取一个合适的 λ 值，才能更好的应用正则化。&lt;/strong&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;br/&gt;
-&lt;h2 id=&#34;正则化线性回归&#34;&gt;正则化线性回归&lt;/h2&gt;
-&lt;p&gt;对添加了 λ 参数后的代价函数进行梯度下降：
-&lt;strong&gt;原函数：&lt;/strong&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/366e17f49cc94ee485bca79b4b42d1dc.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-&lt;strong&gt;添加后：&lt;/strong&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/1d945b8ca99b44bd8b785cc58f0c94ef.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-&lt;br/&gt;&lt;/p&gt;
-&lt;h2 id=&#34;正则化逻辑回归&#34;&gt;正则化逻辑回归&lt;/h2&gt;
-&lt;p&gt;逻辑回归的正则化与线性回归相似，我们还是举个例子：
-&lt;img src=&#34;https://img-blog.csdnimg.cn/a97fea6a64504ad7a366ac432c8f2a4c.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-上图是一个过拟合的例子，那么我们希望通过正则化来解决这个问题。
-我们先来看原来的逻辑回归的代价函数：
-&lt;img src=&#34;https://img-blog.csdnimg.cn/bd82962f5ffd407ebf86e3035c19531f.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-那么要对它进行正则化只需要在后面加上一项：
-&lt;img src=&#34;https://img-blog.csdnimg.cn/f3ef58df974c41e8a07c4da059942615.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-它的原理和线性回归相同，在次就不过多赘述。&lt;/p&gt;
-&lt;h3 id=&#34;进行梯度下降&#34;&gt;进行梯度下降&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/7bbe88338ee54ef4a191f9fa55fac38e.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-我们发现公式与线性回归的公式完全相同，除了这里的函数 &lt;em&gt;f&lt;/em&gt; 是逻辑回归的函数而不是线性回归的。&lt;/p&gt;
-</description>
-                
-                
-                
-                
-                
-                    
-                        
-                            
-                                
-                                
-                                
-                                    <category domain="https://xiqi-zheng.github.io/tags/machine-learning/">Machine learning</category>
-                                
-                            
-                        
-                    
-                
-            </item>
-        
-            <item>
-                <title>机器学习-吴恩达 逻辑回归（笔记）</title>
-                <link>https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E7%AC%94%E8%AE%B0/</link>
-                <guid isPermaLink="true">https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E7%AC%94%E8%AE%B0/</guid>
-                <pubDate>Wed, 03 Aug 2022 00:00:00 &#43;0000</pubDate>
-                
-                    <author>1647656181@qq.com (Chloe)</author>
-                
-                <copyright>转载请保留本文作者以及本文链接</copyright>
-                
-                    <description>&lt;h1 id=&#34;什么是逻辑logistic回归&#34;&gt;什么是逻辑（Logistic）回归&lt;/h1&gt;
-&lt;p&gt;逻辑回归是一种用于解决&lt;strong&gt;二分类&lt;/strong&gt;（要么是0要么是1）问题的机器学习方法。比如：一个患者的肿瘤是否为良性的，结果只有 &lt;strong&gt;是&lt;/strong&gt; 或 &lt;strong&gt;不是&lt;/strong&gt; 两种可能性。&lt;/p&gt;
-&lt;h2 id=&#34;sigmoid函数&#34;&gt;Sigmoid函数&lt;/h2&gt;
-&lt;p&gt;为了建立逻辑回归算法，需要一个重要的数学函数，它被称为&lt;strong&gt;逻辑函数（Logistic function）或者Sigmoid函数。&lt;/strong&gt;
-&lt;strong&gt;公式：&lt;/strong&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/892b7f54066045e5badadc8999512367.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-&lt;strong&gt;图像：&lt;/strong&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/00ee7e1631614f2abdf745dbffdc9ade.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-这里的 &lt;strong&gt;z&lt;/strong&gt; 与线性回归中的公式一样：
-&lt;img src=&#34;https://img-blog.csdnimg.cn/f41aaeebd3eb4af8ab84a580a607beff.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-合并起来就是逻辑回归模型：它&lt;strong&gt;接收一个特征或一组特征x，输出0到1之间的数字&lt;/strong&gt;：
-&lt;img src=&#34;https://img-blog.csdnimg.cn/3379935ec05649cfb7194d67cf6f07a3.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-&lt;strong&gt;那么输出的0到1之间的数字代表着什么呢？&lt;/strong&gt;
-举个例子：
-我们想要预测一个患者的肿瘤是否是恶性的，我们把良性的定义为&lt;strong&gt;y = 0&lt;/strong&gt;，恶性的为 &lt;strong&gt;y = 1&lt;/strong&gt;，x为肿瘤大小。&lt;strong&gt;我们想知道y = 1 的概率是多大。&lt;/strong&gt;
-这个时候的输出结果为&lt;strong&gt;0.7&lt;/strong&gt;，那么这意味着有&lt;strong&gt;70%&lt;strong&gt;的可能性，&lt;strong&gt;肿瘤是恶性的&lt;/strong&gt;。那么&lt;/strong&gt;肿瘤是良性&lt;/strong&gt;的可能性就是&lt;strong&gt;30%&lt;/strong&gt;。&lt;/p&gt;
-&lt;h3 id=&#34;公式的另一种写法&#34;&gt;公式的另一种写法：&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/fe33db8a6a6d4921823791dd7f1a3212.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
-&lt;h1 id=&#34;决策边界decision-boundary&#34;&gt;决策边界（Decision Boundary)&lt;/h1&gt;
-&lt;p&gt;我们的逻辑回归模型返回的是一个0到1之间的数字，但我们想要的是确定的0或者1这两个数字。也就是这个肿瘤是良性的，或者不是良性的。
-所以我们就要选择一个阈值（threshold），当输出的值超过这个值的时候，我们可以认为这个肿瘤不是良性的，反之亦然。
-&lt;img src=&#34;https://img-blog.csdnimg.cn/75545c3551b44c7eb929af5f7cb4c2f0.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-那么什么时候sigmoid函数会大于阈值呢：
-&lt;img src=&#34;https://img-blog.csdnimg.cn/782016e0d78e466aa8303022f6f230a6.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-简单来说，就是w&lt;em&gt;x+b大于等于0的时候，因为：
-f(x) = g(z)，只有当 z 大于等于 0 的时候，g(z) 才会大于等于0.5（见下图），而 z = w&lt;/em&gt;x + b 所以就得到当w*x+b大于等于0的时候我们就说这个肿瘤不是良性的。
-&lt;img src=&#34;https://img-blog.csdnimg.cn/62ad02ca068b419abe3f7ff4ef2507cd.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;而这个0.5我们就成为决策边界Decision Boundary。&lt;/strong&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&#34;多个特征的决策边界&#34;&gt;多个特征的决策边界&lt;/h2&gt;
-&lt;h3 id=&#34;线性决策边界&#34;&gt;线性决策边界&lt;/h3&gt;
-&lt;p&gt;现在我们假设我们有两个特征x1, x2，下图的蓝色小圈我们假设为正例子（y = 0），红色叉我们假设为负例子（y = 1）
-&lt;img src=&#34;https://img-blog.csdnimg.cn/98340980622649448cac2aba40d98f4a.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-那么我们的逻辑回归模型的函数就是：
-&lt;img src=&#34;https://img-blog.csdnimg.cn/17670547c1644b6780ede5bfff0f4769.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-我们假设w1 = 1, w2 = 1, b = -3，我们的决策边界是： z = w*x + b = 0 也就是 x1 + x2 = 3 这条直线：
-&lt;img src=&#34;https://img-blog.csdnimg.cn/86df8f8f56fc4d20a0d150422215a904.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;非线性决策边界&#34;&gt;非线性决策边界&lt;/h3&gt;
-&lt;p&gt;当数据呈现如下分布：
-&lt;img src=&#34;https://img-blog.csdnimg.cn/49053eb0fc634fd5b0dcf7ad8d0839bc.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-我们的逻辑回归函数就会是一个多项式函数：
-&lt;img src=&#34;https://img-blog.csdnimg.cn/a09e22fd52804e7d9c6f6921de54699c.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-假设w1 = 1，w2 = 1，b = -1，那么决策边界就是：
-&lt;img src=&#34;https://img-blog.csdnimg.cn/65c99a70c27741a6b040c921b88cfdee.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/5f2a7a7ad3464d6a9bb8ec0dc1320763.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
-&lt;h1 id=&#34;逻辑回归的代价函数&#34;&gt;逻辑回归的代价函数&lt;/h1&gt;
-&lt;p&gt;如何选择 w 和 b 的值呢？
-我们尝试像之前一样使用代价函数 (Cost Function)  或者叫 平方误差成本（squared error cost）
-&lt;img src=&#34;https://img-blog.csdnimg.cn/8d3e038829674aedbaa4b5dca7f2a064.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-在之前的线性回归中，使用squared error cost后的图像是一个凸函数（convex）
-&lt;img src=&#34;https://img-blog.csdnimg.cn/4c6cd88f02b140bbb1c18f9d22e294f0.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-所以我们可以一步步地靠近最小值（极小值），但是如果在逻辑回归中，使用squared error cost后的图像是不平滑的，呈现起伏的：
-&lt;img src=&#34;https://img-blog.csdnimg.cn/c8f58b2221334d8e81d2e3475d0b5266.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-这将会导致我们会到达很多很多个局部最小值，而不是真正的全局最小值。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;所以我们将采用一个新的代价函数&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&#34;logistic-loss-函数&#34;&gt;Logistic loss 函数&lt;/h2&gt;
-&lt;p&gt;我们定义一个新的函数叫做Loss function：
-我们将最后一项的平方里的函数提出来：
-&lt;img src=&#34;https://img-blog.csdnimg.cn/93a8d2cd2d7f4d3e9a02877683efdfd2.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/3151033929e34f86a977f069c86eadba.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-&lt;a href=&#34;https://blog.csdn.net/u014261408/article/details/115544478&#34;&gt;&lt;strong&gt;推导过程&lt;/strong&gt;&lt;/a&gt;
-现在让我们来看看这两个表达式的图像：
-&lt;img src=&#34;https://img-blog.csdnimg.cn/62657642c5d4472ea15ed1b70f1e93a0.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-让我们放大第一个log函数中的0到1之间的图像：
-&lt;img src=&#34;https://img-blog.csdnimg.cn/59b29984a3ce43ba99b3e5a238f0b332.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-我们可以从图像中看出，当算法预测出1的可能性非常接近1的时候（也就是横坐标无限接近1的时候），而真实的标签也是1的时候，那么Logister loss function的值（也就是纵坐标的值）无限接近0，这说明误差非常小，因为我们无限接近正确答案。反之：如果我们算法预测出为0的概率很大的话（横坐标得值无限接近0），那么loss function的值就会无限接近无穷大（纵坐标的值无限接近无穷大），这就说明误差非常大，我们偏离了正确答案。&lt;/p&gt;
-&lt;p&gt;现在我们来看看第二个log函数的图像，基本和第一个图像差不多：
-&lt;img src=&#34;https://img-blog.csdnimg.cn/438a7259485348de9fd51cc5dacc8f71.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-与第一张图像相似，只是方向改变了。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;这样就能很好地找到全局最小值了&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&#34;逻辑回归的代价函数-1&#34;&gt;逻辑回归的代价函数&lt;/h3&gt;
-&lt;p&gt;我们可以简化上面的分布式函数为一行：
-&lt;img src=&#34;https://img-blog.csdnimg.cn/a973b12f2c804ebdb0f80f17a6f05379.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-当y(i) = 1 的时候，后面一项的1-y(i)就会变成1-1 = 0，所以就会自动消失，同理，当y(i) = 0的时候，前一项也会消失。所以这个函数和上面的函数是完全相等的。
-&lt;br/&gt;&lt;/p&gt;
-&lt;h2 id=&#34;梯度下降实现&#34;&gt;梯度下降实现&lt;/h2&gt;
-&lt;p&gt;与线性回归相似，也是重复更新w和b的值：
-&lt;img src=&#34;https://img-blog.csdnimg.cn/db84b87c266e431587a10f89e2c95dd0.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;
-j = 1...n，n为特征的数量，对J(w,b) 求导后为：
-&lt;img src=&#34;https://img-blog.csdnimg.cn/0cf46cbe463d432686e49865fcace8fe.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;与线性回归相同点：&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/f8c21348333d4928aa570bcc1fe4386c.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
 &lt;ol&gt;
-&lt;li&gt;需要同时更新每个w和b&lt;/li&gt;
-&lt;li&gt;都采用学习曲线来监控梯度下降&lt;/li&gt;
-&lt;li&gt;都可以使用向量化来提高运行时间&lt;/li&gt;
-&lt;li&gt;都可以使用特征缩放以获得相似的值范围&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;我们能看到，相对于本能脑和情绪脑，我们的理智脑只是和初生婴儿罢了，所以其能量不足以抵抗本能脑和情绪脑这是很正常的。而本能脑和情绪脑有着先天的陋习 —— &lt;strong&gt;急于求成和趋易避难&lt;/strong&gt;。所以就出现了上述的&lt;strong&gt;第一种情况&lt;/strong&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;我们的理智脑告诉我们，应该刻苦学习，追求更多的成就，但本能脑和情绪脑总是挟持我们摆烂，这就造成了上述&lt;strong&gt;第二种情况&lt;/strong&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;理智脑的运行速度慢且十分耗能，所以当使用不恰当的学习方式时，比如十分刻苦，一刻不停地使用理智脑，就会出现下图情况。我们可以看到随着时间的增加，理智脑的能量被慢慢耗尽，所以才会出现上述&lt;strong&gt;第三种状况&lt;/strong&gt;，事倍功半。&lt;/p&gt;
+ &lt;img src=&#34;https://img-blog.csdnimg.cn/43b41a4ee8724f228df462516ec2f5e3.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
+&lt;h1 id=&#34;如何解决上述问题&#34;&gt;如何解决上述问题&lt;/h1&gt;
+&lt;p&gt;我们能做的是不断&lt;strong&gt;加强对理智脑的锻炼&lt;/strong&gt;，同时积极&lt;strong&gt;与本能情绪脑沟通&lt;/strong&gt;，让它懂得延迟满足，适当妥协，或更进一步，乐于做当下的事情。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;坦然接受自己的缺陷（本性），学习了解人脑结构，弄清为什么自己会产生负面情绪，如焦虑，急躁等，不盲目地消耗精力与之做抗争。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;留意每天生活中有没有出现被情绪脑”绑架“，而做出的不理智行为（记录一件事即可），对这件事进行反思，并写出下次出现这种情况该如何理智地解决。这可以改变情绪脑惯于选择的“路径依赖”。这样当下次遇到同样的事，我们的理智脑就不容易被情绪脑挟持而做出同样错误的行为。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;路径依赖（Path-Dependence）：它的特定含义是指人类社会中的技术演进或制度变迁均有类似于物理学中的惯性，即一旦进入某一路径（&lt;strong&gt;无论是&amp;quot;好&amp;quot;还是&amp;quot;坏&amp;quot;&lt;/strong&gt;）就可能对这种路径&lt;strong&gt;产生依赖&lt;/strong&gt;。 一旦人们做了某种选择，就好比走上了一条不归之路，惯性的力量会使这一选择不断自我强化，并让你轻易走不出去。     &lt;br&gt;
+—— Douglass C.North 道格拉斯·诺思&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;启用”思维舵手“（元认知），心理学上对元认知有很多拗口的解释，通俗来理解就是：”&lt;strong&gt;站在上帝的高度看自己&lt;/strong&gt;”，每个人的脑子里都存在这个思维舵手，它可以像上帝一样掌控你的大脑。现在我们已经知道了它的存在，这是唤醒它的第一步。我们可以通过冥想更高频次地接近、认识、启用它，逐渐掌控自己的大脑。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在高强度的学习或工作中&lt;strong&gt;主动休息&lt;/strong&gt;，休息不是指玩手机，因为在玩手机的时候，依旧在消耗脑力，可以冥想，散步等。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+ &lt;img src=&#34;https://img-blog.csdnimg.cn/285e443874524eed87c778555e661d11.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;ul&gt;
+&lt;li&gt;适当运动，在运动之后的1～2小时内进行高强度高难度的脑力活动、体力活动或不同于以往的社交活动。这种模式会使大脑长出更多的新神经元，并继而长出神经细胞，促进大脑活跃和发育，再倒逼学习进步。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;具有启发性的句子&#34;&gt;具有启发性的句子&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;因为身体受困于现实，只好让思想天马行空&lt;/li&gt;
+&lt;li&gt;想先看到结果再行动的人往往无法看到结果&lt;/li&gt;
+&lt;li&gt;怕什么真理无穷，进一寸有进一寸的欢喜&lt;/li&gt;
+&lt;li&gt;用自己的语言重新表达就是在调动自己的千军万马&lt;/li&gt;
+&lt;li&gt;教育的意义就是教你在遇到一件事的时候如何去看待它。当你对这件事进行反应的时候，总是有你自己的天性在里面，比如说有人骂你，你就想骂回去，但是你在这个反应当中会有一个哪怕是零点几秒的间隔去思考或者审视，这个间隔就是你获得的教育或者经历的意义&lt;/li&gt;
+&lt;li&gt;我们今天虽然西装革履地坐在钢筋混凝土建造的大楼里工作但本质上依旧是那个为了生存而随时准备战斗、逃跑或及时享乐的“原始人”&lt;/li&gt;
+&lt;/ul&gt;
 </description>
                 
                 
@@ -565,7 +109,7 @@ j = 1...n，n为特征的数量，对J(w,b) 求导后为：
                                 
                                 
                                 
-                                    <category domain="https://xiqi-zheng.github.io/tags/machine-learning/">Machine learning</category>
+                                    <category domain="https://xiqi-zheng.github.io/tags/afterreading/">AfterReading</category>
                                 
                             
                         
@@ -574,191 +118,31 @@ j = 1...n，n为特征的数量，对J(w,b) 求导后为：
             </item>
         
             <item>
-                <title>机器学习-吴恩达 多元线性回归（笔记）</title>
-                <link>https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E5%A4%9A%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E7%AC%94%E8%AE%B0/</link>
-                <guid isPermaLink="true">https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E5%A4%9A%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E7%AC%94%E8%AE%B0/</guid>
-                <pubDate>Wed, 13 Jul 2022 00:00:00 &#43;0000</pubDate>
+                <title>情绪脑</title>
+                <link>https://xiqi-zheng.github.io/random/%E6%83%85%E7%BB%AA%E8%84%91/</link>
+                <guid isPermaLink="true">https://xiqi-zheng.github.io/random/%E6%83%85%E7%BB%AA%E8%84%91/</guid>
+                <pubDate>Tue, 06 Jun 2023 00:00:00 &#43;0000</pubDate>
                 
                     <author>1647656181@qq.com (Chloe)</author>
                 
                 <copyright>转载请保留本文作者以及本文链接</copyright>
                 
-                    <description>&lt;h1 id=&#34;多类特征&#34;&gt;多类特征&lt;/h1&gt;
-&lt;p&gt;在前几篇文章中介绍了单变量线性回归模型，但在现实生活中很多时候我们都不仅仅要考虑一个特征，而是&lt;strong&gt;考虑多个特征&lt;/strong&gt;。&lt;/p&gt;
-&lt;h2 id=&#34;新的符号notation&#34;&gt;新的符号（Notation）&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;我们用x1, x2, x3, ... , xn 来表示每一个特征（features / variables）&lt;/li&gt;
-&lt;li&gt;n 是特征的数量&lt;/li&gt;
+                    <description>&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;情绪脑负责情绪处理，保护家庭等&lt;/strong&gt;。情绪脑赋予了我们对世界的感知能力，它包含了大量的情绪：开心，难过，愤怒，恐惧等。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/ce6aafd878aa4297a361d88fd7d4f699.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;&lt;strong&gt;这里的 j 可以理解为某一列，(i) 可以理解为某一行&lt;/strong&gt;
-&lt;br/&gt;&lt;/p&gt;
-&lt;h2 id=&#34;多元线性回归模型&#34;&gt;多元线性回归模型&lt;/h2&gt;
-&lt;p&gt;回顾之前的单变量线性回归模型：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/562c50cbe99e417b8ba77d9cb25a130e.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;那么当有多个变量时：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/d04d316d7bae4a9599ea0f7a283a0769.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;上图举了预测房子价格的例子，&lt;strong&gt;x1是房子的面积，x2是房子卧室的数量，x3是房子的层数，x4是房子的年龄&lt;/strong&gt;（也就是被住了多少年），最后一个&lt;strong&gt;常数80则是基本价格&lt;/strong&gt;，也就是假设这个房子没有面积，没有卧室，没有地板也没有年龄的时候的价格。前面的w1 ... w4 可以理解为x1 ... x2的权重，比如一个房子每多一个房间，价格可能就增加四千磅。&lt;/p&gt;
-&lt;p&gt;如果有更多变量：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/4e0a973bda6c42cf8aa1175e6bc3266b.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;h3 id=&#34;引入符号重写表达式&#34;&gt;引入符号重写表达式&lt;/h3&gt;
-&lt;p&gt;我们把w定义为一个数字列表，列出参数 w1 ... wn ，可以理解称一个行向量，且是个矢量：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/1a5ae4996afa47258658df5adc3d08b6.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;而 b 依旧是一个常量。
-然后我们把x也写成一个行向量（列表），它列出了所有特性x1 ... xn：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/f14c0f9b1a2d403ca09fd845fb1cbab9.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;那么我们就能把之前的表达式改写成：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/5b8faf68cb6e429ebe26c99e93a48e8d.png&#34; refererpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;&lt;strong&gt;我们把这个模型称为多元线性回归（multiple linear regression），而不是多元回归（multivariate regression）。&lt;/strong&gt;&lt;/p&gt;
-&lt;h1 id=&#34;向量化&#34;&gt;向量化&lt;/h1&gt;
-&lt;p&gt;在线性代数中，向量的索引是从1开始的，而在python的NumPy库中向量的索引是从0开始的。基本上所有的编程语言数组的下标都是从0开始计数的。 
-&lt;img src=&#34;https://img-blog.csdnimg.cn/9a05b40ca0a340cda0fce81487963ebd.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-上图中的np.array() 其实是调用了NumPy库中的方法，创建了一个数组（array）。&lt;/p&gt;
-&lt;h2 id=&#34;向量化和不向量化的区别&#34;&gt;向量化和不向量化的区别&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;不向量化：&lt;/strong&gt;
-我们需要手动地将每一项写出来，如果特征数量	少还可以接受，如果特征数量是10个甚至10000
-个的时候，这种方法显然不适用： 
-&lt;img src=&#34;https://img-blog.csdnimg.cn/399d3a5609784cc7be20bc31cdb07a39.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;&lt;/p&gt;
-&lt;p&gt;或者我们可以稍微再简化,用for循环来循环计算：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/89fdf443070f406eaf26093129d4b69a.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;&lt;strong&gt;向量化：&lt;/strong&gt;
-我们只需要写一行很短的表达式，和一行很短的代码就可以了：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/e26337413049433798ae7c985af20f68.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;其实除了这种显而易见的好处之外，使用向量化还能提高计算的速度。因为python在计算np.dot(w,x) 的时候，会&lt;strong&gt;使用并行计算&lt;/strong&gt;，让计算效率提高。
-&lt;strong&gt;使用for循环时：&lt;/strong&gt;
-计算机会先计算完前一个循环中的结果，再计算下一个循环：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/9f0f4a37a11d4bb3950d1c3bf7f9c58d.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;&lt;strong&gt;而使用np.dot()时：&lt;/strong&gt;
-计算机会同时计算w[j] * x[j] 这一步，最后再把它们加在一起：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/a6f163e899e5465fb980752e9965acdc.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;h1 id=&#34;多元线性回归的梯度下降法&#34;&gt;多元线性回归的梯度下降法&lt;/h1&gt;
-&lt;p&gt;&lt;strong&gt;代价函数（Cost Function）：&lt;/strong&gt;&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/1832d79bdfea4207b80cc617a3788184.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;h2 id=&#34;梯度下降公式&#34;&gt;梯度下降公式：&lt;/h2&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/60c68d39a4a5419589cce453661465b3.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;&lt;strong&gt;在单变量时：&lt;/strong&gt;&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/8e644c4b00cc4f5783a86f9c7c517798.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;在多变量时，也就是n &amp;gt;= 2时：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/0405d0fbf6d74242a114868e5838ff93.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;&lt;strong&gt;注意更新w时，最后一项不是x(i) 了，而是x1(i) ... xn(i)。&lt;/strong&gt;&lt;/p&gt;
-&lt;br/&gt;
-&lt;h1 id=&#34;特征缩放&#34;&gt;特征缩放&lt;/h1&gt;
-&lt;h2 id=&#34;如何选择w的值&#34;&gt;如何选择w的值&lt;/h2&gt;
-&lt;p&gt;我们假设要预测一个房子的价值，但我们现在只考虑它的size（面积）为&lt;strong&gt;x1&lt;/strong&gt;，和bedrooms（卧室的数量）为&lt;strong&gt;x2&lt;/strong&gt; 。&lt;strong&gt;x1的范围是300 - 2000；x2的范围是0-5。&lt;/strong&gt;&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/d01e85f9acf5410cb5a9fcf7cdaa0304.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;假设现在：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/c9a61fb44de14ee98dc269343a23a9c1.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;ol&gt;
-&lt;li&gt;第一种情况：我们让 w1 = 50，w2 = 0.1，b = 50： 
-&lt;img src=&#34;https://img-blog.csdnimg.cn/1056ae94dfd54ef2ba943871bec33d4f.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-结果与我们的training example完全不拟合。&lt;/li&gt;
-&lt;li&gt;第二种情况：我们让w1 = 0.1, w2 = 50, b = 50： 
-&lt;img src=&#34;https://img-blog.csdnimg.cn/0eb9baa18a4149608717403b9edf5eb5.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-这时候的结果就非常拟合我们的training example。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;strong&gt;总结：当某一个特征的可能值范围很大的时候，比如面积，一个好的模型更有可能选择一个相对较小的w值，比如0.1。反之，当一个特征的可能值很小时，比如卧室的数量，那么它w值可能就会比较大，比如50。&lt;/strong&gt;
-&lt;br/&gt;&lt;/p&gt;
-&lt;h3 id=&#34;参数w的选择与梯度下降的关系&#34;&gt;参数(w)的选择与梯度下降的关系&lt;/h3&gt;
-&lt;p&gt;让我们来看看x1和x2的散点图（scatter plot）和代价函数的等高线图（contour plot）：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/aaacda5edad141f49cb5c030d9369fca.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;在散点图中，我们发现横坐标的取值范围很大，而纵坐标的取值范围很小。
-在代价函数的等高线图中，我们发现是一个椭圆形，这是因为&lt;strong&gt;w1的取值只要稍微变动一点点，就会对价格影响非常大&lt;/strong&gt;，因为x1（房子的面积）的取值比较大；&lt;strong&gt;而w2需要变动的比较大才会对价格造成影响&lt;/strong&gt;，因为x2（卧室数量）的取值比较小。&lt;/p&gt;
-&lt;img src=&#34; https://img-blog.csdnimg.cn/c821541089e04674aece6b19ad127cfa.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;在这种情况下，当我们试图进行梯度下降时，因为我们的训练数据的轮廓很&lt;strong&gt;高和瘦&lt;/strong&gt;，这会导致在寻找最小值的时候会&lt;strong&gt;来回跳动很长时间&lt;/strong&gt;： (&lt;a href=&#34;https://img-blog.csdnimg.cn/bfbe56ae33a140bcb9b48dfc493af828.png&#34;&gt;https://img-blog.csdnimg.cn/bfbe56ae33a140bcb9b48dfc493af828.png&lt;/a&gt;)
-&lt;strong&gt;所以我们希望找到一种方式让特征们（features）可以缩放到差不多的取值范围，达到这样：&lt;/strong&gt;&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/ef93eb3054b34d489e514dce27b009c1.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;br/&gt;
-### 进行特征缩放
-现在特征的取值范围是： 
-&lt;img src=&#34;https://img-blog.csdnimg.cn/5a3f858b4de44399b86a74c0ce3e915b.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;h4 id=&#34;除以各自的最大值&#34;&gt;除以各自的最大值&lt;/h4&gt;
-&lt;p&gt;现在我们把它们&lt;strong&gt;除以各自的最大值&lt;/strong&gt;：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/9c8defd742af4134a1241764ba97361b.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;把它们放到图上就会变成：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/4252b2d1283a4bd0a948e6db67e66217.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;h4 id=&#34;均值归一化&#34;&gt;均值归一化&lt;/h4&gt;
-&lt;p&gt;除了除以最大值，我们还可以做均值归一化让它们都以0为中心：
-我们把每个&lt;strong&gt;x1减去所有x1的均值&lt;/strong&gt;，然后&lt;strong&gt;除以它们的取值范围的差值&lt;/strong&gt;，x2,x3 .. xn 同理，比如：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/76e67889d52c49b68daedf42144afaea.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;在图上它们是这样的：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/dbfe6ab6f1ed489692c54591816d3f9f.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;&lt;strong&gt;之前它们只有大于0的值，现在它们有负数和正数，但通常在-1 和 +1 之间。&lt;/strong&gt;
-&lt;br/&gt;&lt;/p&gt;
-&lt;h4 id=&#34;离差归一化z-score-归一化&#34;&gt;离差归一化（Z-score 归一化）&lt;/h4&gt;
-&lt;p&gt;我们还可以使用Z-score归一化来进行特征缩放：
-在这之前我们除了需要&lt;strong&gt;计算平均数&lt;/strong&gt;，还需要计算&lt;strong&gt;标准差（standard deviation）&lt;/strong&gt; 。
-我们把&lt;strong&gt;每个x1 减去 所有x1的平均数，然后除以x1的标准差&lt;/strong&gt;，x2 ... xn 同理，比如：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/524bf3c4609749759c4b02213de55095.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;在图上的表现为：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/8c2ff71f56684437acaaf3cd1aafe82d.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;h4 id=&#34;什么时候需要进行特征缩放&#34;&gt;什么时候需要进行特征缩放&lt;/h4&gt;
-&lt;p&gt;当x的取值在以下范围中都是可以接受的：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/2675842148d04daf88c25e32413ed76c.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;但如果取值范围过大或者过小，那么就需要进行特征缩放，比如：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/bcaea748b94c46adb0c147b6a40e70a1.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;&lt;strong&gt;正常情况下，进行特征缩放几乎没有什么坏处&lt;/strong&gt;，所以在疑惑自己是否需要进行特征缩放的时候，就尝试下特征缩放吧。
-&lt;br/&gt;&lt;/p&gt;
-&lt;h1 id=&#34;检查梯度下降是否收敛&#34;&gt;检查梯度下降是否收敛&lt;/h1&gt;
-&lt;p&gt;我们的目的：找到最小的J(w,b)&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/b4847a61e5f746659ce34015ce3bfeee.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;h2 id=&#34;使用学习曲线判断推荐&#34;&gt;使用学习曲线判断（推荐）&lt;/h2&gt;
-&lt;p&gt;一种方式保证梯度下降正常进行是画出一个学习曲线（learning curve），其纵轴是J(w,b)，横轴是迭代的次数：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/e667f4e4fc4d45c4ba18afa7c08adef6.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;判断梯度下降是否正常运行：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;学习曲线是否在每一次迭代后持续下降&lt;/li&gt;
-&lt;li&gt;学习曲线在经过了一定次数的迭代后是否收敛（converge）到某一个值&lt;/li&gt;
-&lt;li&gt;学习曲线是否出现上下浮动，而不是平稳的下降
-&lt;br/&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&#34;使用自动收敛测试&#34;&gt;使用自动收敛测试&lt;/h2&gt;
+&lt;img src=&#34;https://cdn.pixabay.com/photo/2017/11/26/15/16/smiley-2979107_1280.jpg&#34;&gt;
 &lt;ul&gt;
-&lt;li&gt;我们首先设定一个 &amp;quot;epsilon&amp;quot; 的值&lt;/li&gt;
-&lt;li&gt;如果J(w,b)的下降浮动小于等于 &amp;quot;epsilon&amp;quot;&lt;/li&gt;
-&lt;li&gt;就判定它收敛。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;情绪脑对声音格外敏感&lt;/strong&gt;，在不同情绪下说话的音调是不同的，有时在倾听他人说话的时候，更注重于他人说话的语调，而不是内容，这是因为在几亿年前还没有语言的时候，哺乳动物都是用音调传递信息。比如新生儿表达饿了，痛了，不开心了的时候都会选择哭来表达自己。同样，狗狗表达情绪的方式也是使用狗吠。心理学上有个73855定律，即在人际沟通中，言语也就是说话的内容只占&lt;strong&gt;7%&lt;/strong&gt;，声音、语调占&lt;strong&gt;38%&lt;/strong&gt;，肢体动作占&lt;strong&gt;55%&lt;/strong&gt;。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/8f674745aca54333a30a98dd56a57739.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;但是找到合适的 &amp;quot;epsilon&amp;quot; 值是相当困难的，所以&lt;strong&gt;推荐使用学习曲线&lt;/strong&gt;，能够更加直观地看出梯度下降是否在正常进行中。
-&lt;br/&gt;&lt;/p&gt;
-&lt;h3 id=&#34;学习率的选择&#34;&gt;学习率的选择&lt;/h3&gt;
-&lt;p&gt;我们可以通过学习曲线来看出，学习率的选择是否合适。
-比如出现：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/13605f67d240404ab0c39d7f74421682.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;出现上图的时候，通常是&lt;strong&gt;代码中有bug或者是学习率过大&lt;/strong&gt;导致的。比如下图这种状况，学习率过大导致错过了最小值。&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/facdb0bf942a4541b0bbaabe734679d1.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;所以这个时候，我们可以选择一个非常非常小的alpha值，来检查是否在每次迭代后，我们的J(w,b）的值在持续下降。
-如果还是没有下降，那么就说明可能是我们的代码中有bug，比如本来应该是:&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/6318132fbb4d4bcab47a6b458e9a6fe0.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;但是却写成了：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/01574fad324b4301851c5d4e7589393c.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;这个时候的学习曲线可能会变成这样：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/3b840b89038b4f0d975e6ebb2da0d690.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;h4 id=&#34;尝试选择学习率&#34;&gt;尝试选择学习率&lt;/h4&gt;
+&lt;img src=&#34;https://cdn.pixabay.com/photo/2019/03/22/17/56/children-4073799_1280.jpg&#34;&gt;
 &lt;ul&gt;
-&lt;li&gt;我们可以先选择一个非常小的alpha值（学习率）比如0.001&lt;/li&gt;
-&lt;li&gt;然后再选择一个相对较大的学习率，比如1，来查看是否出现学习曲线上下浮动的情况&lt;/li&gt;
-&lt;li&gt;然后再逐步地在最小的alpha的基础上一点点地增加，或者在较大的alpha值的基础上一点点地减少&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;情绪脑还带有历史的烙印&lt;/strong&gt;，会储存你从小到大的经历和创伤，都会被不经意的点燃和触动。比如，下日常交往时，明明自己说了一句很普通的话，对方却莫名其妙被惹怒，这很有可能是这句话触碰到了对方的创伤。所以当自己也因为某件事特别有情绪的时候，要有意识的觉察自己，到底是因为这件事有问题，还是因为这件事触及到了不愉快的经历。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/b49f56b4cc2e45d191fe1ae6dde15fc0.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;h1 id=&#34;特征工程&#34;&gt;特征工程&lt;/h1&gt;
-&lt;p&gt;假设现在我们要预估一个房子的价格，这个房子有两个特征，&lt;strong&gt;x1 是房子正面的长度&lt;/strong&gt;（frontage），&lt;strong&gt;x2是房子的宽度（depth）&lt;/strong&gt;。那么现在我们想要添加一个新的特征，那么我们可以选择&lt;strong&gt;x3为：
-面积 = 长度 * 宽度&lt;/strong&gt;&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/220b45d8f1a943818a52ab057bec96a7.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;处理一个新特征是特征工程的一个例子，这告诉我们&lt;strong&gt;设计新特征&lt;/strong&gt;的时候，可以&lt;strong&gt;通过转换或结合原始特征&lt;/strong&gt;。这样可能可以设计出更好的学习模型。&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/ebcb56c2b1be46268ae6869eef643ae8.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;h1 id=&#34;多项式回归polynomial-regression&#34;&gt;多项式回归（polynomial regression）&lt;/h1&gt;
-&lt;p&gt;我们利用多元线性回归和特征工程的思想，提出一种新的 &lt;strong&gt;多项式回归算法&lt;/strong&gt;&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/7340d7c5bc1d49b4a80bd22b29deddfb.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;上图是用房子的面积来预测房子的价格的数据，显然它不能有一个简单的直线来拟合。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;这时候我们就需要用到多项式函数：&lt;/strong&gt;
-我们可以选择&lt;strong&gt;二次函数&lt;/strong&gt;，但显然这里也不适合用二次函数，因为二次函数最后会下降，但我们并不认为房子的面积变大时，价格会下降。&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/5c9d3b62df194beda4a709c3a4ec9f09.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;所以我们可以进而选择&lt;strong&gt;三次函数&lt;/strong&gt;，它能更好地拟合这些数据：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/48a2d72df103475d8d2f456235f7afbf.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;但在这个时候，&lt;strong&gt;特征缩放（feature scaling）就显得尤为重要&lt;/strong&gt;，因为size的三次方会变得非常的大，这叫对我们选择w的值造成很大的困难，也会让计算变得更加复杂。&lt;/p&gt;
-&lt;p&gt;另一种更合理的替代方法是&lt;strong&gt;取尺寸的平方和立方&lt;/strong&gt;：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/d12dcef0668943b5a108658992c5e203.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;&lt;strong&gt;如何选择最为合适的features会在后面的课程中介绍。&lt;/strong&gt;&lt;/p&gt;
+&lt;img src=&#34;https://cdn.pixabay.com/photo/2014/12/10/10/04/teddy-562960_1280.jpg&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;情绪脑的杏仁核对荷尔蒙特别敏感&lt;/strong&gt;，荷尔蒙的增加和减少都会刺激到杏仁核。杏仁核负责处理情绪，和攻击行为有关。在青春期荷尔蒙会增加，女性来姨妈荷尔蒙会波动，女性更年期的时候荷尔蒙会减少，这也是为什么这三个时期的人们容易发脾气。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;img src=&#34;https://img.freepik.com/free-vector/angry-person-crowd_23-2148395526.jpg?w=740&amp;t=st=1686031139~exp=1686031739~hmac=06f654fbe6309786e1fa2404addd38cced20083cf1ef9d7c7c524f871fb290aa&#34;&gt;
 </description>
                 
                 
@@ -771,7 +155,13 @@ j = 1...n，n为特征的数量，对J(w,b) 求导后为：
                                 
                                 
                                 
-                                    <category domain="https://xiqi-zheng.github.io/tags/machine-learning/">Machine learning</category>
+                                    <category domain="https://xiqi-zheng.github.io/tags/notes/">notes</category>
+                                
+                            
+                                
+                                
+                                
+                                    <category domain="https://xiqi-zheng.github.io/tags/psychology/">psychology</category>
                                 
                             
                         
@@ -780,87 +170,50 @@ j = 1...n，n为特征的数量，对J(w,b) 求导后为：
             </item>
         
             <item>
-                <title>机器学习-吴恩达 梯度下降（笔记）</title>
-                <link>https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%AC%94%E8%AE%B0/</link>
-                <guid isPermaLink="true">https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%AC%94%E8%AE%B0/</guid>
-                <pubDate>Thu, 07 Jul 2022 00:00:00 &#43;0000</pubDate>
+                <title>穿梭在云南道路上</title>
+                <link>https://xiqi-zheng.github.io/random/%E7%A9%BF%E6%A2%AD%E5%9C%A8%E4%BA%91%E5%8D%97%E9%81%93%E8%B7%AF%E4%B8%8A/</link>
+                <guid isPermaLink="true">https://xiqi-zheng.github.io/random/%E7%A9%BF%E6%A2%AD%E5%9C%A8%E4%BA%91%E5%8D%97%E9%81%93%E8%B7%AF%E4%B8%8A/</guid>
+                <pubDate>Wed, 05 Apr 2023 00:00:00 &#43;0000</pubDate>
                 
                     <author>1647656181@qq.com (Chloe)</author>
                 
                 <copyright>转载请保留本文作者以及本文链接</copyright>
                 
-                    <description>&lt;h2 id=&#34;什么是梯度下降&#34;&gt;什么是梯度下降？&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;梯度下降是寻找目标函数最小化的方法。&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;比如在上一篇&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/zxq1_/article/details/125470263&#34;&gt;单变量线性回归模型&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;文章中我们的目标是得到最拟合的&lt;strong&gt;单变量线性回归Function&lt;/strong&gt;，也就是得到&lt;strong&gt;代价函数的最小值&lt;/strong&gt;：min J(w,b) 。
-那么如何得到呢？&lt;strong&gt;梯度下降法就可以通过不断迭代调整参数来寻找最合适的值。&lt;/strong&gt;
-&lt;br/&gt;&lt;/p&gt;
-&lt;h2 id=&#34;梯度下降表达式&#34;&gt;梯度下降表达式&lt;/h2&gt;
-&lt;p&gt;我们还是用单变量线性回归模型中的J(w,b)来举例：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/b2b88a8367674b49a620b37c96a0e6fc.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;我们&lt;strong&gt;持续不断地更新w和b&lt;/strong&gt;，直到他们&lt;strong&gt;收敛&lt;/strong&gt;，也就是计算后他们的值已经不会出现什么变动，那么我们就得到了局部（以下文章会解释为什么是局部）/ 全局最小值（&lt;strong&gt;只是收敛到极小值，而不是真正意义上的最小值。以下说的最小值，其实都是极小值&lt;/strong&gt;）或是鞍点。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;注意我们需要同步更新w和b，也就是w更新后，b更新时用的还是没有更新的w。&lt;/strong&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/ad3b16a4b25a416fbf4873c8131b7cd6.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h4 id=&#34;表达式解释&#34;&gt;表达式解释&lt;/h4&gt;
-&lt;p&gt;这里的&lt;strong&gt;等号&lt;/strong&gt;是一个&lt;strong&gt;赋值符号&lt;/strong&gt;，而不是数学意义上的相等符号。
-这里的&lt;strong&gt;Alpha&lt;/strong&gt;是&lt;strong&gt;学习率（learning rate）&lt;/strong&gt;，用来&lt;strong&gt;控制步长&lt;/strong&gt;，也就是我们每一步的跨度，一定大于0，通常在0到1之间，在之后的文章中会详细讲解。
-这里的最后一项是&lt;strong&gt;对于代价函数J(w,b)的偏导&lt;/strong&gt;，用来&lt;strong&gt;控制方向&lt;/strong&gt;。
-&lt;br/&gt;&lt;/p&gt;
-&lt;h2 id=&#34;梯度下降的直观理解&#34;&gt;梯度下降的直观理解&lt;/h2&gt;
-&lt;p&gt;为了更直观的观察梯度下降是如何让目标函数的最小化，我们假设&lt;strong&gt;只有一个参数的代价函数 J(w)&lt;/strong&gt;，在上一章中我们知道J(w)是一个二次函数（quadratic function），也就是一个抛物线。&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/5a33605e5c5e46e58800812614a1c478.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;我们假设一个在抛物线上的初始点&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/658c46a5e504483d8379f6ebbaaebcfe.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;现在开始进行梯度下降：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/ffae7697ac3c479884345058b053093b.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;这里的最后一项（对J(w)的求导）在图中就是这个点的斜率：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/13417285bd894a8394c527ecb4323573.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;那么也就是&lt;strong&gt;w = w - $\alpha$ * 一个正数，由于alpha一定是正数，所以w减小了所以在图中的表现就是点向左移动&lt;/strong&gt;，也就是向最小值靠近：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/f9ac1a9155ed4fae9ba7af17168f27da.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;再来看另一个例子，当我们取的点在抛物线左边：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/8ecdc5da82104085937d4bff924a5442.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;那么这个时候J(w)的求导就是负数，也就是一个负的斜率：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/9250ec8014384c04b2739d92e251a8c1.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;那么现在&lt;strong&gt;w = w - $\alpha$ * 一个负数，w增大了，所以在图中的表现就是点向右移动&lt;/strong&gt;，也在向最小值靠近：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/ecd1f382b61b4e33835531bfc2b6b200.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+                    <description>&lt;div class=&#34;container&#34;&gt;
+    &lt;div id=&#34;player-wrapper&#34; class=&#34;&#34;&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script
+        type=&#34;text/javascript&#34;
+        src=&#34;https://cdn.jsdelivr.net/npm/@clappr/player@latest/dist/clappr.min.js&#34;
+&gt;
+&lt;/script&gt;
+
+&lt;script&gt;
+    var playerElement = document.getElementById(&#34;player-wrapper&#34;);
+
+    var player = new Clappr.Player({
+        source: &#34;/videos/YunNan.mp4&#34;,
+    mute: true,
+        height: 360,
+        width: 640
+    });
+
+    player.attachTo(playerElement);
+&lt;/script&gt;
 &lt;br/&gt;
-## 学习率（learning rate）
-学习率的过大或过小都会造成一些影响：
-**学习率过小：** 梯度下降的**速度会非常慢**，因为每次下降的步长都太小，虽然最终也能得到正确结果，但**会花费非常长的时间**。
-**学习率过大：** 梯度下降的过多，会错过最小值，并且**无法收敛**。
-&lt;img src=&#34;https://img-blog.csdnimg.cn/66c120a53ec3401a99023e4ca521e1ca.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;br/&gt;
-### 固定的学习率只能找到局部最小值
-由于当 J(w) 的取值在局部最小值的时候，这个点的**斜率为0**，那么在下一次更新的时候，由于最后一项求导值为0，0乘上alpha还是0，所以**w的取值已经不会再改变**。
-&lt;img src=&#34;https://img-blog.csdnimg.cn/ebb88c9eb2144586ababfafb047437fb.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;&lt;strong&gt;到达哪个局部最小值取决于选择的起始点&lt;/strong&gt;&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/33ba405f6f92457f85ba59b8b439dd37.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;但在回归中使用平方代价函数时，代价函数没有也永远不会有多个局部最优解，也就是只有全局最优解。这种函数我们称为凸函数。&lt;/strong&gt;
-&lt;br/&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/43a127c1a71c475693036045d790a776.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;br/&gt;
-&lt;h3 id=&#34;jw-靠近最小值的速度会逐渐变慢&#34;&gt;J(w) 靠近最小值的速度会逐渐变慢&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;即使在 alpha（学习率）不变的情况下&lt;/strong&gt;，随着 J(w) 的值向最小值靠近的时候，&lt;strong&gt;点的斜率会越来越小，所以w变化的速度也会逐渐变慢。&lt;/strong&gt;&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/8341f01d09e54e67914966e703d47691.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;br/&gt;
-&lt;h2 id=&#34;线性回归中的梯度下降&#34;&gt;线性回归中的梯度下降&lt;/h2&gt;
-&lt;p&gt;回顾上一章的内容：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/3911dd3c02f245f7b63619f487d86d73.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;&lt;strong&gt;在对J(w,b)进行求导后得到：&lt;/strong&gt;&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/788314205f7e480bbf7f378eb8ed211f.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;h4 id=&#34;求导过程&#34;&gt;求导过程：&lt;/h4&gt;
-&lt;p&gt;&lt;strong&gt;对w求导：&lt;/strong&gt;&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/b6adbb0a733641959fe957d6940a67d0.jpeg&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;&lt;strong&gt;对b求导：&lt;/strong&gt;&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/ccb34b513dcb404fa089f3c0a231e551.jpeg&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;blockquote&gt;
-&lt;p&gt;重复对 w 和 b 的求导，直到它们收敛。我们就找到了 f(x) 的最小值。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;今天是来云南的不知道多少天。
+这是我第二次来云南，第一次来这里时我便已经爱上了这座城市，也许是因为晴朗的天气和舒适的气候，
+也可能是因为这里的生活节奏让我觉得放松。&lt;/p&gt;
+&lt;p&gt;这次旅途很长，从昆明开始，一路开车到大理古城，双廊古镇，西双版纳，又回到昆明。
+不知道从什么时候开始，我厌倦了城市的高楼，迷恋矮小的土楼，山间的小路。&lt;/p&gt;
+&lt;p&gt;在今天之前我一直过着身边时时刻刻有人的日子，享受着与人亲近的感觉。但心底总是空了一块地。
+直到在从三内可颂店前往双廊古镇的214公路上，我第一次戴上了耳机，熟悉的热度涌入脑海。
+不用在意身边人的话语，任意切换着耳机里的歌，灵魂的最后一块碎片终于找到归处。&lt;/p&gt;
+&lt;p&gt;静怡的车速很快，道路中总有适当的小坡出现，在人车分离的0.01s中，
+在心脏偏离左心房的一瞬间里，在唇间吐出的烟雾中，小腹因失重微微刺痛，
+我伸手，抓住虚无缥缈的快感。&lt;/p&gt;
+&lt;p&gt;她们好像在说些什么，我好奇，但舍不得这片刻的孤身世界。&lt;/p&gt;
 </description>
                 
                 
@@ -873,7 +226,7 @@ j = 1...n，n为特征的数量，对J(w,b) 求导后为：
                                 
                                 
                                 
-                                    <category domain="https://xiqi-zheng.github.io/tags/machine-learning/">Machine learning</category>
+                                    <category domain="https://xiqi-zheng.github.io/tags/random/">random</category>
                                 
                             
                         
@@ -882,72 +235,45 @@ j = 1...n，n为特征的数量，对J(w,b) 求导后为：
             </item>
         
             <item>
-                <title>机器学习-吴恩达 单变量线性回归模型（笔记）</title>
-                <link>https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E5%8D%95%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B%E7%AC%94%E8%AE%B0/</link>
-                <guid isPermaLink="true">https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E5%8D%95%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B%E7%AC%94%E8%AE%B0/</guid>
-                <pubDate>Mon, 04 Jul 2022 00:00:00 &#43;0000</pubDate>
+                <title>Cheddar Gorge 徒步</title>
+                <link>https://xiqi-zheng.github.io/random/cheddar-gorge%E6%B5%81%E6%B5%AA%E8%AE%B0/</link>
+                <guid isPermaLink="true">https://xiqi-zheng.github.io/random/cheddar-gorge%E6%B5%81%E6%B5%AA%E8%AE%B0/</guid>
+                <pubDate>Tue, 31 Jan 2023 00:00:00 &#43;0000</pubDate>
                 
                     <author>1647656181@qq.com (Chloe)</author>
                 
                 <copyright>转载请保留本文作者以及本文链接</copyright>
                 
-                    <description>&lt;h2 id=&#34;terminology-术语&#34;&gt;Terminology 术语&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Training set 训练集：已知结果数据集，用来训练模型&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;notation&#34;&gt;Notation&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;x&lt;/strong&gt; = &amp;quot;input&amp;quot; variable feature 输入的变量&lt;br/&gt;
-&lt;strong&gt;y&lt;/strong&gt; = &amp;quot;output&amp;quot; variable / &amp;quot;target&amp;quot; variable 输出的变量或目标变量&lt;br/&gt;
-&lt;strong&gt;m&lt;/strong&gt; = number of training examples 训练集中的数量&lt;br/&gt;
-&lt;strong&gt;(x,y)&lt;/strong&gt; = single training example 训练集中的一组数据&lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;Example：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/7b58d10d44d74e609e210fac2332e4fb.png#pic_center&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;br&gt;
-&lt;br&gt;
-## 得到线性回归模型的流程
-1. 选择一个监督学习算法
-2. 把训练集中的features（输入变量）和output（输出）提供给学习算法
-3. 得到一个model / function （模型 / 函数）
-4. 把想要预测的数据输入这个模型
-5. 最终这个模型将输出一个值&#34;y-hat&#34;,这就是模型给出的预测结果
-### 单变量线性回归Function的表达式
-**f~w,b~(x) = wx + b 或者 f(x) = wx+b**
-w,b: parameters（参数）
-&lt;img src=&#34;https://img-blog.csdnimg.cn/b1094ed892464bd481f665344c581acf.png#pic_center&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;br&gt;
-&lt;h2 id=&#34;cost-function-代价函数&#34;&gt;Cost Function 代价函数&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;作用&lt;/strong&gt;：找到最优解的目标函数 &lt;br/&gt;
-&lt;strong&gt;Loss Funtion（损失函数）&lt;/strong&gt;: 定义在单个样本上，算的是&lt;strong&gt;一个&lt;/strong&gt;样本的误差。&lt;br/&gt;
-&lt;strong&gt;Cost Funtion&lt;/strong&gt;: 定义在整个训练集上的，是所有样本误差的平均值，也就是loss function的平均值。&lt;/p&gt;
-&lt;p&gt;所谓误差，就是我们的样本输出值和函数的输出值之间的距离。当我们得到的函数的Cost Function最小的时候,这个函数就是我们要找的目标函数。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Cost Funtion公式：&lt;/strong&gt;&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/c838617b940f4329965a732825e9c7d8.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;其中y-hat  = f(w,b) = wx+b
-&lt;strong&gt;我们的目标是找到最小的J(w,b)，让每一个样本的输出值最靠近我们的目标函数的输出值。&lt;/strong&gt;&lt;/p&gt;
-&lt;h3 id=&#34;如何寻找最小的cost-function&#34;&gt;如何寻找最小的Cost Function?&lt;/h3&gt;
-&lt;p&gt;从单一参数开始来看，当只有&lt;strong&gt;w&lt;/strong&gt;时：&lt;strong&gt;f(x) = wx&lt;/strong&gt;
-那么：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/2afb2522f8244ab6a045e0af5ece11af.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;h4 id=&#34;fx-与-jw-之间的变化关系&#34;&gt;f(x) 与 J(w) 之间的变化关系&lt;/h4&gt;
-&lt;p&gt;假设有一组训练集为：(1,1),(2,2),(3,3)
-现在我们取w = 1时：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/8a9a98360969451c96b5a80e5c3d5144.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;那么J(w)：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/604a09b6aea14b8b8d7bebcc8dbce3fd.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/dab2ea94e00f42288714843bb98f86ad.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;当我们取w = 0.5时：
-&lt;img src=&#34;https://img-blog.csdnimg.cn/e077074216c4417bb250628aef53425d.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;&lt;/p&gt;
-&lt;p&gt;那么J(w)：
-&lt;img src=&#34;https://img-blog.csdnimg.cn/ae48b327bbc24426a64e86f124372bc2.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;&lt;/p&gt;
-&lt;p&gt;当我们取多个和w的值时，它的图像会变成一个二次函数：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/f0dae9e0c9c843cea18efbdeab2860ae.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;此时将这个二次函数进行&lt;strong&gt;求导&lt;/strong&gt;，就能得到这个函数的最小值，也就是误差最小的w值。&lt;/p&gt;
-&lt;p&gt;当参数增加时，也是同样的道理，但是维度会增加。
-&lt;img src=&#34;https://img-blog.csdnimg.cn/a7e3959823d2443e9e5b5c3db5f9f79e.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/6c5bec620c294e67b5d6dc55fe68f59d.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;J(w,b) 图像：&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/7f011d81c76a4a34a0a8a5008fcc73d9.png&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
-&lt;p&gt;&lt;strong&gt;对于回归问题，我们可以归结为得到代价函数的最小值&lt;/strong&gt;&lt;/p&gt;
+                    <description>&lt;p&gt;在芬兰的雪地徒步就好像在我心里埋下了一个种子，想徒步的欲望愈演愈烈。终于在即将离开布里斯托前，
+找了个愿意陪我徒步的小伙伴，踏上了布里斯托周边的一个美丽小镇旁的切达峡谷。&lt;/p&gt;
+&lt;p&gt;饱餐了一顿，我们打车前往了切达小镇。她带了一个小包，里面装着两瓶水和一个相机，而我在路边买了瓶矿泉水
+揣在兜里就出发了。其实我很庆幸在芬兰的第一次徒步是毫无准备的，这让我觉得徒步并不是一件需要万事俱备才能
+出发的运动。如果我是在小红书上刷到，那我一定觉得，徒步需要很多准备，比如买徒步鞋，冲锋衣，背包...
+&lt;/br&gt;&lt;/p&gt;
+&lt;p&gt;Anyway，经过半小时的车程我们到达了峡谷底下，也就是小镇的所在位置。一下车我就被小镇的精致可爱吸引了，
+因为四周都是山，所以小镇颇有种与世隔绝的感觉。像宫崎骏漫画里的梦幻世界。&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/img_convert/20665ca40cdafa2296931b4d702fbcb9.jpeg&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;我们无数次被沿途的风景吸引，把原本三小时的路程硬是拖到了四个半小时才走完。也热衷于走一些山羊走的路，
+它们陡峭，泥泞，还有扎人的不知名植物，我们却乐在其中。&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/img_convert/67d47a5469f67eadf39f70f8937a8142.jpeg&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;我们给这次旅途定了一个小目标，就是找一根趁手的 “拐杖”。我运气好，刚走不远就找到了趁手的
+木棍当做登山杖，我的好友就没那么如愿了，走了大半路程才找到，但也仅仅陪伴她一小段路便折断了。
+途中还找到了一个外形酷似弹弓的小树枝，可惜太脆皮了，我套上我的皮筋亲亲一拉就断掉了。幸好我的朋友眼疾手快，
+留下了它的“遗照”。&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/img_convert/0f1bf2a5f27689cc56c2d41af5ee29ff.jpeg&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;因为不是周末的原因，峡谷里的人很少，只有几对情侣和头发花白的老头老太。也许是因为在偌大的山谷里遇到同
+物种的亲切感，我们热情地和对方打着招呼。所有人无一例外地挂着大大的笑容，也许这就是大自然的魅力。不管
+在现实生活中（我认为在峡谷中的世界应与平时生活隔绝开）扮演着什么角色，在此刻也只不过是为了领略大自然美妙的仰望者而已。&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/img_convert/a9746f3d353f0172503e061433a2af0c.jpeg&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;再往上，我们遇到了许多留着长长胡子的山羊，这是我离野生动物最近的一次，伸手就能摸到它黑白相间的羊毛。
+我仔细观察着它的长相，因为它花白的胡子，让我觉得它像一个高深莫测的老者，但骨子里却是个和蔼的爷爷。&lt;/p&gt;
+&lt;p&gt;或许它们才是这里的主人，但它们似乎并不在意我们无礼地闯入。 可能如同以往的每一天一样，
+它们都在为生存而奔波，在这蒙昧之中的世界，它们不知道自己从哪里来，也不关心自己到哪里去，
+当太阳升到正空时，当植物在地上投下的影子缩到最小时，它们只关心从哪里找到自己今天的午餐。&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/img_convert/c544511b3980d7da2ce227218e3e1363.jpeg&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;我们横穿过放羊的四方形平原，映入眼帘的是像被劈开的石头巨人，站在峡谷之巅，峡谷全貌，尽收眼底。
+下辈子做只小鸟儿，在这峡谷之间飞上一遭，也算是鸟生无憾了。&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/img_convert/2e13423729cf289c029745a4cf454ebd.jpeg&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
 </description>
                 
                 
@@ -960,7 +286,237 @@ w,b: parameters（参数）
                                 
                                 
                                 
-                                    <category domain="https://xiqi-zheng.github.io/tags/machine-learning/">Machine learning</category>
+                                    <category domain="https://xiqi-zheng.github.io/tags/hiking/">hiking</category>
+                                
+                            
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>17:15的布里斯托</title>
+                <link>https://xiqi-zheng.github.io/random/%E4%B8%8B%E5%8D%88%E7%9A%84%E5%B8%83%E9%87%8C%E6%96%AF%E6%89%98/</link>
+                <guid isPermaLink="true">https://xiqi-zheng.github.io/random/%E4%B8%8B%E5%8D%88%E7%9A%84%E5%B8%83%E9%87%8C%E6%96%AF%E6%89%98/</guid>
+                <pubDate>Tue, 10 Jan 2023 00:00:00 &#43;0000</pubDate>
+                
+                    <author>1647656181@qq.com (Chloe)</author>
+                
+                <copyright>转载请保留本文作者以及本文链接</copyright>
+                
+                    <description>&lt;div class=&#34;container&#34;&gt;
+    &lt;div id=&#34;player-wrapper&#34; class=&#34;&#34;&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script
+        type=&#34;text/javascript&#34;
+        src=&#34;https://cdn.jsdelivr.net/npm/@clappr/player@latest/dist/clappr.min.js&#34;
+&gt;
+&lt;/script&gt;
+
+&lt;script&gt;
+    var playerElement = document.getElementById(&#34;player-wrapper&#34;);
+
+    var player = new Clappr.Player({
+        source: &#34;/videos/bristol_in_17.mp4&#34;,
+    mute: true,
+        height: 360,
+        width: 640
+    });
+
+    player.attachTo(playerElement);
+&lt;/script&gt;
+&lt;p&gt;傍晚五点多的布里斯托已经完全黑了下来，伴着梅卡德尔的迷恋，我走去朋友家。&lt;/p&gt;
+&lt;p&gt;出国之后，我无缘由的喜欢在天黑的时候一个人戴着耳机走在路上。
+好像风是属于我的，雨是属于我的，整个夜空都是属于我的。旁边驶过的车像是被抽帧地一顿一顿。&lt;/p&gt;
+&lt;p&gt;布里斯托很美，很美。无数次抬起头都会被惊艳。
+转眼踏上这个浪漫多雨的城市已经两个月了，再有多些时日就要和它短暂的告别，回到小小的福州，说不出是欢喜还是忧虑。&lt;/p&gt;
+&lt;p&gt;欢喜能够见到家人，见到老友，用着小橙，小蓝软件，生活节奏是快的，但也能够适应。&lt;/p&gt;
+&lt;p&gt;转身到了大路，人开始多了起来，各色的灯晃过，上演着英式王家卫电影。耳机里的音乐切到了刘恋的猫的诡计。很爵，很喜欢。&lt;/p&gt;
+</description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://xiqi-zheng.github.io/tags/random/">random</category>
+                                
+                            
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>雪地里的🏠</title>
+                <link>https://xiqi-zheng.github.io/random/%E9%9B%AA%E5%9C%B0%E9%87%8C%E7%9A%84%E5%B0%8F%E5%B1%8B/</link>
+                <guid isPermaLink="true">https://xiqi-zheng.github.io/random/%E9%9B%AA%E5%9C%B0%E9%87%8C%E7%9A%84%E5%B0%8F%E5%B1%8B/</guid>
+                <pubDate>Mon, 19 Dec 2022 00:00:00 &#43;0000</pubDate>
+                
+                    <author>1647656181@qq.com (Chloe)</author>
+                
+                <copyright>转载请保留本文作者以及本文链接</copyright>
+                
+                    <description>&lt;img src=&#34;https://img-blog.csdnimg.cn/img_convert/0e2848ab3ddc207f0c62dc72e63a5b9e.jpeg&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;罗瓦涅米，一个日照时间只有4h的地方，我们游玩了三天，两天阴天，一天晴天。太阳出来的那天，我们感叹，这才是北欧应该有的样子，好美。&lt;/p&gt;
+&lt;p&gt;作为一个地地道道的南方人，从来没有见过这么大雪的我眼里充满欣喜。&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/img_convert/4b0133b4f4ba4b341e903ec2d6b2a97e.jpeg&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;无论向南或者向北，所看见的，是一片牢不可破的纯白。
+这样的世界里，即使一点零星的火苗都显得格外温暖，我们像我们的祖先一样小心的保护着火源。
+我们在冰雪森林里生火，在冰河上生火，在雪山上生火。
+我放空着，直勾勾的盯着格格不入的火红落在白色世界里，柴火噼里啪啦地燃烧，鼻腔里充斥着木头烧焦的烟味。
+&lt;strong&gt;我发誓，这是我有生以来发的最舒服的呆。&lt;/strong&gt;&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/img_convert/ece538adefff696fe07e4eaa8322cbb9.jpeg&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;br/&gt;
+&lt;hr&gt;
+&lt;br/&gt;
+&lt;p&gt;早上八点，我们坐上了前往雪山的车，我将在这个无名雪山进行我人生第一次雪山徒步。
+我并不是一个很爱走路的人，所以在开始之前我并没有什么期待之感。&lt;br/&gt;
+到了，下车。神秘的、遥不可及的主道、没有太阳的天空、刺骨的严寒以及它们所蕴涵的那种漠然与森严的意味。
+我突然明白了人类不可克服的缺陷和在自然界中的地位。
+要抵御持续的零下几十度的严寒和针扎般的霜冻必须有手套、耳套、温暖的鹿皮靴和厚厚的长袜。
+我们这次的徒步的目的是要去看被冻住的瀑布，对此我还是很感兴趣的。
+在看到了两个不同的冰冻瀑布后，我突然爱上了雪山徒步这项运动。
+不仅仅是因为冰冻瀑布带给我的震撼，更因为在运动后身体自然的发热，让我第一次在雪地中脱下了外套，这让我有种征服了大自然的感觉。&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/img_convert/a5baccc8583e62c2f2ca919620473ea7.jpeg&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;时间来到了最后一天。
+在这之前我并没有深刻意识到自己对音乐的需求已经深入骨髓。徒步时，烧烤时，坐车时，前两天没带耳机的我总是坐立难安。
+好在，最后一天晴天，我戴上了我的耳机。不在乎伙伴们在聊些什么，笑些什么。我只在我自己的小小🎶空间中遨游。&lt;/p&gt;
+&lt;p&gt;我想我真的很需要独处的空间，释放我的情绪，能量，热爱。戴上耳机是我能想到的最快，最让我快乐的方法。
+每次当我听到耳机里只有我能享受到的🎶时，这些乐曲带给我的快乐已经不仅仅如此了。&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/img_convert/b578e1a89af8bfa802bf7f4caa128873.jpeg&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;p&gt;在罗瓦涅米的最后一个晚上是独自度过的。司机姐姐转了个大弯开进了一个偏僻的小路，街边高高的白桦树消失了，取而代之的是一个废弃火车站，再往前走出现了零星的小屋。
+终于，在白色的世界里出现了一个闪着暖色灯的小房子。房东恰巧出来碰见了我，我告诉他，今晚我将一个人住在这。
+短暂和房东交流后，我拎着包走进了这个温馨的，暖和的小房子🏠。&lt;/p&gt;
+&lt;p&gt;在冰天雪地里，我独自一人占据这偌大的罗瓦涅米的一个小角落。 心里雀跃，对于疲于社交了几天的我来说，每一秒都是fairy tale。
+把水果们放在木质桌子的小篮子里，掏出电脑，安静地享受属于我的时间空间。&lt;/p&gt;
+&lt;p&gt;八点整，躺在床上，放着Bossa Nova，写着这篇小日记，嘴角忍不住上扬。
+零下十几度的冷空气让人不想出门，每家每户都亮着暖色的小灯。&lt;/p&gt;
+&lt;img src=&#34;https://img-blog.csdnimg.cn/img_convert/2b5f684fac3fe3a93e64d569736db705.jpeg&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;h4&gt; 我想，我也是个到达过童话书里的人了。&lt;/h4&gt;</description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://xiqi-zheng.github.io/tags/travel/">travel</category>
+                                
+                            
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>泥土陷进钢筋混凝土</title>
+                <link>https://xiqi-zheng.github.io/random/%E6%B3%A5%E5%9C%9F%E9%99%B7%E8%BF%9B%E9%92%A2%E7%AD%8B%E6%B7%B7%E5%87%9D%E5%9C%9F/</link>
+                <guid isPermaLink="true">https://xiqi-zheng.github.io/random/%E6%B3%A5%E5%9C%9F%E9%99%B7%E8%BF%9B%E9%92%A2%E7%AD%8B%E6%B7%B7%E5%87%9D%E5%9C%9F/</guid>
+                <pubDate>Wed, 14 Dec 2022 00:00:00 &#43;0000</pubDate>
+                
+                    <author>1647656181@qq.com (Chloe)</author>
+                
+                <copyright>转载请保留本文作者以及本文链接</copyright>
+                
+                    <description>&lt;img src=&#34;https://wallpapercave.com/wp/wp10500283.jpg&#34;&gt;
+&lt;p&gt;远离钢筋混凝土，&lt;/p&gt;
+&lt;p&gt;我变得安静，&lt;/p&gt;
+&lt;p&gt;世界都慢了，&lt;/p&gt;
+&lt;p&gt;鼻腔里是泥土翻起的味道。&lt;/p&gt;
+&lt;p&gt;我享受，&lt;/p&gt;
+&lt;p&gt;每一个看不到高楼的瞬间。&lt;/p&gt;
+&lt;br/&gt;
+&lt;p&gt;但没多久，&lt;/p&gt;
+&lt;p&gt;我就被拽进高楼，&lt;/p&gt;
+&lt;p&gt;拽进混凝土砌成的大方块里。&lt;/p&gt;
+&lt;p&gt;眼压开始升高，&lt;/p&gt;
+&lt;p&gt;脑袋开始发热。&lt;/p&gt;
+&lt;p&gt;我变得吵闹，&lt;/p&gt;
+&lt;p&gt;开口就是虚伪的假话。&lt;/p&gt;
+&lt;br/&gt;
+&lt;p&gt;我渴望，&lt;/p&gt;
+&lt;p&gt;多一些,&lt;/p&gt;
+&lt;p&gt;独自或与伙伴，&lt;/p&gt;
+&lt;p&gt;到森林里看松鼠的时刻。&lt;/p&gt;
+&lt;p&gt;多一些，&lt;/p&gt;
+&lt;p&gt;从山坡上慢慢滑落的时刻。&lt;/p&gt;
+</description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://xiqi-zheng.github.io/tags/poetry/">poetry</category>
+                                
+                            
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>文理科生的一些刻板印象</title>
+                <link>https://xiqi-zheng.github.io/random/%E6%96%87%E7%90%86%E7%A7%91%E7%94%9F%E7%9A%84%E4%B8%80%E4%BA%9B%E5%88%BB%E6%9D%BF%E5%8D%B0%E8%B1%A1/</link>
+                <guid isPermaLink="true">https://xiqi-zheng.github.io/random/%E6%96%87%E7%90%86%E7%A7%91%E7%94%9F%E7%9A%84%E4%B8%80%E4%BA%9B%E5%88%BB%E6%9D%BF%E5%8D%B0%E8%B1%A1/</guid>
+                <pubDate>Sat, 04 Dec 2021 00:00:00 &#43;0000</pubDate>
+                
+                    <author>1647656181@qq.com (Chloe)</author>
+                
+                <copyright>转载请保留本文作者以及本文链接</copyright>
+                
+                    <description>&lt;p&gt;文科生有着骨子里的浪漫&lt;/p&gt;
+&lt;p&gt;她们大多悲观&lt;/p&gt;
+&lt;p&gt;千古流传的文学&lt;/p&gt;
+&lt;p&gt;都是刻入骨髓里的痛苦&lt;/p&gt;
+&lt;p&gt;理科生有着骨子里的骄傲&lt;/p&gt;
+&lt;p&gt;她们大多理性&lt;/p&gt;
+&lt;p&gt;千古流传的公式&lt;/p&gt;
+&lt;p&gt;都是不容许置疑的定理
+&lt;br/&gt;
+&lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;当然，&lt;/p&gt;
+&lt;p&gt;大多数在世界上活着的人啊&lt;/p&gt;
+&lt;p&gt;聆听着莎士比亚的悲剧&lt;/p&gt;
+&lt;p&gt;牢记着牛顿的定律&lt;/p&gt;
+&lt;p&gt;是矛盾体的自洽&lt;/p&gt;
+&lt;p&gt;是自洽的矛盾体
+&lt;br/&gt;
+&lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;火山一样不计后果地喷涌&lt;/p&gt;
+&lt;p&gt;她们的悲观，
+她们的理性。
+她们的浪漫，
+她们的骄傲。&lt;/p&gt;
+</description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://xiqi-zheng.github.io/tags/poetry/">poetry</category>
                                 
                             
                         

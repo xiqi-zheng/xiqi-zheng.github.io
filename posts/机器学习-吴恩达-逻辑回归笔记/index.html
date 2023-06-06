@@ -55,24 +55,13 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
+        "@type": "WebPage",
         "datePublished": "2022-08-03T00:00:00+00:00",
         "dateModified": "2022-08-08T15:26:16+08:00",
         "url": "https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E7%AC%94%E8%AE%B0/",
-        "headline": "机器学习-吴恩达 逻辑回归（笔记）",
+        "name": "机器学习-吴恩达 逻辑回归（笔记）",
         "description": "什么是逻辑（Logistic）回归 逻辑回归是一种用于解决二分类（要么是0要么是1）问……",
-        "inLanguage" : "zh-CN",
-        "articleSection": "posts",
-        "wordCount":  1661 ,
-        "image": ["https://img-blog.csdnimg.cn/892b7f54066045e5badadc8999512367.png","https://img-blog.csdnimg.cn/00ee7e1631614f2abdf745dbffdc9ade.png","https://img-blog.csdnimg.cn/f41aaeebd3eb4af8ab84a580a607beff.png","https://img-blog.csdnimg.cn/3379935ec05649cfb7194d67cf6f07a3.png","https://img-blog.csdnimg.cn/fe33db8a6a6d4921823791dd7f1a3212.png","https://img-blog.csdnimg.cn/75545c3551b44c7eb929af5f7cb4c2f0.png","https://img-blog.csdnimg.cn/782016e0d78e466aa8303022f6f230a6.png","https://img-blog.csdnimg.cn/62ad02ca068b419abe3f7ff4ef2507cd.png","https://img-blog.csdnimg.cn/98340980622649448cac2aba40d98f4a.png","https://img-blog.csdnimg.cn/17670547c1644b6780ede5bfff0f4769.png","https://img-blog.csdnimg.cn/86df8f8f56fc4d20a0d150422215a904.png","https://img-blog.csdnimg.cn/49053eb0fc634fd5b0dcf7ad8d0839bc.png","https://img-blog.csdnimg.cn/a09e22fd52804e7d9c6f6921de54699c.png","https://img-blog.csdnimg.cn/65c99a70c27741a6b040c921b88cfdee.png","https://img-blog.csdnimg.cn/5f2a7a7ad3464d6a9bb8ec0dc1320763.png","https://img-blog.csdnimg.cn/8d3e038829674aedbaa4b5dca7f2a064.png","https://img-blog.csdnimg.cn/4c6cd88f02b140bbb1c18f9d22e294f0.png","https://img-blog.csdnimg.cn/c8f58b2221334d8e81d2e3475d0b5266.png","https://img-blog.csdnimg.cn/93a8d2cd2d7f4d3e9a02877683efdfd2.png","https://img-blog.csdnimg.cn/3151033929e34f86a977f069c86eadba.png","https://img-blog.csdnimg.cn/62657642c5d4472ea15ed1b70f1e93a0.png","https://img-blog.csdnimg.cn/59b29984a3ce43ba99b3e5a238f0b332.png","https://img-blog.csdnimg.cn/438a7259485348de9fd51cc5dacc8f71.png","https://img-blog.csdnimg.cn/a973b12f2c804ebdb0f80f17a6f05379.png","https://img-blog.csdnimg.cn/db84b87c266e431587a10f89e2c95dd0.png","https://img-blog.csdnimg.cn/0cf46cbe463d432686e49865fcace8fe.png"],
-        "author": {
-            "@type": "Person",
-            "description": "Let there be light",
-            "email": "1647656181@qq.com",
-            "image": "https://xiqi-zheng.github.io/icons/apple-touch-icon.png",
-            "url": "https://io-oi.me/",
-            "name": "Chloe"
-        },
+        "image": "https://xiqi-zheng.github.io/icons/apple-touch-icon.png",
         "license": "转载请保留本文作者以及本文链接",
         "publisher": {
             "@type": "Organization",
@@ -92,8 +81,7 @@
 
     
 
-<meta name="twitter:card" content="summary_large_image" />
-
+<meta name="twitter:card" content="summary" />
 
 
     
@@ -104,13 +92,8 @@
 <meta property="og:description" content="什么是逻辑（Logistic）回归 逻辑回归是一种用于解决二分类（要么是0要么是1）问……" />
 <meta property="og:url" content="https://xiqi-zheng.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE-%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E7%AC%94%E8%AE%B0/" />
 <meta property="og:site_name" content="Chloe&#39;s universe" />
-<meta property="og:locale" content="zh" /><meta property="og:image" content="https://img-blog.csdnimg.cn/892b7f54066045e5badadc8999512367.png" />
-<meta property="og:type" content="article" />
-    <meta property="article:published_time" content="2022-08-03T00:00:00&#43;00:00" />
-    <meta property="article:modified_time" content="2022-08-08T15:26:16&#43;08:00" />
-    
-    <meta property="article:section" content="posts" />
-
+<meta property="og:locale" content="zh" /><meta property="og:image" content="https://xiqi-zheng.github.io/icons/apple-touch-icon.png" />
+    <meta property="og:type" content="website" />
 
 
     
@@ -369,16 +352,6 @@ j = 1...n，n为特征的数量，对J(w,b) 求导后为：
 
 
         
-    <footer class="minimal-footer">
-        
-            <div class="post-tag"><a href="/tags/machine-learning/" rel="tag" class="post-tag-link">#machine-learning</a></div>
-        
-        
-        
-            
-        
-    </footer>
-
 
 
         
