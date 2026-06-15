@@ -2,20 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://xiqi-zheng.github.io/about/</loc>
+    <lastmod>2026-06-15T11:24:22+08:00</lastmod>
+  </url><url>
     <loc>https://xiqi-zheng.github.io/</loc>
-    <lastmod>2026-06-15T11:04:53+08:00</lastmod>
+    <lastmod>2026-06-15T11:25:43+08:00</lastmod>
   </url><url>
     <loc>https://xiqi-zheng.github.io/random/</loc>
-    <lastmod>2026-06-15T11:00:54+08:00</lastmod>
+    <lastmod>2026-06-15T11:25:43+08:00</lastmod>
   </url><url>
     <loc>https://xiqi-zheng.github.io/tags/</loc>
-    <lastmod>2026-06-15T11:00:54+08:00</lastmod>
+    <lastmod>2026-06-15T11:25:43+08:00</lastmod>
   </url><url>
     <loc>https://xiqi-zheng.github.io/tags/thinking/</loc>
-    <lastmod>2026-06-15T11:00:54+08:00</lastmod>
+    <lastmod>2026-06-15T11:23:28+08:00</lastmod>
   </url><url>
     <loc>https://xiqi-zheng.github.io/random/%E8%B4%AA%E5%A9%AA/</loc>
-    <lastmod>2026-06-15T11:00:54+08:00</lastmod>
+    <lastmod>2026-06-15T11:23:28+08:00</lastmod>
   </url><url>
     <loc>https://xiqi-zheng.github.io/tags/notes/</loc>
     <lastmod>2023-06-10T15:46:15+08:00</lastmod>
@@ -57,10 +60,10 @@
     <lastmod>2023-04-11T18:22:42+08:00</lastmod>
   </url><url>
     <loc>https://xiqi-zheng.github.io/random/cheddar-gorge%E6%B5%81%E6%B5%AA%E8%AE%B0/</loc>
-    <lastmod>2025-02-18T20:32:45+08:00</lastmod>
+    <lastmod>2026-06-15T11:25:43+08:00</lastmod>
   </url><url>
     <loc>https://xiqi-zheng.github.io/tags/hiking/</loc>
-    <lastmod>2025-02-18T20:32:45+08:00</lastmod>
+    <lastmod>2026-06-15T11:25:43+08:00</lastmod>
   </url><url>
     <loc>https://xiqi-zheng.github.io/random/%E4%B8%8B%E5%8D%88%E7%9A%84%E5%B8%83%E9%87%8C%E6%96%AF%E6%89%98/</loc>
     <lastmod>2023-01-18T20:38:29+08:00</lastmod>
