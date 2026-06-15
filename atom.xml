@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">Chloe&#39;s universe</title>
     <subtitle type="html">这是 Chloe 的生活与技术博客</subtitle>
-    <updated>2023-06-08T11:33:02&#43;08:00</updated>
+    <updated>2026-06-15T11:05:43&#43;08:00</updated>
     <id>https://xiqi-zheng.github.io/</id>
     <link rel="alternate" type="text/html" href="https://xiqi-zheng.github.io/" />
     <link rel="self" type="application/atom&#43;xml" href="https://xiqi-zheng.github.io/atom.xml" />
@@ -15,7 +15,126 @@
                 <email>1647656181@qq.com</email>
             </author>
     <rights>转载请保留本文作者以及本文链接</rights>
-    <generator uri="https://gohugo.io/" version="0.101.0">Hugo</generator>
+    <generator uri="https://gohugo.io/" version="0.123.8">Hugo</generator>
+        <entry>
+            <title type="text">贪婪</title>
+            <link rel="alternate" type="text/html" href="https://xiqi-zheng.github.io/random/%E8%B4%AA%E5%A9%AA/" />
+            <id>https://xiqi-zheng.github.io/random/%E8%B4%AA%E5%A9%AA/</id>
+            <updated>2026-06-15T11:00:54&#43;08:00</updated>
+            <published>2026-06-05T00:00:00&#43;00:00</published>
+            <author>
+                    <name>Chloe</name>
+                    <uri>https://io-oi.me/</uri>
+                    <email>1647656181@qq.com</email>
+                    </author>
+            <rights>转载请保留本文作者以及本文链接</rights><summary type="html">刚刚在收拾浏览器收藏夹，其实也算不上收拾，只是前几天收藏了一篇 CC Switch 的配置教程，今天想……</summary>
+            
+                <content type="html">&lt;img src=&#34;https://xiqi-zheng.github.io/static/images/curiosity.png&#34;&gt;
+&lt;p&gt;刚刚在收拾浏览器收藏夹，其实也算不上收拾，只是前几天收藏了一篇 CC Switch 的配置教程，今天想找的时候怎么都找不到。我在收藏夹里翻了半天。从「神经网络」翻到「哲学」，从「哲学」翻到「数据结构」，从「数据结构」翻到「心理学」，又从「心理学」翻到「天体物理」。教程还是没找到，倒是把自己看愣了。我盯着这些收藏夹看了很久。忽然觉得有点好笑。因为这些东西看起来完全不像是同一个人会感兴趣的。&lt;/p&gt;
+&lt;p&gt;一个写代码的人为什么会去研究宇宙学。一个研究 AI 的人为什么会突然开始看哲学。一个人的收藏夹里怎么会同时放着「CI/CD 流水线」，「记忆的分类及其理论模型」和「为什么光速不变」。&lt;/p&gt;
+&lt;p&gt;仔细想想，好像一直是这样的人。&lt;/p&gt;
+&lt;p&gt;小时候伯伯长期住在美国，家里人总说伯伯要坐飞机回美国。我认真思考了很久，飞机是在天上飞的，那美国肯定也在天上。于是我和爸爸争论了很久，我坚持认为美国就在云上面，不然飞机为什么要飞那么高。后来爸爸是怎么解释的我已经忘了。但我还记得那种感觉，就是想知道为什么，为什么飞机可以飞，为什么美国那么远，为什么云上面什么都没有。&lt;/p&gt;
+&lt;p&gt;长大以后这种毛病好像一点都没变。只是问题换了一批。以前好奇美国是不是在云上，后来好奇互联网是怎么把信息传到另一个城市的，好奇神经网络为什么能够识别图片，好奇人为什么会产生情绪，好奇宇宙为什么会诞生，好奇光速不变为什么偏偏是光速，好奇如果把所有的问题一路追问下去，最后会不会走到同一个答案。&lt;/p&gt;
+&lt;p&gt;我以为这是焦虑，因为总有新的东西出现，总有新的领域想了解。似乎大家都在朝着一个方向往前走，而我总是在东张西望，这里停一下，那里看一眼，好像什么都想知道一点。但后来我慢慢发现，我并不是真的想成为每个领域的专家。很多收藏的文章我没有看完，很多收藏的视频我甚至没有点开，很多问题最后也没有找到答案。可下一次遇到新的东西，我还是会忍不住停下来，好像吸引我的从来不是答案，而是那个发现新世界的瞬间。每当一个新的房间在我面前打开的时候，我都会忍不住想进去看看，哪怕只是站在门口。&lt;/p&gt;
+&lt;p&gt;世界好像总是在我以为自己已经看清一点的时候，又露出新的角落。而我总忍不住想再靠近一点。如果一定要用一个词来形容的话，我想那大概是贪婪，是对这个世界的贪婪。&lt;/p&gt;
+&lt;p&gt;我想知道得更多一点，看得更多一点，体验得更多一点。&lt;/p&gt;
+</content>
+            
+            
+            
+            
+            
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://xiqi-zheng.github.io/tags/thinking/" term="Thinking" label="Thinking" />
+                            
+                        
+                    
+                
+            
+        </entry>
+    
+        <entry>
+            <title type="text">形而上学</title>
+            <link rel="alternate" type="text/html" href="https://xiqi-zheng.github.io/random/%E5%BD%A2%E8%80%8C%E4%B8%8A%E5%AD%A6/" />
+            <id>https://xiqi-zheng.github.io/random/%E5%BD%A2%E8%80%8C%E4%B8%8A%E5%AD%A6/</id>
+            <updated>2023-06-10T15:46:15&#43;08:00</updated>
+            <published>2023-06-10T00:00:00&#43;00:00</published>
+            <author>
+                    <name>Chloe</name>
+                    <uri>https://io-oi.me/</uri>
+                    <email>1647656181@qq.com</email>
+                    </author>
+            <rights>转载请保留本文作者以及本文链接</rights><summary type="html">什么是形而上学？ 在中学课本上，形而上学是一种用孤立的，片面的，静止的眼光来看待事物的……</summary>
+            
+                <content type="html">&lt;h1 id=&#34;什么是形而上学&#34;&gt;什么是形而上学？&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;在中学课本上，形而上学是一种用&lt;strong&gt;孤立的，片面的，静止的&lt;/strong&gt;眼光来看待事物的一种思维方式，与辩证法是相对的。&lt;/li&gt;
+&lt;li&gt;但有的时候，我们会用形而上学来指代一些&lt;strong&gt;高深的，抽象的，玄奥的&lt;/strong&gt;一些思想。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;为什么会产生如此有歧义的两种含义&#34;&gt;为什么会产生如此有歧义的两种含义？&lt;/h2&gt;
+&lt;p&gt;要讲清楚这个问题，我们得从古希腊哲学家&lt;strong&gt;亚里士多德&lt;/strong&gt;（Aristotle）说起，他是最早提出这个思想的人。&lt;/p&gt;
+&lt;p&gt;但”形而上学“这个词的英文叫做metaphysics，古希腊文叫做τὰ μετὰ τὰ φυσικά（ta meta ta physica），是他的学生&lt;strong&gt;安德罗尼科&lt;/strong&gt;（Andronicos Rhodios）在编辑整理亚里士多德留下来的文献时取的名字。&lt;/p&gt;
+&lt;h3 id=&#34;为什么叫ta-meta-ta-physica&#34;&gt;为什么叫ta meta ta physica？&lt;/h3&gt;
+&lt;p&gt;ta meta ta physica 的 &lt;strong&gt;physica&lt;/strong&gt; 在英文中是&lt;strong&gt;物理学&lt;/strong&gt;的意思，&lt;strong&gt;meta&lt;/strong&gt; 是&lt;strong&gt;在…之后&lt;/strong&gt;的意思，而 &lt;strong&gt;ta&lt;/strong&gt; 是冠词，相当于英文中的 &lt;strong&gt;the&lt;/strong&gt; 。由于安德罗尼科先编辑整理了亚里士多德的《物理学》这本书之后，发现还有一些文献，而这部分文献和物理学有关系，所以他就把这部分文献叫做《物理学之后》也就是ta meta ta physica的直译。亚里士多德自己表示，物理学和物理学之后之前并不存在很强烈的关系，只是编写的时间顺序而已。&lt;/p&gt;
+&lt;p&gt;meta这个词其实还有超越的意思，所以&lt;strong&gt;后世&lt;/strong&gt;对这个词的理解更倾向于&lt;strong&gt;超物理学&lt;/strong&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;超物理学是什么意思呢&#34;&gt;超物理学是什么意思呢？&lt;/h3&gt;
+&lt;p&gt;首先我们先来了解物理学是什么。其实在希腊那里，他们把物理学叫做自然哲学。它所研究的对象就是自然事物，包括我们人， 世界万物，草木，日月星辰。亚里士多德发现，这些自然事物都是会&lt;strong&gt;运动变化&lt;/strong&gt;的，大到日月星辰的运转，小到草木的荣枯，包括我们人的生老病死和繁衍生息。&lt;/p&gt;
+&lt;p&gt;亚里士多德又发现，需要有一个&lt;strong&gt;超越于&lt;/strong&gt;这些看得见摸得着的自然事物之上的东西，来为这些自然事物奠基。也就是说，这些自然事物想要得以存在和运动变化，就需要有一个永恒不变的东西作为它们运动变化和存在的基础。&lt;/p&gt;
+&lt;p&gt;那么这个东西就叫做&lt;strong&gt;存在者（Being），或者叫本质（ousia），实体&lt;/strong&gt;等等。&lt;/p&gt;
+&lt;p&gt;所以说形而上学，或者说超物理学&lt;strong&gt;所研究的就是这些存在者，本质或实体等等&lt;/strong&gt;。正因为形而上学研究的是这种看不见摸不着的非常根本的东西，所以说就给后来形而上学带来了&lt;strong&gt;高深，抽象和玄奥的色彩&lt;/strong&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;为什么中文里叫形而上学&#34;&gt;为什么中文里叫形而上学？&lt;/h3&gt;
+&lt;p&gt;在我们中国的**《周易》**里有一句话叫做：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;”形而上者谓之道，形而下者谓之器“&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;那么这个”&lt;strong&gt;器&lt;/strong&gt;“就是指具体可见的&lt;strong&gt;有形有象的事物&lt;/strong&gt;。而这个”&lt;strong&gt;道&lt;/strong&gt;“指的就是&lt;strong&gt;无形无象，看不见摸不着的那个根本的道理&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;这样一来，我们中文做说的形而上的道和西方人所说的超越于自然事物之上的那个根本的存在者，就好像是一样的，相对应的。所以我们就用形而上学来翻译这个ta meta ta physica。&lt;/p&gt;
+&lt;aside&gt;
+💡 形而上学原本指的就是一门具体的学科，它是由亚里士多德所创立的，它的研究对象是那些超越看得见摸得着的自然事物之上的那个永恒不变的绝对本质。
+&lt;/aside&gt;
+&lt;h3 id=&#34;为什么形而上学变成了中学课本上不一样的含义&#34;&gt;为什么形而上学变成了中学课本上不一样的含义？&lt;/h3&gt;
+&lt;p&gt;这个问题跟近代哲学家&lt;strong&gt;黑格尔&lt;/strong&gt;（Georg Wilhelm Friedrich Hegel），有关。黑格尔其实&lt;strong&gt;并没有反对形而上学&lt;/strong&gt;，在他那里其实形而上学也是研究永恒不变的事物的本质且他的哲学核心也是形而上学。他所&lt;strong&gt;反对&lt;/strong&gt;的仅仅是一些&lt;strong&gt;早期近代的哲学家，他们研究形而上学问题的方式&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;这些哲学家认为，那些绝对不变的永恒本质是&lt;strong&gt;单纯的&lt;/strong&gt;，我们可以&lt;strong&gt;用某个单一的特性或某个单一的思想规定去界定它，描述它&lt;/strong&gt;，比如说：世界的本质是有限的或者说世界的本质是无限的，不能说它即是有限的，又是无限的。否则的话它就陷入矛盾了，他们认为不能陷入矛盾。&lt;/p&gt;
+&lt;p&gt;但黑格尔认为，这些&lt;strong&gt;永恒本质本来就是矛盾的&lt;/strong&gt;，它是由各种各样不同的甚至相互对立的特质有机地联系在一起的一个矛盾统一体。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;有机结合的意思：两个及两个以上事物互相结合，并不相互抵触，牵制，而是各出所长，互相取长补短，获得更好的成果&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;因此，不可以用某一个单一的特性去描述这些永恒本质，而是同时使用多个不同的特性去界定它描述它。比如说：世界的本质即是有限的又是无限的。这些特性之间，它们是&lt;strong&gt;有机地联系在一起的&lt;/strong&gt;，是有一个复杂的结构的，不是随意堆砌的。&lt;/p&gt;
+&lt;p&gt;那么这种思想观念就是所谓的：&lt;a href=&#34;https://zhuanlan.zhihu.com/p/610368546&#34;&gt;&lt;strong&gt;辩证法&lt;/strong&gt;&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;所以到这里我们就清楚了，黑格尔的辩证法，就是形而上学，他的研究对象和传统形而上学是一样的，都是那个永恒不变的绝对本质。&lt;/p&gt;
+&lt;p&gt;所以黑格尔认为传统的形而上学主张的只需要同一个单一的特性去界定一个永恒不变的绝对本质，是&lt;strong&gt;孤立的，片面的，静止的看待问题的思维方式&lt;/strong&gt;。而他的辩证法则是全面的看待问题的思维方式，&lt;strong&gt;他的辩证法才是真正的形而上学&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;后来他的这种看法，后来被&lt;strong&gt;马克思&lt;/strong&gt;所继承了，不过马克思干脆直接否定了形而上学，他把形而上学仅仅看成是一种&lt;strong&gt;孤立的，片面的，静止的&lt;/strong&gt;看待问题的思维方式，而否定了它作为一门研究绝对本质的学科的含义，所以我们才会在中学的政治课本上看到形而上学是一种&lt;strong&gt;孤立的，片面的，静止的&lt;/strong&gt;看待问题的思维方式。&lt;/p&gt;
+</content>
+            
+            
+            
+            
+            
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://xiqi-zheng.github.io/tags/notes/" term="Notes" label="Notes" />
+                            
+                        
+                            
+                            
+                            
+                                <category scheme="https://xiqi-zheng.github.io/tags/philosophy/" term="Philosophy" label="Philosophy" />
+                            
+                        
+                    
+                
+            
+        </entry>
+    
         <entry>
             <title type="text">《思维魔法书》</title>
             <link rel="alternate" type="text/html" href="https://xiqi-zheng.github.io/random/%E6%80%9D%E7%BB%B4%E9%AD%94%E6%B3%95%E4%B9%A6/" />
@@ -296,13 +415,13 @@
                             
                             
                             
-                                <category scheme="https://xiqi-zheng.github.io/tags/notes/" term="notes" label="notes" />
+                                <category scheme="https://xiqi-zheng.github.io/tags/notes/" term="Notes" label="Notes" />
                             
                         
                             
                             
                             
-                                <category scheme="https://xiqi-zheng.github.io/tags/psychology/" term="psychology" label="psychology" />
+                                <category scheme="https://xiqi-zheng.github.io/tags/psychology/" term="Psychology" label="Psychology" />
                             
                         
                     
@@ -443,13 +562,13 @@
                             
                             
                             
-                                <category scheme="https://xiqi-zheng.github.io/tags/notes/" term="notes" label="notes" />
+                                <category scheme="https://xiqi-zheng.github.io/tags/notes/" term="Notes" label="Notes" />
                             
                         
                             
                             
                             
-                                <category scheme="https://xiqi-zheng.github.io/tags/psychology/" term="psychology" label="psychology" />
+                                <category scheme="https://xiqi-zheng.github.io/tags/psychology/" term="Psychology" label="Psychology" />
                             
                         
                     
@@ -517,7 +636,7 @@
                             
                             
                             
-                                <category scheme="https://xiqi-zheng.github.io/tags/random/" term="random" label="random" />
+                                <category scheme="https://xiqi-zheng.github.io/tags/random/" term="Random" label="Random" />
                             
                         
                     
@@ -529,7 +648,7 @@
             <title type="text">Cheddar Gorge 徒步</title>
             <link rel="alternate" type="text/html" href="https://xiqi-zheng.github.io/random/cheddar-gorge%E6%B5%81%E6%B5%AA%E8%AE%B0/" />
             <id>https://xiqi-zheng.github.io/random/cheddar-gorge%E6%B5%81%E6%B5%AA%E8%AE%B0/</id>
-            <updated>2023-03-17T13:13:28&#43;08:00</updated>
+            <updated>2025-02-18T20:32:45&#43;08:00</updated>
             <published>2023-01-31T00:00:00&#43;00:00</published>
             <author>
                     <name>Chloe</name>
@@ -546,28 +665,28 @@
 &lt;/br&gt;&lt;/p&gt;
 &lt;p&gt;Anyway，经过半小时的车程我们到达了峡谷底下，也就是小镇的所在位置。一下车我就被小镇的精致可爱吸引了，
 因为四周都是山，所以小镇颇有种与世隔绝的感觉。像宫崎骏漫画里的梦幻世界。&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/img_convert/20665ca40cdafa2296931b4d702fbcb9.jpeg&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;img src=&#34;https://xiqi-zheng.github.io/static/images/house.jpg&#34;&gt;
 &lt;p&gt;我们无数次被沿途的风景吸引，把原本三小时的路程硬是拖到了四个半小时才走完。也热衷于走一些山羊走的路，
 它们陡峭，泥泞，还有扎人的不知名植物，我们却乐在其中。&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/img_convert/67d47a5469f67eadf39f70f8937a8142.jpeg&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;img src=&#34;https://xiqi-zheng.github.io/static/images/road.jpg&#34;&gt;
 &lt;p&gt;我们给这次旅途定了一个小目标，就是找一根趁手的 “拐杖”。我运气好，刚走不远就找到了趁手的
 木棍当做登山杖，我的好友就没那么如愿了，走了大半路程才找到，但也仅仅陪伴她一小段路便折断了。
 途中还找到了一个外形酷似弹弓的小树枝，可惜太脆皮了，我套上我的皮筋亲亲一拉就断掉了。幸好我的朋友眼疾手快，
 留下了它的“遗照”。&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/img_convert/0f1bf2a5f27689cc56c2d41af5ee29ff.jpeg&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;img src=&#34;https://xiqi-zheng.github.io/static/images/tree.jpg&#34;&gt;
 &lt;p&gt;因为不是周末的原因，峡谷里的人很少，只有几对情侣和头发花白的老头老太。也许是因为在偌大的山谷里遇到同
 物种的亲切感，我们热情地和对方打着招呼。所有人无一例外地挂着大大的笑容，也许这就是大自然的魅力。不管
 在现实生活中（我认为在峡谷中的世界应与平时生活隔绝开）扮演着什么角色，在此刻也只不过是为了领略大自然美妙的仰望者而已。&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/img_convert/a9746f3d353f0172503e061433a2af0c.jpeg&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;img src=&#34;https://xiqi-zheng.github.io/static/images/old.jpg&#34;&gt;
 &lt;p&gt;再往上，我们遇到了许多留着长长胡子的山羊，这是我离野生动物最近的一次，伸手就能摸到它黑白相间的羊毛。
 我仔细观察着它的长相，因为它花白的胡子，让我觉得它像一个高深莫测的老者，但骨子里却是个和蔼的爷爷。&lt;/p&gt;
 &lt;p&gt;或许它们才是这里的主人，但它们似乎并不在意我们无礼地闯入。 可能如同以往的每一天一样，
 它们都在为生存而奔波，在这蒙昧之中的世界，它们不知道自己从哪里来，也不关心自己到哪里去，
 当太阳升到正空时，当植物在地上投下的影子缩到最小时，它们只关心从哪里找到自己今天的午餐。&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/img_convert/c544511b3980d7da2ce227218e3e1363.jpeg&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;img src=&#34;https://xiqi-zheng.github.io/static/images/sheep.jpg&#34;&gt;
 &lt;p&gt;我们横穿过放羊的四方形平原，映入眼帘的是像被劈开的石头巨人，站在峡谷之巅，峡谷全貌，尽收眼底。
 下辈子做只小鸟儿，在这峡谷之间飞上一遭，也算是鸟生无憾了。&lt;/p&gt;
-&lt;img src=&#34;https://img-blog.csdnimg.cn/img_convert/2e13423729cf289c029745a4cf454ebd.jpeg&#34; referrerpolicy=&#39;no-referrer&#39;&gt;
+&lt;img src=&#34;https://xiqi-zheng.github.io/static/images/xiagu.jpg&#34;&gt;
 </content>
             
             
@@ -580,7 +699,7 @@
                             
                             
                             
-                                <category scheme="https://xiqi-zheng.github.io/tags/hiking/" term="hiking" label="hiking" />
+                                <category scheme="https://xiqi-zheng.github.io/tags/hiking/" term="Hiking" label="Hiking" />
                             
                         
                     
@@ -642,7 +761,7 @@
                             
                             
                             
-                                <category scheme="https://xiqi-zheng.github.io/tags/random/" term="random" label="random" />
+                                <category scheme="https://xiqi-zheng.github.io/tags/random/" term="Random" label="Random" />
                             
                         
                     
@@ -711,7 +830,7 @@
                             
                             
                             
-                                <category scheme="https://xiqi-zheng.github.io/tags/travel/" term="travel" label="travel" />
+                                <category scheme="https://xiqi-zheng.github.io/tags/travel/" term="Travel" label="Travel" />
                             
                         
                     
@@ -766,7 +885,7 @@
                             
                             
                             
-                                <category scheme="https://xiqi-zheng.github.io/tags/poetry/" term="poetry" label="poetry" />
+                                <category scheme="https://xiqi-zheng.github.io/tags/poetry/" term="Poetry" label="Poetry" />
                             
                         
                     
@@ -822,7 +941,7 @@
                             
                             
                             
-                                <category scheme="https://xiqi-zheng.github.io/tags/poetry/" term="poetry" label="poetry" />
+                                <category scheme="https://xiqi-zheng.github.io/tags/poetry/" term="Poetry" label="Poetry" />
                             
                         
                     
